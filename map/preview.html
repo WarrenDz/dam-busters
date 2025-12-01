@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>scrolly-story-animator-preview</title>
+    <script type="module" src="./preview.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src=https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js></script>
+</head>
+
+<body>
+    <div id="container">
+        <!-- <div id="buttons"></div> -->
+        <div id="mapContainer">
+            <div id="animationControls">
+                <calcite-button id="btn-left" icon-start="chevron-left" appearance="outline-fill" scale="l"></calcite-button>
+                <div id="progressSlider">
+                    <calcite-label id="slide-indicator" alignment="center">
+                        Scroll Progress
+                        </calcite-label>
+                        <calcite-slider id="scrollProgress" value="0" label-handles label-ticks max-label="Next Slide"
+                            min-label="Current Slide" ticks="100"></calcite-slider>
+                    
+                </div>
+                <calcite-button id="btn-right" icon-start="chevron-right" appearance="outline-fill" scale="l"></calcite-button>
+            </div>
+            <arcgis-expand id="timeExpand" position="top-right" mode="floating">
+                <arcgis-time-slider slot="top-right" mode="cumulative-from-start" play-rate=250
+                    reference-element="map"></arcgis-time-slider>
+            </arcgis-expand>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+import Viewpoint from "@arcgis/core/Viewpoint.js";
+import Camera from "@arcgis/core/Camera.js";
+
+import { animationConfig } from "./configAnimation.js";
+
+/**
+ * Maps slide data keys to their corresponding animation handler functions,
+ * enabling dynamic choreography of viewpoint and time slider transitions.
+ */
+const choreographyHandlers = {
+  viewpoint: toggleViewpoint,
+  timeSlider: toggleTimeSlider,
+  layerVisibility: toggleLayerVisibility,
+  trackRenderer: toggleTrackRenderer,
+  environment: toggleEnvironment
+};
+
+/**
+ * Executes animation handlers for each key in slideData using shared context.
+ * Skips keys listed in NON_EMBED_EXCLUDE_KEYS when in embedded mode.
+ * Logs each triggered animation and catches any handler errors.
+ */
+const NON_EMBED_EXCLUDE_KEYS = new Set(["viewpoint"]);
+
+export function slideAnimation(slideData, mapView, timeSlider, embedded) {
+  const context = { slideData, mapView, timeSlider, embedded };
+
+  Object.entries(slideData).forEach(([key, value]) => {
+    const handler = choreographyHandlers[key];
+    if (!handler) return;
+
+    // Skip excluded keys when not embedded
+    if (embedded && NON_EMBED_EXCLUDE_KEYS.has(key)) return;
+
+    try {
+      handler(context);
+    } catch (error) {
+      console.error(`Error processing '${key}':`, error);
+    }
+  });
+}
+
+/**
+ * Sets the map view to the viewpoint defined in slideData,
+ * animating the transition over 1 second. Logs errors if the transition fails.
+ */
+function toggleViewpoint({ slideData, mapView, timeSlider, embedded }) {
+  // Prefer camera when running in a 3D SceneView and camera data is available.
+  const viewpointData = slideData.viewpoint;
+  const cameraData = slideData.camera || viewpointData?.camera;
+  const is3DView = mapView && typeof mapView.camera !== "undefined";
+
+  if (is3DView && cameraData) {
+    try {
+      const targetCamera = Camera.fromJSON(cameraData);
+      mapView.goTo(targetCamera, animationConfig.goToConfig).catch((error) => {
+          console.error("Error setting camera from viewpoint data:", error);
+        });
+      return;
+    } catch (error) {
+      console.error("Failed to construct Camera from slide data:", error);
+      // fall through to viewpoint handling
+    }
+  }
+
+  // Otherwise fall back to viewpoint navigation (works for 2D MapView and SceneView viewpoints)
+  if (viewpointData) {
+    try {
+      const targetViewpoint = Viewpoint.fromJSON(viewpointData);
+      const target = animationConfig.mapFit === "scale" ? targetViewpoint : targetViewpoint.targetGeometry;
+      mapView.goTo(target, animationConfig.goToConfig).catch((error) => {
+          console.error("Error setting viewpoint:", error);
+        });
+      return;
+    } catch (error) {
+      console.error("Failed to construct Viewpoint from slide data:", error);
+    }
+  }
+
+  // Last resort: if camera data exists but view is 2D, attempt a very simple conversion
+  if (cameraData && !is3DView) {
+    try {
+      // Derive a 2D center from camera position; use provided zoom from config if available
+      const center = [cameraData.position.x, cameraData.position.y];
+      const zoom = animationConfig.zoom ? Number(animationConfig.zoom) : undefined;
+      if (zoom !== undefined) mapView.zoom = zoom;
+      if (mapView.center) mapView.center = center;
+      else mapView.goTo({ center, zoom }, animationConfig.goToConfig);
+    } catch (error) {
+      console.error("Failed to convert camera to 2D viewpoint:", error);
+    }
+  }
+}
+
+/**
+ * Update the timeSlider using configuration from choreographyData.
+ * Sets the full time extent, interval stops, and starting frame.
+ * Automatically starts playback if the slider is ready and not in embedded mode.
+ */
+function toggleTimeSlider({ slideData, mapView, timeSlider, embedded }) {
+  if (
+    timeSlider &&
+    slideData.timeSlider &&
+    slideData.timeSlider.timeSliderStart &&
+    slideData.timeSlider.timeSliderEnd
+  ) {
+    const timeStart = slideData.timeSlider.timeSliderStart;
+    const timeEnd = slideData.timeSlider.timeSliderEnd;
+    const timeUnit = slideData.timeSlider.timeSliderUnit;
+    const timeStep = slideData.timeSlider.timeSliderStep;
+    const startFrame = new Date(timeStart);
+    const endFrame = new Date(timeEnd);
+
+    // Configure time extent
+    timeSlider.fullTimeExtent = { start: startFrame, end: endFrame };
+    timeSlider.timeExtent = { start: null, end: startFrame };
+
+    // Set the time slider interval based on choreography
+    timeSlider.stops = {
+      interval: {
+        value: timeStep,
+        unit: timeUnit,
+      },
+    };
+
+    // Start the time slider if not already playing and if outside script embed story
+    if (timeSlider.state === "ready" && !embedded) {
+      timeSlider.play();
+    } else if (timeSlider.state === "ready" && embedded) {
+      timeSlider.stop();
+    } else if (!timeSlider) {
+      console.log("No timeSlider component found.");
+    } else {
+      console.log("No timeSlider configuration found in choreography.");
+    }
+  }
+}
+
+/**
+ * Update the environment using configuration defined in choreographyData.
+ * Sets the weather, lighting, atmosphere, and stars.
+ */
+function toggleEnvironment({slideData, mapView, timeSlider, embedded }) {
+  const slideEnv = slideData.environment;
+  if (!slideEnv) return;
+
+  // Only set environment on views that support it (SceneView)
+  if (!mapView || typeof mapView.environment === 'undefined') return;
+
+  // Read current environment to allow partial updates
+  const currentEnv = mapView.environment || {};
+
+  const env = {};
+
+  // Lighting
+  if (slideEnv.lighting) {
+    const lighting = {};
+    if (slideEnv.lighting.type !== undefined) lighting.type = slideEnv.lighting.type;
+    if (slideEnv.lighting.datetime !== undefined) {
+      const d = new Date(slideEnv.lighting.datetime);
+      if (!Number.isNaN(d.getTime())) lighting.datetime = d;
+    }
+    if (slideEnv.lighting.displayUTCOffset !== undefined) lighting.displayUTCOffset = slideEnv.lighting.displayUTCOffset;
+    if (Object.keys(lighting).length) env.lighting = lighting;
+  }
+
+  // Atmosphere and stars
+  if (slideEnv.atmosphereEnabled !== undefined) env.atmosphereEnabled = !!slideEnv.atmosphereEnabled;
+  if (slideEnv.starsEnabled !== undefined) env.starsEnabled = !!slideEnv.starsEnabled;
+
+  // Weather
+  if (slideEnv.weather) {
+    const weather = {};
+    if (slideEnv.weather.type !== undefined) weather.type = slideEnv.weather.type;
+    if (slideEnv.weather.cloudCover !== undefined) {
+      const cc = Number(slideEnv.weather.cloudCover);
+      if (!Number.isNaN(cc)) weather.cloudCover = cc;
+    }
+    if (slideEnv.weather.precipitation !== undefined) {
+      const p = Number(slideEnv.weather.precipitation);
+      if (!Number.isNaN(p)) weather.precipitation = p;
+    }
+    if (Object.keys(weather).length) env.weather = weather;
+  }
+
+  // Merge with current environment so unspecified properties are preserved
+  const newEnv = Object.assign({}, currentEnv, env);
+
+  try {
+    mapView.environment = newEnv;
+  } catch (err) {
+    console.error('Failed to apply environment to view:', err);
+  }
+}
+
+/**
+ * Updates map layer visibility based on slideData configuration.
+ * Turns on layers listed in layersOn and turns off layers listed in layersOff
+ * by matching layer titles in the mapView.
+ */
+function toggleLayerVisibility({ slideData, mapView, timeSlider, embedded }) {
+  const mapLayers = mapView.map.layers;
+  function setLayerVisibility(layerNames, visibility) {
+    if (layerNames && layerNames.length > 0) {
+      mapLayers.forEach((mapLayer) => {
+        if (layerNames.includes(mapLayer.title)) {
+          mapLayer.visible = visibility; // Set visibility based on the argument
+          console.log(`Layer '${mapLayer.title}' visibility set to ${visibility}`);
+        }
+      });
+    }
+  }
+  const layersOn = slideData.layerVisibility.layersOn;
+  const layersOff = slideData.layerVisibility.layersOff;
+
+  setLayerVisibility(layersOn, true); // Turn on specified layers
+  setLayerVisibility(layersOff, false); // Turn off specified layers
+}
+
+/**
+ * Reconfigures and reapplies a track renderer to its corresponding map layer
+ * using parameters from slideData and timeSlider. Performs a hard reset by
+ * removing and re-adding the layer, then updates its timeInfo and trackInfo.
+ * Ensures the layer is visible.
+ */
+function toggleTrackRenderer({ slideData, mapView, timeSlider, embedded }) {
+  const mapLayers = mapView.map.layers;
+  const trackTimeConfig = slideData.timeSlider;
+  async function applyTrackRenderer(trackRenderer, timeSlider) {
+    try {
+      const trackLayerField = trackRenderer.trackFieldName;
+      const trackTimeSliderUnit = timeSlider.timeSliderUnit;
+      const trackTimeSliderStep = timeSlider.timeSliderStep;
+      let trackLayer = mapLayers.find(
+        (layer) => layer.title === trackRenderer.trackLayerName
+      );
+
+      if (trackLayer) {
+        const layerIndex = mapView.map.layers.indexOf(trackLayer);
+
+        try {
+          mapView.map.remove(trackLayer);
+        } catch (error) {
+          console.error("Failed to remove track layer:", error);
+        }
+
+        trackLayer = trackLayer.clone();
+
+        try {
+          mapView.map.add(trackLayer, layerIndex);
+        } catch (error) {
+          console.error("Failed to add track layer:", error);
+        }
+        console.log("Applying track renderer:", trackRenderer.trackLayerName);
+        await trackLayer.when(); // Wait for the layer to load
+        const trackStartField = trackLayer.timeInfo.startField;
+        trackLayer.visible = true; // Make the layer visible
+        trackLayer.timeInfo = {
+          startField: trackStartField,
+          trackIdField: trackLayerField,
+          interval: {
+            unit: trackTimeSliderUnit,
+            value: trackTimeSliderStep,
+          },
+        };
+        // Apply renderer from choreography data
+        trackLayer.trackInfo = trackRenderer.trackInfo;
+      }
+    } catch (error) {
+      console.error("Failed to set track Renderer:", error);
+    }
+  }
+  applyTrackRenderer(slideData.trackRenderer, trackTimeConfig);
+}
+

@@ -1,0 +1,39 @@
+/* Page background */
+body {
+  margin: 0;
+  background-color: #222222; /* page background */
+  min-height: 200vh; /* ensure there's room to scroll */
+}
+
+/* scene scene */
+#scene-banner {
+  position: relative;
+  height: 450px;
+  overflow: hidden;
+}
+
+.scene-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+/* Gradient under the scene: from #A8CDFF at the top to #DCE9F9 at 50% */
+#solid-fill {
+  width: 100%;
+  height: 100vh; /* adjust how tall the gradient band should be */
+  background: linear-gradient(to bottom, #2b2f32 0%, #45484d 50%, #43484f 100%);
+}
+
+/* Layer stacking (keeps images in order) */
+#scene-layer1 { z-index: 1; }
+#scene-layer2 { z-index: 2; }
+#scene-layer3 { z-index: 3; }
+#scene-layer4 { z-index: 4; }
+
+/* main:  #222222*/
+/* yellow: #FFD100 */
+/* red: #C23D4C */

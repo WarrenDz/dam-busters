@@ -1,0 +1,26 @@
+#mapContainer {
+  display: block;
+  height: 100vh;
+  width: 100%;
+}
+
+#progressSlider {
+  width: 300px;
+  margin: 10px;
+}
+
+#animationControls{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 400px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
