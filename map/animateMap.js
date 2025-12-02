@@ -93,6 +93,23 @@ export function configureMap(animationConfig) {
     }
 }
 
+/**
+ * Listen for changes in the URL hash and triggers slide animation
+ * based on the corresponding index in slides.
+ */
+function setupHashListener() {
+    window.addEventListener("hashchange", function () {
+        console.log("Hash changed to: " + window.location.hash);
+        const hashIndex = parseInt(window.location.hash.substring(1), 10);
+        if (isNaN(hashIndex) || !slides[hashIndex]) {
+            console.log("No valid hash index found.");
+            return;
+        }
+        const currentSlide = slides[hashIndex];
+        slideAnimation(currentSlide, mapView, timeSlider, isEmbedded);
+    });
+}
+
 async function initMapAnimator() {
     // Load config and choreography in sequence and rethrow on failure
     try {
@@ -103,6 +120,7 @@ async function initMapAnimator() {
         });
         timeSlider = document.querySelector('arcgis-time-slider');
         slides = await loadChoreography(animationConfig.mapChoreography);
+        setupHashListener()
 
     } catch (err) {
         console.error('initMapAnimator failed:', err);
