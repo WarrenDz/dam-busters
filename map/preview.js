@@ -149,7 +149,7 @@ function setupSliderListener() {
 async function initMapAnimator() {
     // Load config and choreography in sequence and rethrow on failure
     try {
-        mapElement = configureMap(animationConfig);
+        mapElement = configureMap(animationConfig, 0, mapElement, mapView);
         mapElement.addEventListener("arcgisViewReadyChange", () => {
             mapView = mapElement.view;
             slideAnimation(slides[0], mapView, timeSlider, isEmbedded);
