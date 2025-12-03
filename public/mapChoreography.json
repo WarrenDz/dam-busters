@@ -85,6 +85,22 @@
     }
   },
   {
-    "map": 1
+    "map": 1,
+    "viewpoint": {
+      "camera": {
+        "position": {
+          "spatialReference": {
+            "latestWkid": 3857,
+            "wkid": 102100
+          },
+          "x": 897366.3599494518,
+          "y": 6708110.482170274,
+          "z": 432.3843614431098
+        },
+        "heading": 250,
+        "tilt": 0,
+        "fov": 24
+      }
+    }
   }
 ]

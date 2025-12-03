@@ -35,7 +35,7 @@ export async function loadChoreography(path) {
     }
 }
 
-export function configureMap(animationConfig, mapIndex) {
+export function configureMap(animationConfig, mapIndex, element, view) {
     // Try to find an existing map/scene element; otherwise create one dynamically
     const container = document.getElementById(animationConfig.maps[mapIndex].container);
     if (!container) throw new Error(animationConfig.maps[mapIndex].container, "container not found in DOM");
@@ -46,50 +46,50 @@ export function configureMap(animationConfig, mapIndex) {
     const tagName = prefersScene ? 'arcgis-scene' : 'arcgis-map';
 
     // If a map/scene already exists inside the container, use it; otherwise create one
-    mapElement = container.querySelector('arcgis-map, arcgis-scene');
-    if (!mapElement) {
-        mapElement = document.createElement(tagName);
-        mapElement.id = 'map';
+    element = container.querySelector('arcgis-map, arcgis-scene');
+    if (!element) {
+        element = document.createElement(tagName);
+        element.id = 'map';
         // Insert the map/scene as first child so controls overlay correctly
-        container.insertBefore(mapElement, container.firstChild);
+        container.insertBefore(element, container.firstChild);
 
         // Move any existing controls (animationControls, time expand/slider) into the map element
         const children = Array.from(container.querySelectorAll(':scope > *'));
         for (const child of children) {
-            if (child !== mapElement) {
-                mapElement.appendChild(child);
+            if (child !== element) {
+                element.appendChild(child);
             }
         }
-        console.log("Created new element:", mapElement);
+        console.log("Created new element:", element);
     }
 
-    mapElement.addEventListener("arcgisViewReadyChange", () => {
-        mapView = mapElement.view;
+    element.addEventListener("arcgisViewReadyChange", () => {
+        view = element.view;
     });
 
     try {
         console.log("Configured map with", animationConfig);
-        if (animationConfig?.maps[mapIndex]?.itemId) mapElement.setAttribute("item-id", animationConfig.maps[mapIndex].itemId);
-        if (animationConfig?.zoom) mapElement.setAttribute("zoom", animationConfig.zoom);
-        if (animationConfig?.center) mapElement.setAttribute("center", animationConfig.center);
+        if (animationConfig?.maps[mapIndex]?.itemId) element.setAttribute("item-id", animationConfig.maps[mapIndex].itemId);
+        if (animationConfig?.zoom) element.setAttribute("zoom", animationConfig.zoom);
+        if (animationConfig?.center) element.setAttribute("center", animationConfig.center);
         timeSlider = document.querySelector('arcgis-time-slider');
         if (timeSlider && animationConfig?.timePlayRate !== undefined) timeSlider.setAttribute("play-rate", animationConfig.timePlayRate);
         if (animationConfig?.disableMapNav) {
             // if mapView is not yet ready, these handlers will be attached later when view is available
             const attachNavHandlers = () => {
-                if (!mapView) return;
-                mapView.on("mouse-wheel", (event) => {
+                if (!view) return;
+                view.on("mouse-wheel", (event) => {
                     event.stopPropagation();
                 });
-                mapView.on("drag", (event) => {
+                view.on("drag", (event) => {
                     event.stopPropagation();
                 });
             };
             // attempt immediate attach, otherwise attach once view is ready
-            if (mapView) attachNavHandlers();
-            else mapElement.addEventListener("arcgisViewReadyChange", attachNavHandlers, { once: true });
+            if (view) attachNavHandlers();
+            else element.addEventListener("arcgisViewReadyChange", attachNavHandlers, { once: true });
         }
-        return mapElement;
+        return element;
 
     } catch (error) {
         console.error("Failed to configure map:", error);
@@ -235,6 +235,7 @@ function setupHashListener() {
         slideAnimation(currentSlide, mapView, timeSlider, isEmbedded);
 
         // Check if the next slide requires a different map (and thus a scene)
+        setCrossfade(currentSlide.map)
         if (nextSlide && currentSlide.map !== nextSlide.map) {
             // Only create scene if it doesn't already exist
             if (!sceneElement) {

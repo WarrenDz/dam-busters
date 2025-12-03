@@ -50,9 +50,10 @@ function toggleViewpoint({ slideData, mapView, timeSlider, embedded }) {
   const cameraData = slideData.camera || viewpointData?.camera;
   const is3DView = mapView && typeof mapView.camera !== "undefined";
 
-  if (is3DView && cameraData) {
+  if (cameraData) {
     try {
       const targetCamera = Camera.fromJSON(cameraData);
+      console.log("camera:", targetCamera)
       mapView.goTo(targetCamera, animationConfig.goToConfig).catch((error) => {
           console.error("Error setting camera from viewpoint data:", error);
         });

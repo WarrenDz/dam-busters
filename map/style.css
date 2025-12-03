@@ -16,11 +16,11 @@
   transition: opacity 1s ease;
 }
 .hidden {
-  opacity: 0.5;
+  opacity: 0;
   pointer-events: none;
 }
 .visible {
-  opacity: 0.5;
+  opacity: 1;
   pointer-events: auto;
 }
 
