@@ -177,7 +177,6 @@ function ensureScene() {
 export function crossfade(fromMapIndex, toMapIndex, t) {
     const fromContainer = document.getElementById(animationConfig.maps[fromMapIndex].container);
     const toContainer = document.getElementById(animationConfig.maps[toMapIndex].container);
-    console.log("-- crossfade from", fromMapIndex, "to", toMapIndex, "at", t);
     t = Math.max(0, Math.min(1, t));
 
     // Ensure the 'to' map exists if needed
@@ -220,15 +219,31 @@ function setupHashListener() {
   window.addEventListener('hashchange', () => {
     hashIndexLast = hashIndex
     hashIndex = parseInt(window.location.hash.substring(1), 10);
-    console.log("Hash from: ", hashIndexLast, " -> ", hashIndex)
     if (isNaN(hashIndex) || !slides[hashIndex]) return;
 
     const currentSlide = slides[hashIndex];
     slideAnimation(currentSlide, mapView, timeSlider, isEmbedded);
 
+    // Update crossfade state
+    updateCrossfadeForSlide(hashIndex);
+
     // centralize scene creation/destroy logic
     createScene(hashIndex);
   });
+}
+
+/**
+ * Update crossfade state for the given slide index, typically called on hash changes.
+ */
+function updateCrossfadeForSlide(index) {
+    const isCrossfade = slides[index].maps && slides[index].maps.length > 1;
+    const wasCrossfade = hashIndexLast !== null && slides[hashIndexLast].maps && slides[hashIndexLast].maps.length > 1;
+    if (isCrossfade !== wasCrossfade) {
+        const fromMap = isCrossfade ? slides[index].maps[0] : 0;
+        const toMap = isCrossfade ? slides[index].maps[1] : 1;
+        const t = isCrossfade ? 0.6 : (slides[index].maps[0] === 1 ? 1 : 0);
+        crossfade(fromMap, toMap, t);
+    }
 }
 
 
@@ -241,23 +256,7 @@ function createScene(index) {
     needSceneLast = needScene;
     needScene = evaluateSceneLifecycle(index); // already ensures or schedules destroy
     if (needScene) {
-        // Trigger crossfade if transitioning to or from a crossfade slide
-        const isCrossfade = slides[index].maps && slides[index].maps.length > 1; // Are we on a crossfade slide now?
-        const wasCrossfade = hashIndexLast !== null && slides[hashIndexLast].maps && slides[hashIndexLast].maps.length > 1; // Were we on a crossfade slide before?
-        // Only trigger if the crossfade state has changed
-        if (isCrossfade !== wasCrossfade) {
-            console.log("Triggering crossfade from ", hashIndexLast, " -> ", hashIndex)
-            // For crossfade slides, use the maps array; for single, assume fading between 0 and 1
-            const fromMap = isCrossfade ? slides[index].maps[0] : 0;
-            const toMap = isCrossfade ? slides[index].maps[1] : 1;
-            const t = isCrossfade ? 0.6 : (slides[index].maps[0] === 1 ? 1 : 0);
-            crossfade(fromMap, toMap, t);
-        }
-    }
-
-    // if we need the scene, ensure watcher is attached
-    if (needScene) {
-        // ensure watcher only created once
+        // ensure watcher is attached
         if (activeWatcher) {
             // watcher already present — nothing to do
             return true;
