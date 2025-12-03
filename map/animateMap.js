@@ -157,14 +157,11 @@ function evaluateSceneLifecycle(index) {
 
 /**
  * Decide whether a single slide requires the 3D scene.
- * Adjust to match your choreography schema:
- * - If slide.crossfade is a number, treat >0 as requiring 3D content.
- * - Otherwise fall back to slide.map or other flags you use.
+ * Now checks if the slide has a 'maps' array with length > 1, indicating a crossfade.
  */
 function slideNeedsScene(slide) {
-    if (!slide) return false;
-    if (slide.map === 1) return true;
-    if (slide.map === 0) return false;
+    if (!slide || !slide.maps) return false;
+    return slide.maps.length > 1;
 }
 
 
@@ -252,15 +249,16 @@ function createScene(index) {
     // decide if prev/curr/next need a scene (uses slideNeedsScene/evaluateSceneLifecycle)
     needSceneLast = needScene;
     needScene = evaluateSceneLifecycle(index); // already ensures or schedules destroy
-    console.log("Needs: current:", needScene, "last:", needSceneLast)
     if (needScene) {
-        const prev = slides[index - 1].map;
-        const curr = slides[index].map;
-        const next = slides[index + 1].map;
-        console.log("prev:", prev, "curr:", curr, "next:", next)
-        if (curr !== next || prev !== curr ) {
-            console.log("Triggering crossfade from ", hashIndexLast, " -> ", hashIndex )
-            setCrossfade(hashIndexLast, hashIndex)
+        // Trigger crossfade if transitioning to or from a crossfade slide
+        const isCrossfade = slides[index].maps && slides[index].maps.length > 1; // Are we on a crossfade slide now?
+        const wasCrossfade = hashIndexLast !== null && slides[hashIndexLast].maps && slides[hashIndexLast].maps.length > 1; // Were we on a crossfade slide before?
+        // Only trigger if the crossfade state has changed
+        if (isCrossfade !== wasCrossfade) {
+            console.log("Triggering crossfade from ", hashIndexLast, " -> ", hashIndex)
+            // set crossfade to 0.5 if crossfading, else to 0 or 1 based on which map is active
+            const t = isCrossfade ? 0.5 : (slides[index].maps[0] === 1 ? 1 : 0);
+            setCrossfade(t);
         }
     }
 
