@@ -251,6 +251,8 @@ function updateCrossfadeForSlide(index) {
 let activeWatcher = null;
 let needSceneLast = null;
 let needScene = null;
+let lastSyncTime = 0;
+const SYNC_THROTTLE_MS = 100;
 function createScene(index) {
     // decide if prev/curr/next need a scene (uses slideNeedsScene/evaluateSceneLifecycle)
     needSceneLast = needScene;
@@ -265,13 +267,15 @@ function createScene(index) {
         // make sure the scene exists (ensureScene cancels scheduled destroy)
         ensureScene();
 
-        // once sceneView exists, create watcher to sync on stationary
+        // once sceneView exists, create watcher to sync on viewpoint changes
         // remove previous handle if any (defensive)
         if (activeWatcher) activeWatcher.remove();
         activeWatcher = reactiveUtils.watch(
-            () => mapView.stationary,
-            (stationary) => {
-                if (stationary && sceneView) {
+            () => mapView.viewpoint,
+            (newVp, oldVp) => {
+                const now = Date.now();
+                if (!isSyncing && sceneView && (now - lastSyncTime > SYNC_THROTTLE_MS)) {
+                    lastSyncTime = now;
                     syncViews(mapView, sceneView);
                 }
             }
