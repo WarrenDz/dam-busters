@@ -103,7 +103,6 @@ export function configureMap(animationConfig, mapIndex, element, view) {
 // prevent echoing updates when programmatically setting viewpoints
 let isSyncing = false;
 const SYNC_DEBOUNCE_MS = 100;
-
 function syncViews(fromView, toView) {
     if (!fromView || !toView || isSyncing) return;
 
@@ -166,6 +165,19 @@ function ensureScene() {
     return sceneElement;
 }
 
+/**
+ * Update crossfade state for the given slide index, typically called on hash changes.
+ */
+function updateCrossfadeForSlide(index) {
+    const isCrossfade = slides[index].maps && slides[index].maps.length > 1;
+    const wasCrossfade = hashIndexLast !== null && slides[hashIndexLast].maps && slides[hashIndexLast].maps.length > 1;
+    if (isCrossfade !== wasCrossfade) {
+        const fromMap = isCrossfade ? slides[index].maps[0] : 0;
+        const toMap = isCrossfade ? slides[index].maps[1] : 1;
+        const t = isCrossfade ? 0.6 : (slides[index].maps[0] === 1 ? 1 : 0);
+        crossfade(fromMap, toMap, t);
+    }
+}
 
 /**
  * Scroll-driven crossfade between two maps
@@ -230,20 +242,6 @@ function setupHashListener() {
     // centralize scene creation/destroy logic
     createScene(hashIndex);
   });
-}
-
-/**
- * Update crossfade state for the given slide index, typically called on hash changes.
- */
-function updateCrossfadeForSlide(index) {
-    const isCrossfade = slides[index].maps && slides[index].maps.length > 1;
-    const wasCrossfade = hashIndexLast !== null && slides[hashIndexLast].maps && slides[hashIndexLast].maps.length > 1;
-    if (isCrossfade !== wasCrossfade) {
-        const fromMap = isCrossfade ? slides[index].maps[0] : 0;
-        const toMap = isCrossfade ? slides[index].maps[1] : 1;
-        const t = isCrossfade ? 0.6 : (slides[index].maps[0] === 1 ? 1 : 0);
-        crossfade(fromMap, toMap, t);
-    }
 }
 
 
