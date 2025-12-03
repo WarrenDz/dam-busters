@@ -136,32 +136,13 @@ function syncViews(fromView, toView) {
 /**
  * Evaluate lifecycle for an index: ensure or schedule destroy for the scene.
  * Looks at previous, current and next slides (adjust lookahead as needed).
- * Returns true if the scene should be kept/created.
+ * Returns true if any nearby slide has a 'maps' array with length > 1, indicating crossfading is needed.
  */
 function evaluateSceneLifecycle(index) {
-    const behind = slides[index - 2];
-    const prev = slides[index -1];
-    const curr = slides[index];
-    const next = slides[index + 1];
-    const ahead = slides[index + 2];
+    const nearbySlides = [slides[index - 2], slides[index - 1], slides[index], slides[index + 1], slides[index + 2]];
 
-    // If any nearby slide needs the scene, keep (or create) it
-    if (slideNeedsScene(behind) || slideNeedsScene(prev) || slideNeedsScene(curr) || slideNeedsScene(next) || slideNeedsScene(ahead)) {
-        return true;
-    }
-
-    // Not needed nearby — schedule destruction to free resources
-    // scheduleSceneDestroy(600);
-    return false;
-}
-
-/**
- * Decide whether a single slide requires the 3D scene.
- * Now checks if the slide has a 'maps' array with length > 1, indicating a crossfade.
- */
-function slideNeedsScene(slide) {
-    if (!slide || !slide.maps) return false;
-    return slide.maps.length > 1;
+    // If any nearby slide has maps.length > 1, keep/create the scene
+    return nearbySlides.some(slide => slide && slide.maps && slide.maps.length > 1);
 }
 
 
@@ -187,34 +168,44 @@ function ensureScene() {
 
 
 /**
- * Scroll-driven crossfade between map and scene
- * Value between 0 (2D map) and 1 (3D scene)
+ * Scroll-driven crossfade between two maps
+ * @param {number} fromMapIndex - Index of the map to fade from (0 or 1)
+ * @param {number} toMapIndex - Index of the map to fade to (0 or 1)
+ * @param {number} t - Progress value between 0 (fully fromMap) and 1 (fully toMap)
  * Called frequently from scroll listener with interpolated progress
  */
-export function setCrossfade(t) {
-    const mapContainer = document.getElementById(animationConfig.maps[0].container)
-    const sceneContainer = document.getElementById(animationConfig.maps[1].container)
-    console.log("-- crossfade to map:", t)
+export function crossfade(fromMapIndex, toMapIndex, t) {
+    const fromContainer = document.getElementById(animationConfig.maps[fromMapIndex].container);
+    const toContainer = document.getElementById(animationConfig.maps[toMapIndex].container);
+    console.log("-- crossfade from", fromMapIndex, "to", toMapIndex, "at", t);
     t = Math.max(0, Math.min(1, t));
 
-    // Ensure scene exists if transitioning towards 3D
-    if (t > 0) {
+    // Ensure the 'to' map exists if needed
+    if (toMapIndex === 1 && t > 0) {
         ensureScene();
-        sceneContainer.classList.remove("hidden");
-    } else {
-        // Optionally hide scene when fully at 2D
-        sceneContainer.classList.add("hidden");
+        toContainer.classList.remove("hidden");
+    }
+    if (fromMapIndex === 1 && t < 1) {
+        ensureScene();
+        fromContainer.classList.remove("hidden");
+    }
+
+    // If fully to one map, hide the other
+    if (t === 0) {
+        toContainer.classList.add("hidden");
+    } else if (t === 1) {
+        fromContainer.classList.add("hidden");
     }
 
     // Set opacities for smooth crossfade
-    mapContainer.style.opacity = String(1 - t);
-    sceneContainer.style.opacity = String(t);
+    fromContainer.style.opacity = String(1 - t);
+    toContainer.style.opacity = String(t);
 
     // Pointer events to the more opaque view
-    mapContainer.style.pointerEvents = (t < 0.5) ? 'auto' : 'none';
-    sceneContainer.style.pointerEvents = (t > 0.5) ? 'auto' : 'none';
+    fromContainer.style.pointerEvents = (t < 0.5) ? 'auto' : 'none';
+    toContainer.style.pointerEvents = (t > 0.5) ? 'auto' : 'none';
 
-    // Sync views so cameras stay aligned during scroll
+    // Sync views if both are 3D or mixed
     if (mapView && sceneView) {
         syncViews(mapView, sceneView);
     }
@@ -256,9 +247,11 @@ function createScene(index) {
         // Only trigger if the crossfade state has changed
         if (isCrossfade !== wasCrossfade) {
             console.log("Triggering crossfade from ", hashIndexLast, " -> ", hashIndex)
-            // set crossfade to 0.5 if crossfading, else to 0 or 1 based on which map is active
-            const t = isCrossfade ? 0.5 : (slides[index].maps[0] === 1 ? 1 : 0);
-            setCrossfade(t);
+            // For crossfade slides, use the maps array; for single, assume fading between 0 and 1
+            const fromMap = isCrossfade ? slides[index].maps[0] : 0;
+            const toMap = isCrossfade ? slides[index].maps[1] : 1;
+            const t = isCrossfade ? 0.6 : (slides[index].maps[0] === 1 ? 1 : 0);
+            crossfade(fromMap, toMap, t);
         }
     }
 
