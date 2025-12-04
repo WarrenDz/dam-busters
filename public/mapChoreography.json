@@ -31,6 +31,65 @@
         "xmax": 671268.4714651447,
         "ymax": 7160109.54710139
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Flight | Tracks"],
+      "layersOff": []
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFD100",
+                  "size": 4,
+                  "outline": {
+                    "color": "#FFD100",
+                    "width": 4
+                  }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-16T21:35:00Z",
+      "timeSliderEnd": "1943-05-16T22:55:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
     }
   },
   {
@@ -48,6 +107,83 @@
         "xmax": 1496095.6663759956,
         "ymax": 7207650.990037642
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Routes | Paused", "THOR WWII ETO Data"],
+      "layersOff": ["Flight | Tracks", "Render | Top view"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "THOR WWII ETO Data",
+      "trackFieldName": "TGT_ID",
+      "trackInfo": {
+            "maxDisplayObservationsPerTrack": 1000,
+            "aggregateFields": [{
+              "name": "SUM_TOTAL_TONS",
+              "onStatisticField": "TOTAL_TONS",
+              "statisticType": "sum"
+            }],
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#C23D4C",
+                  "size": 4,
+                  "outline": {
+                    "color": "#C23D4C",
+                    "width": 0.5
+                  }
+                },
+                "visualVariables": [
+                  {
+                    "type": "size",
+                    "field": "TOTAL_TONS",
+                    "minDataValue": 0,
+                    "maxDataValue": 1000,
+                    "minSize": 4,
+                    "maxSize": 200
+                  }
+                ]
+              }
+            },
+            "previousObservations": {
+              "enabled": true,
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "blue",
+                  "size": 2
+                },
+                "visualVariables": [
+                  {
+                    "type": "size",
+                    "field": "SUM_TOTAL_TONS",
+                    "minDataValue": 0,
+                    "maxDataValue": 5000,
+                    "minSize": 4,
+                    "maxSize": 200
+                  }
+                ]
+              }
+            },
+            "trackLines": {
+              "visible": false,
+              "enabled": false
+            }
+          }
+        },
+    "timeSlider": {
+      "timeSliderStart": "1941-01-01T00:00:00Z",
+      "timeSliderEnd": "1943-05-15T22:55:00Z",
+      "timeSliderUnit": "months",
+      "timeSliderStep": 1
     }
   },
   {
