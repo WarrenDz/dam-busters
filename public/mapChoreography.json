@@ -151,5 +151,56 @@
         "ymax": 6786782.442606675
       }
     }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 2311162.2171545,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -107777.72081716463,
+        "ymin": 6644618.2283462975,
+        "xmax": 671268.4714651447,
+        "ymax": 7160109.54710139
+      }
+    }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 4513.988705500029,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -62322.84453295461,
+        "ymin": 7039572.08577246,
+        "xmax": -60801.26993861272,
+        "ymax": 7040578.90475443
+      }
+    }
   }
 ]

@@ -9,6 +9,7 @@ let needSceneLast = null;
 let needScene = null;
 let lastSyncTime = 0;
 const SYNC_THROTTLE_MS = 100;
+let sceneDestroyTimer = null;
 
 // Export variables for access from other modules
 export { sceneElement, sceneView, activeWatcher, needSceneLast, needScene, lastSyncTime, SYNC_THROTTLE_MS };
@@ -26,11 +27,62 @@ export function evaluateSceneLifecycle(index, slides) {
 }
 
 /**
+ * Remove the secondary scene element and clean up references
+ */
+function destroyScene() {
+    if (!sceneElement) return;
+
+    try {
+        // Remove event listeners and clean up the view
+        if (sceneView) {
+            sceneView.destroy?.();
+        }
+
+        // Remove the element from the DOM
+        sceneElement.remove?.();
+    } catch (e) {
+        console.warn('Error destroying scene:', e);
+    } finally {
+        sceneElement = null;
+        sceneView = null;
+    }
+}
+
+/**
+ * Cancel any pending scheduled scene destroy.
+ */
+function cancelScheduledSceneDestroy() {
+    if (sceneDestroyTimer) {
+        clearTimeout(sceneDestroyTimer);
+        sceneDestroyTimer = null;
+    }
+}
+
+/**
+ * Schedule destroying the scene after a short delay.
+ * This prevents immediate tear-down when quickly navigating slides.
+ * @param {number} delay - ms to wait before destroying (default 600)
+ */
+function scheduleSceneDestroy(delay = 600) {
+    cancelScheduledSceneDestroy();
+    sceneDestroyTimer = setTimeout(() => {
+        // only destroy if still present (no ensure called meanwhile)
+        if (sceneElement) {
+            destroyScene();
+        }
+        sceneDestroyTimer = null;
+    }, delay);
+}
+
+/**
  * Create or retrieve the secondary scene element (for 3D viewing)
  * Reuses configureMap logic but ensures scene-specific setup
  */
 export function ensureScene(animationConfig, configureMap) {
-    if (sceneElement) return sceneElement;
+    if (sceneElement) {
+        cancelScheduledSceneDestroy();
+        return sceneElement;
+    }
 
     // Configure and create the scene element using index 1
     sceneElement = configureMap(animationConfig, 1, sceneElement, sceneView);
@@ -113,7 +165,10 @@ export function createScene(index, slides, mapView, animationConfig, configureMa
         return true;
     }
 
-    // scene not required: remove watcher now if present
+    // scene not required: schedule destroy and remove watcher now if present
+    if (!needScene && needSceneLast) {
+        scheduleSceneDestroy();
+    }
     if (activeWatcher) {
         activeWatcher.remove();
         activeWatcher = null;

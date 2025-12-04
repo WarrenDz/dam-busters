@@ -52,7 +52,6 @@ function toggleViewpoint({ slideData, view, timeSlider, embedded }) {
   if (cameraData) {
     try {
       const targetCamera = Camera.fromJSON(cameraData);
-      console.log("camera:", targetCamera)
       view.goTo(targetCamera, animationConfig.goToConfig).catch((error) => {
           console.error("Error setting camera from viewpoint data:", error);
         });
