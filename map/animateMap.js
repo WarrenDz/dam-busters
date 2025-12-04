@@ -5,7 +5,6 @@ import "@esri/calcite-components/components/calcite-button";
 import "@arcgis/map-components/components/arcgis-expand";
 import "@arcgis/core/assets/esri/themes/light/main.css";
 import "@esri/calcite-components/components/calcite-slider";
-import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
 
 // Animation configuration
 import { animationConfig } from "./configAnimation.js";
@@ -63,7 +62,6 @@ export function configureMap(animationConfig, mapIndex, element, view) {
                 element.appendChild(child);
             }
         }
-        console.log("Created new element:", element);
     }
 
     element.addEventListener("arcgisViewReadyChange", () => {
@@ -71,7 +69,7 @@ export function configureMap(animationConfig, mapIndex, element, view) {
     });
 
     try {
-        console.log("Configured map with", animationConfig);
+        // Apply configuration attributes from animationConfig
         if (animationConfig?.maps[mapIndex]?.itemId) element.setAttribute("item-id", animationConfig.maps[mapIndex].itemId);
         if (animationConfig?.zoom) element.setAttribute("zoom", animationConfig.zoom);
         if (animationConfig?.center) element.setAttribute("center", animationConfig.center);
@@ -100,21 +98,14 @@ export function configureMap(animationConfig, mapIndex, element, view) {
 }
 
 
-// --- Scene creation and crossfade helpers ---
-
-
-
-
-/**
- * Update crossfade state for the given slide index, typically called on hash changes.
- */
+// Update crossfade state for the given slide index, typically called on hash changes.
 function updateCrossfadeForSlide(index) {
     const isCrossfade = slides[index].maps && slides[index].maps.length > 1;
     const wasCrossfade = hashIndexLast !== null && slides[hashIndexLast].maps && slides[hashIndexLast].maps.length > 1;
     if (isCrossfade !== wasCrossfade) {
         const fromMap = isCrossfade ? slides[index].maps[0] : 0;
         const toMap = isCrossfade ? slides[index].maps[1] : 1;
-        const t = isCrossfade ? 0.6 : (slides[index].maps[0] === 1 ? 1 : 0);
+        const t = isCrossfade ? 1 : (slides[index].maps[0] === 1 ? 1 : 0);
         crossfade(fromMap, toMap, t);
     }
 }
@@ -156,8 +147,8 @@ export function crossfade(fromMapIndex, toMapIndex, t) {
     fromContainer.style.pointerEvents = (t < 0.5) ? 'auto' : 'none';
     toContainer.style.pointerEvents = (t > 0.5) ? 'auto' : 'none';
 
-    // Sync views if both are 3D or mixed
-    if (mapView && sceneView) {
+    // Sync views only during crossfade transitions (not when fully on one map)
+    if (mapView && sceneView && t > 0 && t < 1) {
         syncViews(mapView, sceneView);
     }
 }
@@ -174,7 +165,17 @@ function setupHashListener() {
     if (isNaN(hashIndex) || !slides[hashIndex]) return;
 
     const currentSlide = slides[hashIndex];
-    slideAnimation(currentSlide, mapView, timeSlider, isEmbedded);
+
+    // Determine the active view based on the slide's maps array
+    let activeView = mapView;
+    if (currentSlide.maps && currentSlide.maps[0] === 1) {
+        // If the primary map is the scene (index 1), use sceneView
+        if (!sceneView) {
+            ensureScene(animationConfig, configureMap);
+        }
+        activeView = sceneView;
+    }
+    slideAnimation(currentSlide, activeView, timeSlider, isEmbedded);
 
     // Update crossfade state
     updateCrossfadeForSlide(hashIndex);
@@ -184,10 +185,8 @@ function setupHashListener() {
   });
 }
 
-
-
-
-
+// Initialize the map animator
+// This function is called to set up the map and start the animation
 async function initMapAnimator() {
     // Load config and choreography in sequence and rethrow on failure
     try {

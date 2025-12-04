@@ -22,8 +22,8 @@ const choreographyHandlers = {
  */
 const NON_EMBED_EXCLUDE_KEYS = new Set(["viewpoint"]);
 
-export function slideAnimation(slideData, mapView, timeSlider, embedded) {
-  const context = { slideData, mapView, timeSlider, embedded };
+export function slideAnimation(slideData, view, timeSlider, embedded) {
+  const context = { slideData, view, timeSlider, embedded };
 
   Object.entries(slideData).forEach(([key, value]) => {
     const handler = choreographyHandlers[key];
@@ -44,17 +44,16 @@ export function slideAnimation(slideData, mapView, timeSlider, embedded) {
  * Sets the map view to the viewpoint defined in slideData,
  * animating the transition over 1 second. Logs errors if the transition fails.
  */
-function toggleViewpoint({ slideData, mapView, timeSlider, embedded }) {
+function toggleViewpoint({ slideData, view, timeSlider, embedded }) {
   // Prefer camera when running in a 3D SceneView and camera data is available.
   const viewpointData = slideData.viewpoint;
   const cameraData = slideData.camera || viewpointData?.camera;
-  const is3DView = mapView && typeof mapView.camera !== "undefined";
 
   if (cameraData) {
     try {
       const targetCamera = Camera.fromJSON(cameraData);
       console.log("camera:", targetCamera)
-      mapView.goTo(targetCamera, animationConfig.goToConfig).catch((error) => {
+      view.goTo(targetCamera, animationConfig.goToConfig).catch((error) => {
           console.error("Error setting camera from viewpoint data:", error);
         });
       return;
@@ -64,31 +63,17 @@ function toggleViewpoint({ slideData, mapView, timeSlider, embedded }) {
     }
   }
 
-  // Otherwise fall back to viewpoint navigation (works for 2D MapView and SceneView viewpoints)
+  // Otherwise fall back to viewpoint navigation (works for 2D view and SceneView viewpoints)
   if (viewpointData) {
     try {
       const targetViewpoint = Viewpoint.fromJSON(viewpointData);
       const target = animationConfig.mapFit === "scale" ? targetViewpoint : targetViewpoint.targetGeometry;
-      mapView.goTo(target, animationConfig.goToConfig).catch((error) => {
+      view.goTo(target, animationConfig.goToConfig).catch((error) => {
           console.error("Error setting viewpoint:", error);
         });
       return;
     } catch (error) {
       console.error("Failed to construct Viewpoint from slide data:", error);
-    }
-  }
-
-  // Last resort: if camera data exists but view is 2D, attempt a very simple conversion
-  if (cameraData && !is3DView) {
-    try {
-      // Derive a 2D center from camera position; use provided zoom from config if available
-      const center = [cameraData.position.x, cameraData.position.y];
-      const zoom = animationConfig.zoom ? Number(animationConfig.zoom) : undefined;
-      if (zoom !== undefined) mapView.zoom = zoom;
-      if (mapView.center) mapView.center = center;
-      else mapView.goTo({ center, zoom }, animationConfig.goToConfig);
-    } catch (error) {
-      console.error("Failed to convert camera to 2D viewpoint:", error);
     }
   }
 }
@@ -98,7 +83,7 @@ function toggleViewpoint({ slideData, mapView, timeSlider, embedded }) {
  * Sets the full time extent, interval stops, and starting frame.
  * Automatically starts playback if the slider is ready and not in embedded mode.
  */
-function toggleTimeSlider({ slideData, mapView, timeSlider, embedded }) {
+function toggleTimeSlider({ slideData, view, timeSlider, embedded }) {
   if (
     timeSlider &&
     slideData.timeSlider &&
@@ -141,15 +126,15 @@ function toggleTimeSlider({ slideData, mapView, timeSlider, embedded }) {
  * Update the environment using configuration defined in choreographyData.
  * Sets the weather, lighting, atmosphere, and stars.
  */
-function toggleEnvironment({slideData, mapView, timeSlider, embedded }) {
+function toggleEnvironment({slideData, view, timeSlider, embedded }) {
   const slideEnv = slideData.environment;
   if (!slideEnv) return;
 
   // Only set environment on views that support it (SceneView)
-  if (!mapView || typeof mapView.environment === 'undefined') return;
+  if (!view || typeof view.environment === 'undefined') return;
 
   // Read current environment to allow partial updates
-  const currentEnv = mapView.environment || {};
+  const currentEnv = view.environment || {};
 
   const env = {};
 
@@ -188,7 +173,7 @@ function toggleEnvironment({slideData, mapView, timeSlider, embedded }) {
   const newEnv = Object.assign({}, currentEnv, env);
 
   try {
-    mapView.environment = newEnv;
+    view.environment = newEnv;
   } catch (err) {
     console.error('Failed to apply environment to view:', err);
   }
@@ -197,10 +182,10 @@ function toggleEnvironment({slideData, mapView, timeSlider, embedded }) {
 /**
  * Updates map layer visibility based on slideData configuration.
  * Turns on layers listed in layersOn and turns off layers listed in layersOff
- * by matching layer titles in the mapView.
+ * by matching layer titles in the view.
  */
-function toggleLayerVisibility({ slideData, mapView, timeSlider, embedded }) {
-  const mapLayers = mapView.map.layers;
+function toggleLayerVisibility({ slideData, view, timeSlider, embedded }) {
+  const mapLayers = view.map.layers;
   function setLayerVisibility(layerNames, visibility) {
     if (layerNames && layerNames.length > 0) {
       mapLayers.forEach((mapLayer) => {
@@ -224,8 +209,8 @@ function toggleLayerVisibility({ slideData, mapView, timeSlider, embedded }) {
  * removing and re-adding the layer, then updates its timeInfo and trackInfo.
  * Ensures the layer is visible.
  */
-function toggleTrackRenderer({ slideData, mapView, timeSlider, embedded }) {
-  const mapLayers = mapView.map.layers;
+function toggleTrackRenderer({ slideData, view, timeSlider, embedded }) {
+  const mapLayers = view.map.layers;
   const trackTimeConfig = slideData.timeSlider;
   async function applyTrackRenderer(trackRenderer, timeSlider) {
     try {
@@ -237,10 +222,10 @@ function toggleTrackRenderer({ slideData, mapView, timeSlider, embedded }) {
       );
 
       if (trackLayer) {
-        const layerIndex = mapView.map.layers.indexOf(trackLayer);
+        const layerIndex = view.map.layers.indexOf(trackLayer);
 
         try {
-          mapView.map.remove(trackLayer);
+          view.map.remove(trackLayer);
         } catch (error) {
           console.error("Failed to remove track layer:", error);
         }
@@ -248,7 +233,7 @@ function toggleTrackRenderer({ slideData, mapView, timeSlider, embedded }) {
         trackLayer = trackLayer.clone();
 
         try {
-          mapView.map.add(trackLayer, layerIndex);
+          view.map.add(trackLayer, layerIndex);
         } catch (error) {
           console.error("Failed to add track layer:", error);
         }
