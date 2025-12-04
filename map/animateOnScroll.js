@@ -18,8 +18,8 @@ const choreographyHandlers = {
  * passing shared context including progress and map state.
  * Used to animate transitions between slides during scroll events.
  */
-export function scrollAnimation(slideCurrent, slideNext, progress, mapView, timeSlider) {
-  const context = { slideCurrent, slideNext, progress, mapView, timeSlider };
+export function scrollAnimation(slideCurrent, slideNext, progress, view, timeSlider) {
+  const context = { slideCurrent, slideNext, progress, view, timeSlider };
   Object.keys(slideCurrent)
     .filter(key => typeof choreographyHandlers[key] === "function")
     .forEach(key => {
@@ -34,9 +34,9 @@ export function scrollAnimation(slideCurrent, slideNext, progress, mapView, time
 /**
  * Smoothly interpolates between two slide viewpoints based on progress (0–1),
  * generating a transitional camera view with updated rotation, scale, and geometry.
- * Applies the interpolated viewpoint to the mapView with animation.
+ * Applies the interpolated viewpoint to the view with animation.
  */
-function interpolateViewpoint({ slideCurrent, slideNext, progress, mapView, timeSlider }) {
+function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSlider }) {
   // Support both 2D viewpoint interpolation and 3D camera interpolation.
   // Use goTo for programmatic navigation and respect animationConfig.mapFit.
 
@@ -50,7 +50,7 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, mapView, time
   const lerp = (a, b, t) => (a === undefined || b === undefined) ? (a ?? b) : a + (b - a) * t;
 
   // Detect if the view is 3D (SceneView) by presence of a camera property
-  const is3DView = mapView && typeof mapView.camera !== "undefined";
+  const is3DView = view && typeof view.camera !== "undefined";
 
   // If camera data is provided and we're in a 3D view, interpolate camera
   if (is3DView && (currentCamera || nextCamera)) {
@@ -69,7 +69,7 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, mapView, time
 
     const targetCamera = Camera.fromJSON(interpolatedCamera);
     // For slider-driven interpolation keep animations off for responsiveness
-    mapView.goTo(targetCamera, { animate: false }).catch((error) => {
+    view.goTo(targetCamera, { animate: false }).catch((error) => {
       console.error("Error setting interpolated camera:", error);
     });
     return;
@@ -104,7 +104,7 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, mapView, time
       };
 
   // Use goTo for continuous/slider-driven updates
-  mapView.goTo(target, animationConfig.goToConfig).catch((error) => {
+  view.goTo(target, animationConfig.goToConfig).catch((error) => {
     console.error("Error setting interpolated viewpoint:", error);
   });
 }
@@ -114,7 +114,7 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, mapView, time
  * snapping the result to the nearest time step and clamping it within bounds.
  * Updates the timeSlider's extent to reflect the interpolated time and stops playback.
  */
-function interpolateTimeSlider({ slideCurrent, slideNext, progress, mapView, timeSlider }) {
+function interpolateTimeSlider({ slideCurrent, slideNext, progress, view, timeSlider }) {
   try {
   const slideTimeData = slideCurrent.timeSlider
   const start = new Date(slideTimeData.timeSliderStart);
@@ -162,7 +162,7 @@ function interpolateTimeSlider({ slideCurrent, slideNext, progress, mapView, tim
  * Interpolates between two environment states based on progress (0–1),
  * and applies the resulting environment to the scene view.
  */
-function interpolateEnvironment({ slideCurrent, slideNext, progress, mapView, timeSlider }) {
+function interpolateEnvironment({ slideCurrent, slideNext, progress, view, timeSlider }) {
   const currentEnv = slideCurrent.environment;
   const nextEnv = slideNext?.environment;
   const interpolate = (fromVal, toVal) => fromVal + (toVal - fromVal) * progress;
@@ -206,8 +206,8 @@ function interpolateEnvironment({ slideCurrent, slideNext, progress, mapView, ti
   const lightingType = nextEnv.lighting.type;
   const weatherType = nextEnv.weather.type;
 
-  // Apply to mapView.environment
-  mapView.environment = {
+  // Apply to view.environment
+  view.environment = {
     lighting: {
       type: lightingType,
       date: new Date(interpolatedLighting),

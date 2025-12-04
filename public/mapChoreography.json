@@ -1,5 +1,6 @@
 [
   {
+    "maps": [0],
     "viewpoint": {
       "rotation": 0,
       "scale": 4513.988705500029,
@@ -16,6 +17,7 @@
     }
   },
   {
+    "maps": [0],
     "viewpoint": {
       "rotation": 0,
       "scale": 2311162.2171545,
@@ -32,6 +34,7 @@
     }
   },
   {
+    "maps": [0],
     "viewpoint": {
       "rotation": 0,
       "scale": 4622324.434309,
@@ -48,6 +51,7 @@
     }
   },
   {
+    "maps": [0],
     "viewpoint": {
       "rotation": 0,
       "scale": 1155581.1085775,
@@ -64,18 +68,138 @@
     }
   },
   {
+    "maps": [0,1],
     "viewpoint": {
-      "rotation": 122.84119098577371,
-      "scale": 4513.9887055,
+      "rotation": 120.09443773367953,
+      "scale": 282.124294,
       "targetGeometry": {
         "spatialReference": {
           "latestWkid": 3857,
           "wkid": 102100
         },
-        "xmin": 896724.6797533485,
-        "ymin": 6707483.465895799,
-        "xmax": 898246.2543476904,
-        "ymax": 6708490.284877769
+        "x": 897362.4457497096,
+        "y": 6708112.189883188
+      }
+    }
+  },
+  {
+    "maps": [1],
+    "viewpoint": {
+      "camera": {
+        "position": {
+          "spatialReference": {
+            "latestWkid": 3857,
+            "wkid": 102100
+          },
+          "x": 897376.4944716132,
+          "y": 6708144.821593512,
+          "z": 214.72549002431333
+        },
+        "heading": 206.2167140159977,
+        "tilt": 111.95799412399512,
+        "fov": 24.345703125000007
+      }
+    }
+  },
+  {
+    "maps": [1],
+    "viewpoint": {
+      "camera": {
+        "position": {
+          "spatialReference": {
+            "latestWkid": 3857,
+            "wkid": 102100
+          },
+          "x": 898659.2576718291,
+          "y": 6709145.115187532,
+          "z": 345.753525394015
+        },
+        "heading": 237.2144882034189,
+        "tilt": 83.16690604457018,
+        "fov": 24.345703125000007
+      }
+    }
+  },
+  {
+    "maps": [0,1],
+    "viewpoint": {
+      "rotation": 120.09443773367953,
+      "scale": 282.124294,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "x": 897362.4457497096,
+        "y": 6708112.189883188
+      }
+    }
+  },
+  {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 2311162.2171545,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -107777.72081716463,
+        "ymin": 6644618.2283462975,
+        "xmax": 671268.4714651447,
+        "ymax": 7160109.54710139
+      }
+    }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 4513.988705500029,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -62322.84453295461,
+        "ymin": 7039572.08577246,
+        "xmax": -60801.26993861272,
+        "ymax": 7040578.90475443
       }
     }
   }
