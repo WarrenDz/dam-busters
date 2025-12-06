@@ -14,6 +14,10 @@
         "xmax": -60801.26993861272,
         "ymax": 7040578.90475443
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Render | Takeoff"],
+      "layersOff": ["Flight | Tracks"]
     }
   },
   {
@@ -34,7 +38,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Flight | Tracks"],
-      "layersOff": []
+      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles","Routes | Paused"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -109,79 +113,12 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Routes | Paused", "THOR WWII ETO Data"],
+      "layersOn": ["Routes | Paused", "THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"],
       "layersOff": ["Flight | Tracks", "Render | Top view"]
     },
-    "trackRenderer": {
-      "trackLayerName": "THOR WWII ETO Data",
-      "trackFieldName": "TGT_ID",
-      "trackInfo": {
-            "maxDisplayObservationsPerTrack": 1000,
-            "aggregateFields": [{
-              "name": "SUM_TOTAL_TONS",
-              "onStatisticField": "TOTAL_TONS",
-              "statisticType": "sum"
-            }],
-            "enabled": true,
-            "timeField": "startTimeField",
-            "latestObservations": {
-              "visible": true,
-              "renderer": {
-                "type": "simple",
-                "symbol": {
-                  "type": "simple-marker",
-                  "style": "circle",
-                  "color": "#C23D4C",
-                  "size": 4,
-                  "outline": {
-                    "color": "#C23D4C",
-                    "width": 0.5
-                  }
-                },
-                "visualVariables": [
-                  {
-                    "type": "size",
-                    "field": "TOTAL_TONS",
-                    "minDataValue": 0,
-                    "maxDataValue": 1000,
-                    "minSize": 4,
-                    "maxSize": 200
-                  }
-                ]
-              }
-            },
-            "previousObservations": {
-              "enabled": true,
-              "visible": true,
-              "renderer": {
-                "type": "simple",
-                "symbol": {
-                  "type": "simple-marker",
-                  "style": "circle",
-                  "color": "blue",
-                  "size": 2
-                },
-                "visualVariables": [
-                  {
-                    "type": "size",
-                    "field": "SUM_TOTAL_TONS",
-                    "minDataValue": 0,
-                    "maxDataValue": 5000,
-                    "minSize": 4,
-                    "maxSize": 200
-                  }
-                ]
-              }
-            },
-            "trackLines": {
-              "visible": false,
-              "enabled": false
-            }
-          }
-        },
     "timeSlider": {
       "timeSliderStart": "1941-01-01T00:00:00Z",
-      "timeSliderEnd": "1943-05-15T22:55:00Z",
+      "timeSliderEnd": "1943-10-01T24:00:00Z",
       "timeSliderUnit": "months",
       "timeSliderStep": 1
     }
@@ -212,10 +149,10 @@
         "spatialReference": {
           "latestWkid": 3857,
           "wkid": 102100
-        },
-        "x": 897362.4457497096,
-        "y": 6708112.189883188
-      }
+      },
+      "x": 897428.3895130088,
+      "y": 6707988.321467032
+    }
     }
   },
   {
@@ -227,8 +164,8 @@
             "latestWkid": 3857,
             "wkid": 102100
           },
-          "x": 897376.4944716132,
-          "y": 6708144.821593512,
+          "x": 897428.3895130088,
+          "y": 6707988.321467032,
           "z": 214.72549002431333
         },
         "heading": 206.2167140159977,
