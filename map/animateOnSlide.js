@@ -250,6 +250,7 @@ function toggleTrackRenderer({ slideData, view, timeSlider, embedded }) {
         };
         // Apply renderer from choreography data
         trackLayer.trackInfo = trackRenderer.trackInfo;
+        console.log("Track renderer applied.", trackLayer.trackInfo);
       }
     } catch (error) {
       console.error("Failed to set track Renderer:", error);
