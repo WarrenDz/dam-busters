@@ -153,6 +153,10 @@
       "x": 897428.3895130088,
       "y": 6707988.321467032
     }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster", "Upkeep", "Mohne Dam"],
+      "layersOff": []
     }
   },
   {
@@ -172,6 +176,10 @@
         "tilt": 111.95799412399512,
         "fov": 24.345703125000007
       }
+    },
+        "layerVisibility": {
+      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight"],
+      "layersOff": []
     }
   },
   {
