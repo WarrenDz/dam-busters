@@ -185,6 +185,41 @@ function setupHashListener() {
   });
 }
 
+/**
+ * Listen for postMessage events from the "storymap-controller" to coordinate map animations.
+ * Determines whether the map is embedded and sets up hash animation if not.
+ * Triggers scroll-based animations based on slide progress and static slide updates
+ * when the slide index changes.
+ */
+function setupMessageListener() {
+  window.addEventListener("message", (event) => {
+    if (event.data.source !== "storymap-controller") return;
+
+    const payload = event.data.payload;
+
+    if (payload.isEmbedded) {
+      // log("This story is being viewed via script embed - deferring to scroll animation.");
+      isEmbedded = true;
+    } else {
+      // log("Map is not embedded — enabling hash-based navigation.");
+      isEmbedded = false;
+    }
+
+    const currentSlide = slides[payload.slide];
+    const nextSlide = slides[payload.slide + 1];
+
+    // Scroll-based animation
+    scrollAnimation(currentSlide, nextSlide, payload.progress, mapView, timeSlider);
+
+    // Slide change detection
+    if (payload.slide !== hashIndexLast) {
+      hashIndexLast = payload.slide;
+      slideAnimation(currentSlide, mapView, timeSlider, isEmbedded); // using isEmbedded to mute some property changes when viewed in embed
+    }
+  });
+}
+
+
 // Initialize the map animator
 // This function is called to set up the map and start the animation
 async function initMapAnimator() {
@@ -198,6 +233,7 @@ async function initMapAnimator() {
         timeSlider = document.querySelector('arcgis-time-slider');
         slides = await loadChoreography(animationConfig.mapChoreography);
         setupHashListener()
+        setupMessageListener();
 
     } catch (err) {
         console.error('initMapAnimator failed:', err);
