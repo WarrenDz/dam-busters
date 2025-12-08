@@ -8,16 +8,16 @@
         "spatialReference": {
           "latestWkid": 3857,
           "wkid": 102100
-        },
-        "xmin": -62322.84453295461,
-        "ymin": 7039572.08577246,
-        "xmax": -60801.26993861272,
-        "ymax": 7040578.90475443
+          },
+          "xmin": -62545.05029592137,
+          "ymin": 7039556.596823849,
+          "xmax": -61011.53241590963,
+          "ymax": 7040580.136405757
       }
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff"],
-      "layersOff": ["Flight | Tracks"]
+      "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
     }
   },
   {
@@ -38,7 +38,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Flight | Tracks"],
-      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles","Routes | Paused"]
+      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Routes | Paused", "Ruhr Valley | Time-enabled"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -54,10 +54,10 @@
                   "type": "simple-marker",
                   "style": "circle",
                   "color": "#FFD100",
-                  "size": 4,
+                  "size": 6,
                   "outline": {
-                    "color": "#FFD100",
-                    "width": 4
+                    "color": "#000000",
+                    "width": 1
                   }
                 }
               }
@@ -113,9 +113,70 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Routes | Paused", "THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"],
-      "layersOff": ["Flight | Tracks", "Render | Top view"]
+      "layersOn": ["Routes | Paused", "THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks", "Render | Top view", "Ruhr Watershed", "Dams"]
     },
+  "trackRenderer": {
+      "trackLayerName": "THOR WWII ETO | Instant Sparks",
+      "trackFieldName": "TGT_ID",
+      "trackInfo": {
+        "maxDisplayDuration": { "value": 1, "unit": "months" },
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFFFFF",
+                  "size": 2,
+                  "outline": {
+                    "color": "#000000",
+                    "width": 0.25
+                  }
+                },
+                "visualVariables": [
+                  {
+                    "type": "size",
+                    "field": "TOTAL_TONS",
+                    "valueUnit": "unknown",
+                    "minDataValue":33,
+                    "maxDataValue": 1000,
+                    "minSize": 2,
+                    "maxSize": 20
+                  }
+                ]
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": false,
+              "enabled": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
     "timeSlider": {
       "timeSliderStart": "1941-01-01T00:00:00Z",
       "timeSliderEnd": "1943-10-01T24:00:00Z",
@@ -138,73 +199,212 @@
         "xmax": 1053874.8984570669,
         "ymax": 6786782.442606675
       }
-    }
-  },
-  {
-    "maps": [0,1],
-    "viewpoint": {
-      "rotation": 120.09443773367953,
-      "scale": 282.124294,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
+    },
+    "layerVisibility": {
+      "layersOn": ["Flight | Tracks", "Ruhr Watershed", "Dams"],
+      "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFD100",
+                  "size": 4,
+                  "outline": {
+                    "color": "#FFD100",
+                    "width": 4
+                  }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+      "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85/data",
+      "fieldMap": {
+        "ATTACKRESULT": "AttackResult",
+        "DROP1": "Drop1",
+        "DROP2": "Drop2",
+        "DROP3": "Drop3",
+        "DROP4": "Drop4",
+        "DROP5": "Drop5",
+        "NAME": "Name"
       },
-      "x": 897428.3895130088,
-      "y": 6707988.321467032
-    }
-    }
-  },
-  {
-    "maps": [1],
-    "viewpoint": {
-      "camera": {
-        "position": {
-          "spatialReference": {
-            "latestWkid": 3857,
-            "wkid": 102100
-          },
-          "x": 897428.3895130088,
-          "y": 6707988.321467032,
-          "z": 214.72549002431333
-        },
-        "heading": 206.2167140159977,
-        "tilt": 111.95799412399512,
-        "fov": 24.345703125000007
+      "config": {
+        "Label": "true",
+        "Result": "true",
+        "Upkeeps": "true"
       }
-    }
-  },
-  {
-    "maps": [1],
-    "viewpoint": {
-      "camera": {
-        "position": {
-          "spatialReference": {
-            "latestWkid": 3857,
-            "wkid": 102100
-          },
-          "x": 898659.2576718291,
-          "y": 6709145.115187532,
-          "z": 345.753525394015
-        },
-        "heading": 237.2144882034189,
-        "tilt": 83.16690604457018,
-        "fov": 24.345703125000007
-      }
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-16T22:55:00Z",
+      "timeSliderEnd": "1943-05-17T00:30:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
     }
   },
   {
     "maps": [0,1],
     "viewpoint": {
-      "rotation": 120.09443773367953,
-      "scale": 282.124294,
+        "rotation": 101.90837757111198,
+        "scale": 282.124294,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "xmin": 897383.956363246,
+            "ymin": 6707954.079770911,
+            "xmax": 897479.8012307148,
+            "ymax": 6708018.200285829
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
+    }
+  },
+  {
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
+            },
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
+            "fov": 24.345703125000007
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
+      "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk","Mohne dam | Highlight"]
+    }
+  },
+  {
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 898618.801195196,
+                "y": 6709049.794477744,
+                "z": 334.4862919235602
+            },
+            "heading": 237.2141647846513,
+            "tilt": 83.16738495352172,
+            "fov": 24.345703125000007
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Highlight", "Upkeep | Highlight", "Mohne dam | Highlight", "Upkeep | Path", "Upkeep | Sunk"],
+      "layersOff": ["Lancaster | Outlines","Mohne dam"]
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-17T00:30:00Z",
+      "timeSliderEnd": "1943-05-17T03:55:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
+    }
+  },
+  {
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897791.4480252814,
+                "y": 6708467.945676294,
+                "z": 273.336127451621
+            },
+            "heading": 258.13410306554925,
+            "tilt": 78.53396255907785,
+            "fov": 24.345703125000007
+        }
+    }
+  },
+  {
+    "maps": [1,0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
       "targetGeometry": {
         "spatialReference": {
           "latestWkid": 3857,
           "wkid": 102100
         },
-        "x": 897362.4457497096,
-        "y": 6708112.189883188
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Dams", "Flood Effect"],
+      "layersOff": ["Flight | Tracks"]
+    },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+      "url": "./dambuster-style.stylx",
+      "fieldMap": {
+        "ATTACKRESULT": "AttackResult",
+        "DROP1": "Drop1",
+        "DROP2": "Drop2",
+        "DROP3": "Drop3",
+        "DROP4": "Drop4",
+        "DROP5": "Drop5"
+      },
+      "config": {
+        "Label": "true",
+        "Result": "true",
+        "Upkeeps": "true"
       }
     }
   },
@@ -225,24 +425,7 @@
       }
     }
   },
-    {
-    "maps": [0],
-    "viewpoint": {
-      "rotation": 0,
-      "scale": 1155581.1085775,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "xmin": 664351.8023158279,
-        "ymin": 6529036.783229074,
-        "xmax": 1053874.8984570669,
-        "ymax": 6786782.442606675
-      }
-    }
-  },
-    {
+  {
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -259,7 +442,7 @@
       }
     }
   },
-    {
+  {
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
