@@ -6,7 +6,7 @@ export const animationConfig = {
   ],
   zoom: "4",
   center: "-0.551002, 53.307870",
-  timePlayRate: "2000",
+  timePlayRate: "250",
   debugMode: true,
   disableMapNav: false,
   mapFit: "scale",

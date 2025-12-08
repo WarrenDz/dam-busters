@@ -55,11 +55,23 @@ export function configureMap(animationConfig, mapIndex, element, view) {
         // Insert the map/scene as first child so controls overlay correctly
         container.insertBefore(element, container.firstChild);
 
-        // Move any existing controls (animationControls, time expand/slider) into the map element
-        const children = Array.from(container.querySelectorAll(':scope > *'));
-        for (const child of children) {
-            if (child !== element) {
-                element.appendChild(child);
+        // For scenes, create and append a dedicated time slider inside an arcgis-expand if not present
+        if (prefersScene) {
+            let sceneExpand = element.querySelector('arcgis-expand');
+            if (!sceneExpand) {
+                sceneExpand = document.createElement('arcgis-expand');
+                sceneExpand.setAttribute('position', 'bottom-right');
+                sceneExpand.setAttribute('mode', 'floating');
+                element.appendChild(sceneExpand);
+            }
+            let sceneTimeSlider = sceneExpand.querySelector('arcgis-time-slider');
+            if (!sceneTimeSlider) {
+                sceneTimeSlider = document.createElement('arcgis-time-slider');
+                sceneTimeSlider.setAttribute('slot', 'bottom-right');
+                sceneTimeSlider.setAttribute('reference-element', 'scene');
+                sceneTimeSlider.setAttribute('mode', 'cumulative-from-start');
+                sceneTimeSlider.setAttribute('play-rate', animationConfig?.timePlayRate || 250);
+                sceneExpand.appendChild(sceneTimeSlider);
             }
         }
     }
@@ -166,16 +178,18 @@ function setupHashListener() {
 
     const currentSlide = slides[hashIndex];
 
-    // Determine the active view based on the slide's maps array
+    // Determine the active view and timeslider based on the slide's maps array
     let activeView = mapView;
+    let activeTimeSlider = timeSlider;
     if (currentSlide.maps && currentSlide.maps[0] === 1) {
-        // If the primary map is the scene (index 1), use sceneView
+        // If the primary map is the scene (index 1), use sceneView and scene time slider
         if (!sceneView) {
             ensureScene(animationConfig, configureMap);
         }
         activeView = sceneView;
+        activeTimeSlider = sceneElement ? sceneElement.querySelector('arcgis-time-slider') : timeSlider;
     }
-    slideAnimation(currentSlide, activeView, timeSlider, isEmbedded);
+    slideAnimation(currentSlide, activeView, activeTimeSlider, isEmbedded);
 
     // Update crossfade state
     updateCrossfadeForSlide(hashIndex);
