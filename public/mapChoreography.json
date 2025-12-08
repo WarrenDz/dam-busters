@@ -201,7 +201,7 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Flight | Tracks", "Ruhr Watershed"],
+      "layersOn": ["Flight | Tracks", "Ruhr Watershed", "Dams"],
       "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
     },
     "trackRenderer": {
@@ -253,6 +253,24 @@
             }
           }
         },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+      "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85/data",
+      "fieldMap": {
+        "ATTACKRESULT": "AttackResult",
+        "DROP1": "Drop1",
+        "DROP2": "Drop2",
+        "DROP3": "Drop3",
+        "DROP4": "Drop4",
+        "DROP5": "Drop5",
+        "NAME": "Name"
+      },
+      "config": {
+        "Label": "true",
+        "Result": "true",
+        "Upkeeps": "true"
+      }
+    },
     "timeSlider": {
       "timeSliderStart": "1943-05-16T22:55:00Z",
       "timeSliderEnd": "1943-05-17T00:30:00Z",
@@ -371,6 +389,23 @@
     "layerVisibility": {
       "layersOn": ["Dams", "Flood Effect"],
       "layersOff": ["Flight | Tracks"]
+    },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+      "url": "./dambuster-style.stylx",
+      "fieldMap": {
+        "ATTACKRESULT": "AttackResult",
+        "DROP1": "Drop1",
+        "DROP2": "Drop2",
+        "DROP3": "Drop3",
+        "DROP4": "Drop4",
+        "DROP5": "Drop5"
+      },
+      "config": {
+        "Label": "true",
+        "Result": "true",
+        "Upkeeps": "true"
+      }
     }
   },
   {
