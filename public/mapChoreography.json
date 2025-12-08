@@ -8,16 +8,16 @@
         "spatialReference": {
           "latestWkid": 3857,
           "wkid": 102100
-        },
-        "xmin": -62322.84453295461,
-        "ymin": 7039572.08577246,
-        "xmax": -60801.26993861272,
-        "ymax": 7040578.90475443
+          },
+          "xmin": -62545.05029592137,
+          "ymin": 7039556.596823849,
+          "xmax": -61011.53241590963,
+          "ymax": 7040580.136405757
       }
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff"],
-      "layersOff": ["Flight | Tracks"]
+      "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
     }
   },
   {
@@ -38,7 +38,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Flight | Tracks"],
-      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles","Routes | Paused"]
+      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Routes | Paused", "Ruhr Valley | Time-enabled"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -113,9 +113,70 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Routes | Paused", "THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"],
-      "layersOff": ["Flight | Tracks", "Render | Top view"]
+      "layersOn": ["Routes | Paused", "THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks", "Render | Top view", "Ruhr Watershed", "Dams"]
     },
+  "trackRenderer": {
+      "trackLayerName": "THOR WWII ETO | Instant Sparks",
+      "trackFieldName": "TGT_ID",
+      "trackInfo": {
+        "maxDisplayDuration": { "value": 1, "unit": "months" },
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFFFFF",
+                  "size": 2,
+                  "outline": {
+                    "color": "#000000",
+                    "width": 0.25
+                  }
+                },
+                "visualVariables": [
+                  {
+                    "type": "size",
+                    "field": "TOTAL_TONS",
+                    "valueUnit": "unknown",
+                    "minDataValue":33,
+                    "maxDataValue": 1000,
+                    "minSize": 2,
+                    "maxSize": 20
+                  }
+                ]
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": false,
+              "enabled": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
     "timeSlider": {
       "timeSliderStart": "1941-01-01T00:00:00Z",
       "timeSliderEnd": "1943-10-01T24:00:00Z",
@@ -138,22 +199,83 @@
         "xmax": 1053874.8984570669,
         "ymax": 6786782.442606675
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Flight | Tracks", "Ruhr Watershed"],
+      "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFD100",
+                  "size": 4,
+                  "outline": {
+                    "color": "#FFD100",
+                    "width": 4
+                  }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
+      "timeSlider": {
+      "timeSliderStart": "1943-05-16T22:55:00Z",
+      "timeSliderEnd": "1943-05-17T00:30:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
     }
   },
   {
     "maps": [0,1],
-    "viewpoint": {
-      "rotation": 120.09443773367953,
-      "scale": 282.124294,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-      },
-      "x": 897428.3895130088,
-      "y": 6707988.321467032
-    }
-    },
+            "viewpoint": {
+                "rotation": 101.90837757111198,
+                "scale": 282.124294,
+                "targetGeometry": {
+                    "spatialReference": {
+                        "latestWkid": 3857,
+                        "wkid": 102100
+                    },
+                    "xmin": 897383.956363246,
+                    "ymin": 6707954.079770911,
+                    "xmax": 897479.8012307148,
+                    "ymax": 6708018.200285829
+                }
+            },
     "layerVisibility": {
       "layersOn": ["Lancaster", "Upkeep", "Mohne Dam"],
       "layersOff": []
@@ -233,7 +355,7 @@
       }
     }
   },
-    {
+  {
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -250,7 +372,7 @@
       }
     }
   },
-    {
+  {
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -267,7 +389,7 @@
       }
     }
   },
-    {
+  {
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
