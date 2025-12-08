@@ -253,7 +253,7 @@
             }
           }
         },
-      "timeSlider": {
+    "timeSlider": {
       "timeSliderStart": "1943-05-16T22:55:00Z",
       "timeSliderEnd": "1943-05-17T00:30:00Z",
       "timeSliderUnit": "minutes",
@@ -277,31 +277,31 @@
                 }
             },
     "layerVisibility": {
-      "layersOn": ["Lancaster", "Upkeep", "Mohne Dam"],
-      "layersOff": []
+      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOff": ["Lancaster | Outlines", "Upkeep | Highlight"]
     }
   },
   {
     "maps": [1],
     "viewpoint": {
-      "camera": {
-        "position": {
-          "spatialReference": {
-            "latestWkid": 3857,
-            "wkid": 102100
-          },
-          "x": 897428.3895130088,
-          "y": 6707988.321467032,
-          "z": 214.72549002431333
-        },
-        "heading": 206.2167140159977,
-        "tilt": 111.95799412399512,
-        "fov": 24.345703125000007
-      }
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
+            },
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
+            "fov": 24.345703125000007
+        }
     },
-        "layerVisibility": {
-      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight"],
-      "layersOff": []
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
+      "layersOff": ["Lancaster", "Upkeep", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
   {
@@ -321,6 +321,16 @@
         "tilt": 83.16690604457018,
         "fov": 24.345703125000007
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Highlight", "Upkeep | Highlight", "Mohne dam | Highlight", "Upkeep | Path", "Upkeep | Sunk"],
+      "layersOff": ["Lancaster | Outlines"]
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-17T00:30:00Z",
+      "timeSliderEnd": "1943-05-17T04:30:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
     }
   },
   {
