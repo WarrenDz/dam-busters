@@ -17,7 +17,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff", "Render | Backdrop"],
-      "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
+      "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Takeoff | Glow"]
     }
   },
   {
@@ -39,82 +39,6 @@
     "layerVisibility": {
       "layersOn": ["Render | Takeoff", "Render | Backdrop", "Takeoff | Glow", "Flight | Tracks"],
       "layersOff": ["Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
-    },
-    "trackRenderer": {
-      "trackLayerName": "Flight | Tracks",
-      "trackFieldName": "Aircraft",
-      "trackInfo": {
-            "enabled": true,
-            "timeField": "startTimeField",
-            "latestObservations": {
-              "visible": true,
-              "renderer": {
-                "type": "simple",
-                "symbol": {
-                  "type": "simple-marker",
-                  "style": "circle",
-                  "color": "#FFD100",
-                  "size": 6,
-                  "outline": {
-                    "color": "#000000",
-                    "width": 1
-                  }
-                }
-              }
-            },
-            "previousObservations": {
-              "enabled": false,
-              "visible": false,
-              "renderer": {
-                "type": "simple",
-                "symbol": {
-                  "type": "simple-marker",
-                  "style": "circle",
-                  "color": "white",
-                  "size": 2
-                }
-              }
-            },
-            "trackLines": {
-              "visible": true,
-              "enabled": true,
-              "renderer": {
-                "type": "simple",
-                "symbol": {
-                  "type": "simple-line",
-                  "color": "#FFD100",
-                  "width": 1.25
-                }
-              }
-            }
-          }
-        },
-    "timeSlider": {
-      "timeSliderStart": "1943-05-16T21:35:00Z",
-      "timeSliderEnd": "1943-05-16T22:55:00Z",
-      "timeSliderUnit": "minutes",
-      "timeSliderStep": 5
-    }
-  },
-  {
-    "maps": [0],
-    "viewpoint": {
-      "rotation": 0,
-      "scale": 2311162.2171545,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "xmin": -107777.72081716463,
-        "ymin": 6644618.2283462975,
-        "xmax": 671268.4714651447,
-        "ymax": 7160109.54710139
-      }
-    },
-    "layerVisibility": {
-      "layersOn": ["Flight | Tracks"],
-      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Routes | Paused", "Ruhr Valley | Time-enabled","Render | Backdrop"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
