@@ -8,7 +8,7 @@ export const animationConfig = {
   center: "-0.551002, 53.307870",
   timePlayRate: "250",
   debugMode: true,
-  disableMapNav: false,
+  disableMapNav: true,
   mapFit: "scale",
   mapChoreography: "../mapChoreography.json",
   goToConfig: {animate: true, duration: 1000}

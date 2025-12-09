@@ -1,5 +1,6 @@
 [
   {
+    "note": "Initial viewpoint and layer visibility settings",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -21,6 +22,7 @@
     }
   },
   {
+    "note": "Hold viewpoint and begin North Sea takeoff animation",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -37,7 +39,7 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Render | Takeoff", "Render | Backdrop", "Takeoff | Glow", "Flight | Tracks"],
+      "layersOn": ["Render | Takeoff", "Render | Backdrop", "Takeoff | Glow", "Flight | Tracks", "RAF Scampton"],
       "layersOff": ["Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
     },
     "trackRenderer": {
@@ -97,6 +99,7 @@
     }
   },
   {
+    "note": "Hold flight lines and animate THOR data from Jan 1941 to Oct 1943",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -114,7 +117,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Routes | Paused", "THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"],
-      "layersOff": ["Flight | Tracks", "Render | Takeoff", "Ruhr Watershed", "Dams","Takeoff | Glow"]
+      "layersOff": ["Flight | Tracks", "Render | Takeoff", "Ruhr Watershed", "Dams","Takeoff | Glow", "RAF Scampton"]
     },
   "trackRenderer": {
       "trackLayerName": "THOR WWII ETO | Instant Sparks",
@@ -185,6 +188,96 @@
     }
   },
   {
+    "note": "Hold THOR data",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 4622324.434309,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -61996.71818862285,
+        "ymin": 6176668.35252746,
+        "xmax": 1496095.6663759956,
+        "ymax": 7207650.990037642
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Routes | Paused", "THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks", "Render | Takeoff", "Ruhr Watershed", "Dams","Takeoff | Glow"]
+    },
+    "trackRenderer": {
+        "trackLayerName": "THOR WWII ETO | Instant Sparks",
+        "trackFieldName": "TGT_ID",
+        "trackInfo": {
+          "maxDisplayDuration": { "value": 1, "unit": "months" },
+              "enabled": true,
+              "timeField": "startTimeField",
+              "latestObservations": {
+                "visible": true,
+                "renderer": {
+                  "type": "simple",
+                  "symbol": {
+                    "type": "simple-marker",
+                    "style": "circle",
+                    "color": "#FFFFFF",
+                    "size": 2,
+                    "outline": {
+                      "color": "#000000",
+                      "width": 0.25
+                    }
+                  },
+                  "visualVariables": [
+                    {
+                      "type": "size",
+                      "field": "TOTAL_TONS",
+                      "valueUnit": "unknown",
+                      "minDataValue":33,
+                      "maxDataValue": 1000,
+                      "minSize": 2,
+                      "maxSize": 20
+                    }
+                  ]
+                }
+              },
+              "previousObservations": {
+                "enabled": false,
+                "visible": false,
+                "renderer": {
+                  "type": "simple",
+                  "symbol": {
+                    "type": "simple-marker",
+                    "style": "circle",
+                    "color": "white",
+                    "size": 2
+                  }
+                }
+              },
+              "trackLines": {
+                "visible": false,
+                "enabled": false,
+                "renderer": {
+                  "type": "simple",
+                  "symbol": {
+                    "type": "simple-line",
+                    "color": "#FFD100",
+                    "width": 1.25
+                  }
+                }
+              }
+            }
+          },
+    "timeSlider": {
+      "timeSliderStart": "1943-10-01T24:00:00Z",
+      "timeSliderEnd": "1943-10-01T24:00:00Z",
+      "timeSliderUnit": "months",
+      "timeSliderStep": 1
+    }
+  },
+  {
+    "note": "Resume flight to Ruhr and show dams",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -279,6 +372,102 @@
     }
   },
   {
+    "note": "hold flight with Ruhr and dams",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Flight | Tracks", "Ruhr Watershed", "Dams"],
+      "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles","Flood Effect"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFD100",
+                  "size": 4,
+                  "outline": {
+                    "color": "#FFD100",
+                    "width": 4
+                  }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+          "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85",
+          "fieldMap": {
+            "ATTACKRESULT": "AttackResult",
+            "DROP1": "Drop1",
+            "DROP2": "Drop2",
+            "DROP3": "Drop3",
+            "DROP4": "Drop4",
+            "DROP5": "Drop5",
+            "NAME": "Name"
+          },
+          "config": {
+            "Label": "OFF",
+            "Result": "OFF",
+            "Upkeeps": "OFF"
+          }
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-17T00:30:00Z",
+      "timeSliderEnd": "1943-05-17T00:30:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
+    }
+  },
+  {
+    "note": "Zoom to Lancaster and Upkeep prior to dam run",
     "maps": [0,1],
     "viewpoint": {
         "rotation": 101.90837757111198,
@@ -300,9 +489,10 @@
     }
   },
   {
+    "note": "Trying to force the zoom to Lancaster and Upkeep prior to dam run",
     "maps": [1],
     "viewpoint": {
-    "camera": {
+      "camera": {
         "position": {
             "spatialReference": {
                 "latestWkid": 3857,
@@ -323,29 +513,31 @@
     }
   },
   {
+    "note": "Switch to underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
-        "camera": {
-            "position": {
-                "spatialReference": {
-                    "latestWkid": 3857,
-                    "wkid": 102100
-                },
-                "x": 897437.113281238,
-                "y": 6708016.528547332,
-                "z": 218.4320189775899
+      "camera": {
+        "position": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
             },
-            "heading": 195.56092230109994,
-            "tilt": 113.45045383575933,
-            "fov": 24.345703125000007
-        }
-    },
+            "x": 897434.5302910476,
+            "y": 6707982.981331988,
+            "z": 325.98987346701324
+        },
+        "heading": 253.27518783283153,
+        "tilt": 0.4999922942566893,
+        "fov": 24.345703125000007
+    }
+  },
     "layerVisibility": {
       "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
       "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk","Mohne dam | Highlight"]
     }
   },
   {
+    "note": "Animate approach with bounce",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -375,6 +567,7 @@
     }
   },
   {
+    "note": "Zoom to dam",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -394,6 +587,7 @@
     }
   },
   {
+    "note": "Show flood effect and dam results",
     "maps": [1,0],
     "viewpoint": {
       "rotation": 0,
