@@ -4,6 +4,9 @@ import DictionaryRenderer from "@arcgis/core/renderers/DictionaryRenderer.js";
 
 import { animationConfig } from "./configAnimation.js";
 
+// Logger utility
+import { log } from '../src/logger.js';
+
 /**
  * Maps slide data keys to their corresponding animation handler functions,
  * enabling dynamic choreography of viewpoint and time slider transitions.
@@ -117,9 +120,9 @@ function toggleTimeSlider({ slideData, view, timeSlider, embedded }) {
     } else if (timeSlider.state === "ready" && embedded) {
       timeSlider.stop();
     } else if (!timeSlider) {
-      console.log("No timeSlider component found.");
+      log("No timeSlider component found.");
     } else {
-      console.log("No timeSlider configuration found in choreography.");
+      log("No timeSlider configuration found in choreography.");
     }
   }
 }
@@ -193,7 +196,7 @@ function toggleLayerVisibility({ slideData, view, timeSlider, embedded }) {
       mapLayers.forEach((mapLayer) => {
         if (layerNames.includes(mapLayer.title)) {
           mapLayer.visible = visibility; // Set visibility based on the argument
-          console.log(`Layer '${mapLayer.title}' visibility set to ${visibility}`);
+          log(`Layer '${mapLayer.title}' visibility set to ${visibility}`);
         }
       });
     }
@@ -239,7 +242,7 @@ function toggleTrackRenderer({ slideData, view, timeSlider, embedded }) {
         } catch (error) {
           console.error("Failed to add track layer:", error);
         }
-        console.log("Applying track renderer:", trackRenderer.trackLayerName);
+        log("Applying track renderer:", trackRenderer.trackLayerName);
         await trackLayer.when(); // Wait for the layer to load
         const trackStartField = trackLayer.timeInfo.startField;
         trackLayer.visible = true; // Make the layer visible
@@ -253,7 +256,7 @@ function toggleTrackRenderer({ slideData, view, timeSlider, embedded }) {
         };
         // Apply renderer from choreography data
         trackLayer.trackInfo = trackRenderer.trackInfo;
-        console.log("Track renderer applied.", trackLayer.trackInfo);
+        log("Track renderer applied.", trackLayer.trackInfo);
       }
     } catch (error) {
       console.error("Failed to set track Renderer:", error);
@@ -272,10 +275,10 @@ function toggleDictionaryRenderer({ slideData, view, timeSlider, embedded }) {
       );
 
       if (targetLayer) {
-        console.log("Applying dictionary renderer:", layerTitle);
-        console.log("Dictionary renderer data:", dictionaryRenderer);
+        log("Applying dictionary renderer:", layerTitle);
+        log("Dictionary renderer data:", dictionaryRenderer);
         await targetLayer.when(); // Wait for the layer to load
-        console.log("Layer loaded, current renderer:", targetLayer.renderer);
+        log("Layer loaded, current renderer:", targetLayer.renderer);
 
         // Apply renderer from choreography data
         targetLayer.renderer = new DictionaryRenderer({
@@ -283,9 +286,9 @@ function toggleDictionaryRenderer({ slideData, view, timeSlider, embedded }) {
           fieldMap: dictionaryRenderer.fieldMap,
           config : dictionaryRenderer.config,
         });
-        console.log("Dictionary renderer applied.", targetLayer.renderer);
+        log("Dictionary renderer applied.", targetLayer.renderer);
       } else {
-        console.log("Layer not found:", layerTitle);
+        log("Layer not found:", layerTitle);
       }
     } catch (error) {
       console.error("Failed to set dictionary Renderer:", error);
