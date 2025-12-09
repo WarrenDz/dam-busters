@@ -1,3 +1,3 @@
-export const animationConfig = {
-    nodeSelector: '#n-sgdQ9x',
+export const nodeConfig = {
+    nodeSelector: '#n-qIs6ym',
 };

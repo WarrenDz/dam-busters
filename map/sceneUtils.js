@@ -1,6 +1,8 @@
 // Scene utilities for lifecycle management and synchronization
-
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
+
+// Logger utility
+import { log } from '../src/logger.js';
 
 let sceneElement = null;
 let sceneView = null;
@@ -102,7 +104,7 @@ export function ensureScene(animationConfig, configureMap) {
  */
 export function syncViews(fromView, toView) {
     if (!fromView || !toView || isSyncing) return;
-    console.log("syncing views");
+    log("syncing views");
 
     try {
         isSyncing = true;
