@@ -119,7 +119,7 @@
       "layersOn": ["Routes | Paused", "THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"],
       "layersOff": ["Flight | Tracks", "Render | Takeoff", "Ruhr Watershed", "Dams","Takeoff | Glow", "RAF Scampton"]
     },
-  "trackRenderer": {
+    "trackRenderer": {
       "trackLayerName": "THOR WWII ETO | Instant Sparks",
       "trackFieldName": "TGT_ID",
       "trackInfo": {
@@ -422,7 +422,7 @@
               }
             }
           }
-        },
+    },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T00:30:00Z",
       "timeSliderEnd": "1943-05-17T00:30:00Z",
@@ -548,8 +548,8 @@
       "layersOff": ["Lancaster | Outlines","Mohne dam"]
     },
     "timeSlider": {
-      "timeSliderStart": "1943-05-17T00:30:00Z",
-      "timeSliderEnd": "1943-05-17T03:55:00Z",
+      "timeSliderStart": "1943-05-17T04:25:00Z",
+      "timeSliderEnd": "1943-05-17T07:55:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }

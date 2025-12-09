@@ -85,9 +85,15 @@ export function configureMap(animationConfig, mapIndex, element, view) {
 
     try {
         // Apply configuration attributes from animationConfig
-        if (animationConfig?.maps[mapIndex]?.itemId) element.setAttribute("item-id", animationConfig.maps[mapIndex].itemId);
-        if (animationConfig?.zoom) element.setAttribute("zoom", animationConfig.zoom);
-        if (animationConfig?.center) element.setAttribute("center", animationConfig.center);
+        if (animationConfig?.maps[mapIndex]?.itemId && element.getAttribute("item-id") !== animationConfig.maps[mapIndex].itemId) {
+            element.setAttribute("item-id", animationConfig.maps[mapIndex].itemId);
+        }
+        if (animationConfig?.zoom && element.getAttribute("zoom") !== animationConfig.zoom) {
+            element.setAttribute("zoom", animationConfig.zoom);
+        }
+        if (animationConfig?.center && element.getAttribute("center") !== animationConfig.center) {
+            element.setAttribute("center", animationConfig.center);
+        }
         timeSlider = document.querySelector('arcgis-time-slider');
         if (timeSlider && animationConfig?.timePlayRate !== undefined) timeSlider.setAttribute("play-rate", animationConfig.timePlayRate);
         if (animationConfig?.disableMapNav) {
@@ -147,10 +153,10 @@ export function crossfade(fromMapIndex, toMapIndex, t) {
         fromContainer.classList.remove("hidden");
     }
 
-    // If fully to one map, hide the other
-    if (t === 0) {
+    // If fully to one map, hide the other (lenient thresholds)
+    if (t < 0.2) {
         toContainer.classList.add("hidden");
-    } else if (t === 1) {
+    } else if (t > 0.8) {
         fromContainer.classList.add("hidden");
     }
 
@@ -166,9 +172,7 @@ export function crossfade(fromMapIndex, toMapIndex, t) {
     const fromView = fromMapIndex === 0 ? mapView : sceneView;
     const toView = toMapIndex === 0 ? mapView : sceneView;
     if (fromView && toView && t > 0 && t < 1) {
-        log("Syncing views from", fromView.type, "to", toView.type);
         syncViews(fromView, toView);
-        log("Views synced");
     }
 }
 

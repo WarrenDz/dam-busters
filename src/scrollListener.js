@@ -171,7 +171,8 @@ function setupScrollListener(nodeSelector) {
     const panels = document.querySelectorAll("div.immersive-narrative-panel");
     if (currentSlide < panels.length) {
       const progress = getPanelProgress(panels, currentSlide, currentScroll);
-      log("Scroll: [slide", currentSlide, "], [progress:", (progress * 100).toFixed(2) + "%]")
+      log("Scroll: [slide", currentSlide, "], [progress:", progress .toFixed(2) + "]")
+      log("Posting progress to iframe.", progress);
       const iframe = document.querySelector(iframeSelector);
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage(
@@ -180,7 +181,7 @@ function setupScrollListener(nodeSelector) {
             payload: {
               type: "progress",
               slide: currentSlide, 
-              progress: progress,
+              progress: progress.toFixed(2),
               isEmbedded: true
             },
           },

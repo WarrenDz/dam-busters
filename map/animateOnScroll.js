@@ -50,7 +50,7 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
   const lerp = (a, b, t) => (a === undefined || b === undefined) ? (a ?? b) : a + (b - a) * t;
 
   // Detect if the view is 3D (SceneView) by presence of a camera property
-  const is3DView = view && typeof view.camera !== "undefined";
+  const is3DView = view && view.type === "3d";
 
   // If camera data is provided and we're in a 3D view, interpolate camera
   if (is3DView && (currentCamera || nextCamera)) {
@@ -76,7 +76,7 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
   }
 
   // Otherwise handle viewpoint (2D or 3D Viewpoint)
-  if (!currentViewpoint || !nextViewpoint) return;
+  if (!currentViewpoint || !nextViewpoint || !currentViewpoint.targetGeometry || !nextViewpoint.targetGeometry) return;
 
   const viewpointJSON = {
     rotation: lerp(currentViewpoint.rotation, nextViewpoint.rotation, u),
