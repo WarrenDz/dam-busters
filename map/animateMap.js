@@ -163,7 +163,9 @@ export function crossfade(fromMapIndex, toMapIndex, t) {
     const fromView = fromMapIndex === 0 ? mapView : sceneView;
     const toView = toMapIndex === 0 ? mapView : sceneView;
     if (fromView && toView && t > 0 && t < 1) {
+        console.log("Syncing views from", fromView.type, "to", toView.type);
         syncViews(fromView, toView);
+        console.log("Views synced");
     }
 }
 
