@@ -13,8 +13,7 @@ const choreographyHandlers = {
   timeSlider: toggleTimeSlider,
   layerVisibility: toggleLayerVisibility,
   trackRenderer: toggleTrackRenderer,
-  environment: toggleEnvironment,
-  dictionaryRenderer: toggleDictionaryRenderer
+  environment: toggleEnvironment
 };
 
 /**
