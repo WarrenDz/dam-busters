@@ -1,6 +1,6 @@
 [
   {
-    "note": "Initial viewpoint and layer visibility settings",
+    "note": "0 - Initial viewpoint and layer visibility settings",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -22,7 +22,7 @@
     }
   },
   {
-    "note": "Hold viewpoint and begin North Sea takeoff animation",
+    "note": "1 - Hold viewpoint and begin North Sea takeoff animation",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -99,7 +99,7 @@
     }
   },
   {
-    "note": "Hold flight lines and animate THOR data from Jan 1941 to Oct 1943",
+    "note": "2 - Hold flight lines and animate THOR data from Jan 1941 to Oct 1943",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -188,7 +188,7 @@
     }
   },
   {
-    "note": "Hold THOR data",
+    "note": "3 - Hold THOR data",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -277,7 +277,7 @@
     }
   },
   {
-    "note": "Resume flight to Ruhr and show dams",
+    "note": "4 - Resume flight to Ruhr and show dams",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -372,7 +372,7 @@
     }
   },
   {
-    "note": "hold flight with Ruhr and dams",
+    "note": "5 - Hold flight with Ruhr and dams",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -467,7 +467,7 @@
     }
   },
   {
-    "note": "Zoom to Lancaster and Upkeep prior to dam run",
+    "note": "6 - Zoom to Lancaster and Upkeep prior to dam run",
     "maps": [0,1],
     "viewpoint": {
         "rotation": 101.90837757111198,
@@ -489,7 +489,7 @@
     }
   },
   {
-    "note": "Trying to force the zoom to Lancaster and Upkeep prior to dam run",
+    "note": "7 - Trying to force the zoom to Lancaster and Upkeep prior to dam run",
     "maps": [1],
     "viewpoint": {
       "camera": {
@@ -513,31 +513,31 @@
     }
   },
   {
-    "note": "Switch to underside view of Lancaster and Upkeep in schematic view",
+    "note": "8 - Switch to underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
-      "camera": {
-        "position": {
-            "spatialReference": {
-                "latestWkid": 3857,
-                "wkid": 102100
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
             },
-            "x": 897434.5302910476,
-            "y": 6707982.981331988,
-            "z": 325.98987346701324
-        },
-        "heading": 253.27518783283153,
-        "tilt": 0.4999922942566893,
-        "fov": 24.345703125000007
-    }
-  },
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
+            "fov": 24.345703125000007
+        }
+    },
     "layerVisibility": {
       "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
       "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk","Mohne dam | Highlight"]
     }
   },
   {
-    "note": "Animate approach with bounce",
+    "note": "9 - Animate approach with bounce",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -567,7 +567,7 @@
     }
   },
   {
-    "note": "Zoom to dam",
+    "note": "10 - Zoom to dam",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -587,7 +587,7 @@
     }
   },
   {
-    "note": "Show flood effect and dam results",
+    "note": "11 - Show flood effect and dam results",
     "maps": [1,0],
     "viewpoint": {
       "rotation": 0,
@@ -627,6 +627,7 @@
     }
   },
   {
+    "note": "12 - N/A",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
