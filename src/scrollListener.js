@@ -172,7 +172,6 @@ function setupScrollListener(nodeSelector) {
     if (currentSlide < panels.length) {
       const progress = getPanelProgress(panels, currentSlide, currentScroll);
       log("Scroll: [slide", currentSlide, "], [progress:", progress .toFixed(2) + "]")
-      log("Posting progress to iframe.", progress);
       const iframe = document.querySelector(iframeSelector);
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage(

@@ -22,7 +22,7 @@ export { sceneElement, sceneView, activeWatcher, needSceneLast, needScene, lastS
  * Returns true if any nearby slide has a 'maps' array with length > 1, indicating crossfading is needed.
  */
 export function evaluateSceneLifecycle(index, slides) {
-    const nearbySlides = [slides[index - 2], slides[index - 1], slides[index], slides[index + 1], slides[index + 2]];
+    const nearbySlides = [slides[index - 2], slides[index - 1], slides[index], slides[index + 1], slides[index + 2], slides[index + 3]];
 
     // If any nearby slide has maps.length > 1, keep/create the scene
     return nearbySlides.some(slide => slide && slide.maps && slide.maps.length > 1);

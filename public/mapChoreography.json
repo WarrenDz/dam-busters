@@ -534,12 +534,12 @@
                     "latestWkid": 3857,
                     "wkid": 102100
                 },
-                "x": 898618.801195196,
-                "y": 6709049.794477744,
-                "z": 334.4862919235602
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
             },
-            "heading": 237.2141647846513,
-            "tilt": 83.16738495352172,
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
             "fov": 24.345703125000007
         }
     },
@@ -549,7 +549,7 @@
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T04:25:00Z",
-      "timeSliderEnd": "1943-05-17T07:55:00Z",
+      "timeSliderEnd": "1943-05-17T08:00:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }
@@ -614,42 +614,8 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Dams"],
-      "layersOff": ["Flood Effect"]
-    }
-  },
-  {
-    "maps": [0],
-    "viewpoint": {
-      "rotation": 0,
-      "scale": 2311162.2171545,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "xmin": -107777.72081716463,
-        "ymin": 6644618.2283462975,
-        "xmax": 671268.4714651447,
-        "ymax": 7160109.54710139
-      }
-    }
-  },
-  {
-    "maps": [0],
-    "viewpoint": {
-      "rotation": 0,
-      "scale": 4513.988705500029,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "xmin": -62322.84453295461,
-        "ymin": 7039572.08577246,
-        "xmax": -60801.26993861272,
-        "ymax": 7040578.90475443
-      }
+      "layersOn": ["Dams", "Flood Effect"],
+      "layersOff": []
     }
   }
 ]
