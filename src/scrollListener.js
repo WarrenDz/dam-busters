@@ -1,4 +1,5 @@
 import { nodeConfig } from './configNode.js';
+import { log } from './logger.js';
 // This sets shared state variables used across the scroll-driven story map
 let isDocked = false;
 let dockStartScroll = null;
@@ -6,16 +7,6 @@ let dockStartScroll = null;
 let lastScrollY = window.scrollY;
 let scrollDirection = "down"; // or 'up';
 let currentSlide = 0;
-
-
-// Set DEBUG to true to enable debug logging
-const DEBUG = true;
-
-function log(...args) {
-  if (DEBUG) {
-    console.log(...args);
-  }
-}
 
 log("Scroll listener initialized.");
 

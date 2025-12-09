@@ -6,6 +6,9 @@ import "@arcgis/map-components/components/arcgis-expand";
 import "@arcgis/core/assets/esri/themes/light/main.css";
 import "@esri/calcite-components/components/calcite-slider";
 
+// Logger utility
+import { log } from '../src/logger.js';
+
 // Animation configuration
 import { animationConfig } from "./configAnimation.js";
 
@@ -29,7 +32,7 @@ export async function loadChoreography(path) {
         const response = await fetch(path);
         if (!response.ok) throw new Error(`Failed to fetch choreography: ${response.status}`);
         slides = await response.json();
-        console.log("Loaded slides", slides);
+        log("Loaded slides", slides);
         return slides;
     } catch (error) {
         console.error("Failed to load choreography:", error);
@@ -163,9 +166,9 @@ export function crossfade(fromMapIndex, toMapIndex, t) {
     const fromView = fromMapIndex === 0 ? mapView : sceneView;
     const toView = toMapIndex === 0 ? mapView : sceneView;
     if (fromView && toView && t > 0 && t < 1) {
-        console.log("Syncing views from", fromView.type, "to", toView.type);
+        log("Syncing views from", fromView.type, "to", toView.type);
         syncViews(fromView, toView);
-        console.log("Views synced");
+        log("Views synced");
     }
 }
 
