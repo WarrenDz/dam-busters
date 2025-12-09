@@ -235,13 +235,31 @@ function setupMessageListener() {
     const currentSlide = slides[payload.slide];
     const nextSlide = slides[payload.slide + 1];
 
+    // Determine the active view and timeslider based on the slide's maps array
+    let activeView = mapView;
+    let activeTimeSlider = timeSlider;
+    if (currentSlide.maps && currentSlide.maps[0] === 1) {
+        // If the primary map is the scene (index 1), use sceneView and scene time slider
+        if (!sceneView) {
+            ensureScene(animationConfig, configureMap);
+        }
+        activeView = sceneView;
+        activeTimeSlider = sceneElement ? sceneElement.querySelector('arcgis-time-slider') : timeSlider;
+    }
+
     // Scroll-based animation
-    scrollAnimation(currentSlide, nextSlide, payload.progress, mapView, timeSlider);
+    scrollAnimation(currentSlide, nextSlide, payload.progress, activeView, activeTimeSlider);
+    // Scroll-based crossfade
+    if (currentSlide.maps && currentSlide.maps.length > 1) {
+      const fromMap = currentSlide.maps[0];
+      const toMap = currentSlide.maps[1];
+      crossfade(fromMap, toMap, payload.progress);
+    }
 
     // Slide change detection
     if (payload.slide !== hashIndexLast) {
       hashIndexLast = payload.slide;
-      slideAnimation(currentSlide, mapView, timeSlider, isEmbedded); // using isEmbedded to mute some property changes when viewed in embed
+      slideAnimation(currentSlide, activeView, activeTimeSlider, isEmbedded); // using isEmbedded to mute some property changes when viewed in embed
     }
   });
 }
