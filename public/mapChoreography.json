@@ -20,7 +20,7 @@
       "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
     }
   },
-    {
+  {
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -37,8 +37,63 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Render | Takeoff", "Render | Backdrop", "Takeoff | Glow"],
-      "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
+      "layersOn": ["Render | Takeoff", "Render | Backdrop", "Takeoff | Glow", "Flight | Tracks"],
+      "layersOff": ["Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFD100",
+                  "size": 6,
+                  "outline": {
+                    "color": "#000000",
+                    "width": 1
+                  }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 1.25
+                }
+              }
+            }
+          }
+        },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-16T21:35:00Z",
+      "timeSliderEnd": "1943-05-16T22:55:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
     }
   },
   {
