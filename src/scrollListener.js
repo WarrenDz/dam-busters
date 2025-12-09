@@ -1,4 +1,4 @@
-import { configNode } from '.src/configNode.js';
+import { nodeConfig } from './configNode.js';
 // This sets shared state variables used across the scroll-driven story map
 let isDocked = false;
 let dockStartScroll = null;
@@ -16,6 +16,8 @@ function log(...args) {
     console.log(...args);
   }
 }
+
+log("Scroll listener initialized.");
 
 // --- Utility Functions ---
 // DOM readiness, panel height, scroll bounds...
@@ -209,4 +211,4 @@ async function createStoryScrollListener(nodeSelector) {
   setupScrollListener(nodeSelector);
 }
 
-createStoryScrollListener(configNode.nodeSelector)
+createStoryScrollListener(nodeConfig.nodeSelector)
