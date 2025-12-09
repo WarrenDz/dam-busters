@@ -19,13 +19,13 @@ export { sceneElement, sceneView, activeWatcher, needSceneLast, needScene, lastS
 /**
  * Evaluate lifecycle for an index: ensure or schedule destroy for the scene.
  * Looks at previous, current and next slides (adjust lookahead as needed).
- * Returns true if any nearby slide has a 'maps' array with length > 1, indicating crossfading is needed.
+ * Returns true if any nearby slide uses the 3D scene (maps includes 1), indicating the scene is needed.
  */
 export function evaluateSceneLifecycle(index, slides) {
-    const nearbySlides = [slides[index - 2], slides[index - 1], slides[index], slides[index + 1], slides[index + 2], slides[index + 3]];
+    const nearbySlides = [slides[index - 1], slides[index], slides[index + 1]];
 
-    // If any nearby slide has maps.length > 1, keep/create the scene
-    return nearbySlides.some(slide => slide && slide.maps && slide.maps.length > 1);
+    // If any nearby slide uses the 3D scene (has 1 in maps array), keep/create the scene
+    return nearbySlides.some(slide => slide && slide.maps && slide.maps.includes(1));
 }
 
 /**
