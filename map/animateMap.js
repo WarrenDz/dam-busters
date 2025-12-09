@@ -160,8 +160,12 @@ export function crossfade(fromMapIndex, toMapIndex, t) {
     toContainer.style.pointerEvents = (t > 0.5) ? 'auto' : 'none';
 
     // Sync views only during crossfade transitions (not when fully on one map)
-    if (mapView && sceneView && t > 0 && t < 1) {
-        syncViews(mapView, sceneView);
+    const fromView = fromMapIndex === 0 ? mapView : sceneView;
+    const toView = toMapIndex === 0 ? mapView : sceneView;
+    if (fromView && toView && t > 0 && t < 1) {
+        console.log("Syncing views from", fromView.type, "to", toView.type);
+        syncViews(fromView, toView);
+        console.log("Views synced");
     }
 }
 
@@ -190,6 +194,15 @@ function setupHashListener() {
         activeTimeSlider = sceneElement ? sceneElement.querySelector('arcgis-time-slider') : timeSlider;
     }
     slideAnimation(currentSlide, activeView, activeTimeSlider, isEmbedded);
+
+    // For crossfade slides, also apply viewpoint to the "to" view
+    if (currentSlide.maps && currentSlide.maps.length > 1) {
+      const toMap = currentSlide.maps[1];
+      const toView = toMap === 0 ? mapView : sceneView;
+      if (toView) {
+        slideAnimation(currentSlide, toView, activeTimeSlider, isEmbedded);
+      }
+    }
 
     // Update crossfade state
     updateCrossfadeForSlide(hashIndex);

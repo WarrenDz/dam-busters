@@ -54,10 +54,10 @@
                   "type": "simple-marker",
                   "style": "circle",
                   "color": "#FFD100",
-                  "size": 4,
+                  "size": 6,
                   "outline": {
-                    "color": "#FFD100",
-                    "width": 4
+                    "color": "#000000",
+                    "width": 1
                   }
                 }
               }
@@ -201,7 +201,7 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Flight | Tracks", "Ruhr Watershed"],
+      "layersOn": ["Flight | Tracks", "Ruhr Watershed", "Dams"],
       "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
     },
     "trackRenderer": {
@@ -253,6 +253,24 @@
             }
           }
         },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+          "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85",
+          "fieldMap": {
+            "ATTACKRESULT": "AttackResult",
+            "DROP1": "Drop1",
+            "DROP2": "Drop2",
+            "DROP3": "Drop3",
+            "DROP4": "Drop4",
+            "DROP5": "Drop5",
+            "NAME": "Name"
+          },
+          "config": {
+            "Label": "OFF",
+            "Result": "OFF",
+            "Upkeeps": "OFF"
+          }
+    },
     "timeSlider": {
       "timeSliderStart": "1943-05-16T22:55:00Z",
       "timeSliderEnd": "1943-05-17T00:30:00Z",
@@ -262,23 +280,23 @@
   },
   {
     "maps": [0,1],
-            "viewpoint": {
-                "rotation": 101.90837757111198,
-                "scale": 282.124294,
-                "targetGeometry": {
-                    "spatialReference": {
-                        "latestWkid": 3857,
-                        "wkid": 102100
-                    },
-                    "xmin": 897383.956363246,
-                    "ymin": 6707954.079770911,
-                    "xmax": 897479.8012307148,
-                    "ymax": 6708018.200285829
-                }
+    "viewpoint": {
+        "rotation": 101.90837757111198,
+        "scale": 282.124294,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
             },
+            "xmin": 897383.956363246,
+            "ymin": 6707954.079770911,
+            "xmax": 897479.8012307148,
+            "ymax": 6708018.200285829
+        }
+    },
     "layerVisibility": {
       "layersOn": ["Lancaster", "Upkeep"],
-      "layersOff": ["Lancaster | Outlines", "Upkeep | Highlight"]
+      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
   {
@@ -301,55 +319,59 @@
     },
     "layerVisibility": {
       "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
-      "layersOff": ["Lancaster", "Upkeep", "Upkeep | Path", "Upkeep | Sunk"]
+      "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk","Mohne dam | Highlight"]
     }
   },
   {
     "maps": [1],
     "viewpoint": {
-      "camera": {
-        "position": {
-          "spatialReference": {
-            "latestWkid": 3857,
-            "wkid": 102100
-          },
-          "x": 898659.2576718291,
-          "y": 6709145.115187532,
-          "z": 345.753525394015
-        },
-        "heading": 237.2144882034189,
-        "tilt": 83.16690604457018,
-        "fov": 24.345703125000007
-      }
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 898618.801195196,
+                "y": 6709049.794477744,
+                "z": 334.4862919235602
+            },
+            "heading": 237.2141647846513,
+            "tilt": 83.16738495352172,
+            "fov": 24.345703125000007
+        }
     },
     "layerVisibility": {
       "layersOn": ["Lancaster | Highlight", "Upkeep | Highlight", "Mohne dam | Highlight", "Upkeep | Path", "Upkeep | Sunk"],
-      "layersOff": ["Lancaster | Outlines"]
+      "layersOff": ["Lancaster | Outlines","Mohne dam"]
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T00:30:00Z",
-      "timeSliderEnd": "1943-05-17T04:30:00Z",
+      "timeSliderEnd": "1943-05-17T03:55:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }
   },
   {
-    "maps": [0,1],
+    "maps": [1],
     "viewpoint": {
-      "rotation": 120.09443773367953,
-      "scale": 282.124294,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "x": 897362.4457497096,
-        "y": 6708112.189883188
-      }
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897791.4480252814,
+                "y": 6708467.945676294,
+                "z": 273.336127451621
+            },
+            "heading": 258.13410306554925,
+            "tilt": 78.53396255907785,
+            "fov": 24.345703125000007
+        }
     }
   },
   {
-    "maps": [0],
+    "maps": [1,0],
     "viewpoint": {
       "rotation": 0,
       "scale": 1155581.1085775,
@@ -363,6 +385,28 @@
         "xmax": 1053874.8984570669,
         "ymax": 6786782.442606675
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Dams", "Flood Effect"],
+      "layersOff": ["Flight | Tracks"]
+    },
+    "dictionaryRenderer": {
+      "layer": "Dams",
+          "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85",
+          "fieldMap": {
+            "ATTACKRESULT": "AttackResult",
+            "DROP1": "Drop1",
+            "DROP2": "Drop2",
+            "DROP3": "Drop3",
+            "DROP4": "Drop4",
+            "DROP5": "Drop5",
+            "NAME": "Name"
+          },
+          "config": {
+            "Label": "OFF",
+            "Result": "ON",
+            "Upkeeps": "ON"
+          }
     }
   },
   {

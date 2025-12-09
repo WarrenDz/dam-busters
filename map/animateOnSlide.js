@@ -1,5 +1,6 @@
 import Viewpoint from "@arcgis/core/Viewpoint.js";
 import Camera from "@arcgis/core/Camera.js";
+import DictionaryRenderer from "@arcgis/core/renderers/DictionaryRenderer.js";
 
 import { animationConfig } from "./configAnimation.js";
 
@@ -12,7 +13,8 @@ const choreographyHandlers = {
   timeSlider: toggleTimeSlider,
   layerVisibility: toggleLayerVisibility,
   trackRenderer: toggleTrackRenderer,
-  environment: toggleEnvironment
+  environment: toggleEnvironment,
+  dictionaryRenderer: toggleDictionaryRenderer
 };
 
 /**
@@ -21,6 +23,7 @@ const choreographyHandlers = {
  * Logs each triggered animation and catches any handler errors.
  */
 const NON_EMBED_EXCLUDE_KEYS = new Set(["viewpoint"]);
+const VIEW_TYPE_EXCLUDE_KEYS = new Set(["dictionaryRenderer"]);
 
 export function slideAnimation(slideData, view, timeSlider, embedded) {
   const context = { slideData, view, timeSlider, embedded };
@@ -31,6 +34,7 @@ export function slideAnimation(slideData, view, timeSlider, embedded) {
 
     // Skip excluded keys when not embedded
     if (embedded && NON_EMBED_EXCLUDE_KEYS.has(key)) return;
+    if (view.type === '3d' && VIEW_TYPE_EXCLUDE_KEYS.has(key)) return;
 
     try {
       handler(context);
@@ -259,3 +263,34 @@ function toggleTrackRenderer({ slideData, view, timeSlider, embedded }) {
   applyTrackRenderer(slideData.trackRenderer, trackTimeConfig);
 }
 
+function toggleDictionaryRenderer({ slideData, view, timeSlider, embedded }) {
+  const mapLayers = view.map.layers;
+  async function applyDictionaryRenderer(dictionaryRenderer) {
+    try {
+      const layerTitle = dictionaryRenderer.layer;
+      let targetLayer = mapLayers.find(
+        (layer) => layer.title === layerTitle
+      );
+
+      if (targetLayer) {
+        console.log("Applying dictionary renderer:", layerTitle);
+        console.log("Dictionary renderer data:", dictionaryRenderer);
+        await targetLayer.when(); // Wait for the layer to load
+        console.log("Layer loaded, current renderer:", targetLayer.renderer);
+
+        // Apply renderer from choreography data
+        targetLayer.renderer = new DictionaryRenderer({
+          url: dictionaryRenderer.url,
+          fieldMap: dictionaryRenderer.fieldMap,
+          config : dictionaryRenderer.config,
+        });
+        console.log("Dictionary renderer applied.", targetLayer.renderer);
+      } else {
+        console.log("Layer not found:", layerTitle);
+      }
+    } catch (error) {
+      console.error("Failed to set dictionary Renderer:", error);
+    }
+  }
+  applyDictionaryRenderer(slideData.dictionaryRenderer);
+}
