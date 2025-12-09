@@ -255,21 +255,21 @@
         },
     "dictionaryRenderer": {
       "layer": "Dams",
-      "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85/data",
-      "fieldMap": {
-        "ATTACKRESULT": "AttackResult",
-        "DROP1": "Drop1",
-        "DROP2": "Drop2",
-        "DROP3": "Drop3",
-        "DROP4": "Drop4",
-        "DROP5": "Drop5",
-        "NAME": "Name"
-      },
-      "config": {
-        "Label": "true",
-        "Result": "true",
-        "Upkeeps": "true"
-      }
+          "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85",
+          "fieldMap": {
+            "ATTACKRESULT": "AttackResult",
+            "DROP1": "Drop1",
+            "DROP2": "Drop2",
+            "DROP3": "Drop3",
+            "DROP4": "Drop4",
+            "DROP5": "Drop5",
+            "NAME": "Name"
+          },
+          "config": {
+            "Label": "OFF",
+            "Result": "OFF",
+            "Upkeeps": "OFF"
+          }
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-16T22:55:00Z",
@@ -392,20 +392,21 @@
     },
     "dictionaryRenderer": {
       "layer": "Dams",
-      "url": "./dambuster-style.stylx",
-      "fieldMap": {
-        "ATTACKRESULT": "AttackResult",
-        "DROP1": "Drop1",
-        "DROP2": "Drop2",
-        "DROP3": "Drop3",
-        "DROP4": "Drop4",
-        "DROP5": "Drop5"
-      },
-      "config": {
-        "Label": "true",
-        "Result": "true",
-        "Upkeeps": "true"
-      }
+          "url": "https://www.arcgis.com/sharing/rest/content/items/485667503aa0470b97ba2211d6eafc85",
+          "fieldMap": {
+            "ATTACKRESULT": "AttackResult",
+            "DROP1": "Drop1",
+            "DROP2": "Drop2",
+            "DROP3": "Drop3",
+            "DROP4": "Drop4",
+            "DROP5": "Drop5",
+            "NAME": "Name"
+          },
+          "config": {
+            "Label": "OFF",
+            "Result": "ON",
+            "Upkeeps": "ON"
+          }
     }
   },
   {

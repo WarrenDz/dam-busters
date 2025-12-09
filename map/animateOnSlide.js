@@ -23,6 +23,7 @@ const choreographyHandlers = {
  * Logs each triggered animation and catches any handler errors.
  */
 const NON_EMBED_EXCLUDE_KEYS = new Set(["viewpoint"]);
+const VIEW_TYPE_EXCLUDE_KEYS = new Set(["dictionaryRenderer"]);
 
 export function slideAnimation(slideData, view, timeSlider, embedded) {
   const context = { slideData, view, timeSlider, embedded };
@@ -33,6 +34,7 @@ export function slideAnimation(slideData, view, timeSlider, embedded) {
 
     // Skip excluded keys when not embedded
     if (embedded && NON_EMBED_EXCLUDE_KEYS.has(key)) return;
+    if (view.type === '3d' && VIEW_TYPE_EXCLUDE_KEYS.has(key)) return;
 
     try {
       handler(context);
@@ -279,8 +281,8 @@ function toggleDictionaryRenderer({ slideData, view, timeSlider, embedded }) {
         // Apply renderer from choreography data
         targetLayer.renderer = new DictionaryRenderer({
           url: dictionaryRenderer.url,
-          fieldMap: dictionaryRenderer.fieldMap || {},
-          config: dictionaryRenderer.config || {}
+          fieldMap: dictionaryRenderer.fieldMap,
+          config : dictionaryRenderer.config,
         });
         console.log("Dictionary renderer applied.", targetLayer.renderer);
       } else {
