@@ -212,6 +212,59 @@ function setupHashListener() {
   });
 }
 
+/**
+ * Listen for postMessage events from the "storymap-controller" to coordinate map animations.
+ * Determines whether the map is embedded and sets up hash animation if not.
+ * Triggers scroll-based animations based on slide progress and static slide updates
+ * when the slide index changes.
+ */
+function setupMessageListener() {
+  window.addEventListener("message", (event) => {
+    if (event.data.source !== "storymap-controller") return;
+
+    const payload = event.data.payload;
+
+    if (payload.isEmbedded) {
+      // log("This story is being viewed via script embed - deferring to scroll animation.");
+      isEmbedded = true;
+    } else {
+      // log("Map is not embedded — enabling hash-based navigation.");
+      isEmbedded = false;
+    }
+
+    const currentSlide = slides[payload.slide];
+    const nextSlide = slides[payload.slide + 1];
+
+    // Determine the active view and timeslider based on the slide's maps array
+    let activeView = mapView;
+    let activeTimeSlider = timeSlider;
+    if (currentSlide.maps && currentSlide.maps[0] === 1) {
+        // If the primary map is the scene (index 1), use sceneView and scene time slider
+        if (!sceneView) {
+            ensureScene(animationConfig, configureMap);
+        }
+        activeView = sceneView;
+        activeTimeSlider = sceneElement ? sceneElement.querySelector('arcgis-time-slider') : timeSlider;
+    }
+
+    // Scroll-based animation
+    scrollAnimation(currentSlide, nextSlide, payload.progress, activeView, activeTimeSlider);
+    // Scroll-based crossfade
+    if (currentSlide.maps && currentSlide.maps.length > 1) {
+      const fromMap = currentSlide.maps[0];
+      const toMap = currentSlide.maps[1];
+      crossfade(fromMap, toMap, payload.progress);
+    }
+
+    // Slide change detection
+    if (payload.slide !== hashIndexLast) {
+      hashIndexLast = payload.slide;
+      slideAnimation(currentSlide, activeView, activeTimeSlider, isEmbedded); // using isEmbedded to mute some property changes when viewed in embed
+    }
+  });
+}
+
+
 // Initialize the map animator
 // This function is called to set up the map and start the animation
 async function initMapAnimator() {
@@ -225,6 +278,7 @@ async function initMapAnimator() {
         timeSlider = document.querySelector('arcgis-time-slider');
         slides = await loadChoreography(animationConfig.mapChoreography);
         setupHashListener()
+        setupMessageListener();
 
     } catch (err) {
         console.error('initMapAnimator failed:', err);
