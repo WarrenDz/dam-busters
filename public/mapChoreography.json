@@ -16,7 +16,28 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Render | Takeoff"],
+      "layersOn": ["Render | Takeoff", "Render | Backdrop"],
+      "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
+    }
+  },
+    {
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 4513.988705500029,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+          },
+          "xmin": -62545.05029592137,
+          "ymin": 7039556.596823849,
+          "xmax": -61011.53241590963,
+          "ymax": 7040580.136405757
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Render | Takeoff", "Render | Backdrop", "Takeoff | Glow"],
       "layersOff": ["Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
     }
   },
@@ -38,7 +59,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Flight | Tracks"],
-      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Routes | Paused", "Ruhr Valley | Time-enabled"]
+      "layersOff": ["THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Routes | Paused", "Ruhr Valley | Time-enabled","Render | Backdrop"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -114,7 +135,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Routes | Paused", "THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"],
-      "layersOff": ["Flight | Tracks", "Render | Top view", "Ruhr Watershed", "Dams"]
+      "layersOff": ["Flight | Tracks", "Render | Takeoff", "Ruhr Watershed", "Dams","Takeoff | Glow"]
     },
   "trackRenderer": {
       "trackLayerName": "THOR WWII ETO | Instant Sparks",
@@ -202,7 +223,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Flight | Tracks", "Ruhr Watershed", "Dams"],
-      "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
+      "layersOff": ["THOR WWII ETO | Instant Sparks", "Routes | Paused", "THOR WWII ETO | Aggregate Circles","Flood Effect"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -294,6 +315,29 @@
             "ymax": 6708018.200285829
         }
     },
+    "layerVisibility": {
+      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
+    }
+  },
+  {
+    "maps": [1],
+    "viewpoint": {
+    "camera": {
+        "position": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "x": 897434.5302910476,
+            "y": 6707982.981331988,
+            "z": 325.98987346701324
+        },
+        "heading": 253.27518783283153,
+        "tilt": 0.4999922942566893,
+        "fov": 24.345703125000007
+    }
+  },
     "layerVisibility": {
       "layersOn": ["Lancaster", "Upkeep"],
       "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
@@ -424,6 +468,10 @@
         "xmax": 1053874.8984570669,
         "ymax": 6786782.442606675
       }
+    },
+    "layerVisibility": {
+      "layersOn": ["Dams"],
+      "layersOff": ["Flood Effect"]
     }
   },
   {
