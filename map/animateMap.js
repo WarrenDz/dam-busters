@@ -14,7 +14,7 @@ import { sceneElement, sceneView, evaluateSceneLifecycle, ensureScene, syncViews
 
 // Slide and scroll animation functions
 import { slideAnimation } from "./animateOnSlide.js";
-// import { scrollAnimation } from "./animateOnScroll.js";
+import { scrollAnimation } from "./animateOnScroll.js";
 
 let slides = [];
 let mapElement = null;
