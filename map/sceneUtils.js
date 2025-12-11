@@ -121,6 +121,11 @@ export function syncViews(fromView, toView) {
             vp.scale *= scaleConversionFactor;
         }
 
+        // Set tilt to 0 for synced viewpoints to ensure flat view during crossfades
+        if (vp.camera) {
+            vp.camera.tilt = 0;
+        }
+
         // use goTo() to apply viewpoint to destination view (viewpoint is read-only)
         toView.goTo(vp, { animate: false });
     } catch (e) {

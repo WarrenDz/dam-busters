@@ -1586,17 +1586,19 @@
     "note": "6 - Zoom to Lancaster and Upkeep prior to dam run",
     "maps": [0,1],
     "viewpoint": {
-        "rotation": 101.90837757111198,
-        "scale": 282.124294,
-        "targetGeometry": {
-            "spatialReference": {
-                "latestWkid": 3857,
-                "wkid": 102100
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897434.5302910476,
+                "y": 6707982.981331988,
+                "z": 325.98987346701324
             },
-            "xmin": 897383.956363246,
-            "ymin": 6707954.079770911,
-            "xmax": 897479.8012307148,
-            "ymax": 6708018.200285829
+            "heading": 253.27518783283153,
+            "tilt": 0.4999922942566893,
+            "fov": 24.345703125000007
         }
     },
     "layerVisibility": {
@@ -1605,31 +1607,7 @@
     }
   },
   {
-    "note": "7 - Trying to force the zoom to Lancaster and Upkeep prior to dam run",
-    "maps": [1],
-    "viewpoint": {
-      "camera": {
-        "position": {
-            "spatialReference": {
-                "latestWkid": 3857,
-                "wkid": 102100
-            },
-            "x": 897434.5302910476,
-            "y": 6707982.981331988,
-            "z": 325.98987346701324
-        },
-        "heading": 253.27518783283153,
-        "tilt": 0.4999922942566893,
-        "fov": 24.345703125000007
-    }
-  },
-    "layerVisibility": {
-      "layersOn": ["Lancaster", "Upkeep"],
-      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
-    }
-  },
-  {
-    "note": "8 - Switch to underside view of Lancaster and Upkeep in schematic view",
+    "note": "7 - Switch to underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1653,7 +1631,7 @@
     }
   },
   {
-    "note": "9 - Hold underside view of Lancaster and Upkeep in schematic view",
+    "note": "8 - Hold underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1677,7 +1655,7 @@
     }
   },
   {
-    "note": "10 - Animate approach with bounce",
+    "note": "9 - Animate approach with bounce",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1707,7 +1685,7 @@
     }
   },
   {
-    "note": "11 - Zoom to dam",
+    "note": "10 - Zoom to dam",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1727,7 +1705,7 @@
     }
   },
   {
-    "note": "12 - Show flood effect and dam results",
+    "note": "11 - Show flood effect and dam results",
     "maps": [1,0],
     "viewpoint": {
       "rotation": 0,
@@ -1749,7 +1727,7 @@
     }
   },
   {
-    "note": "13 - N/A",
+    "note": "12 - N/A",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
