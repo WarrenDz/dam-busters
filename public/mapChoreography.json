@@ -40,7 +40,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff", "Basemap Labels", "Basemap Detail", "Takeoff | Glow", "Flight | Tracks", "RAF Scampton"],
-      "layersOff": ["Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
+      "layersOff": ["Routes | Paused","THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -666,7 +666,7 @@
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-16T21:15:00Z",
-      "timeSliderEnd": "1943-05-16T22:55:00Z",
+      "timeSliderEnd": "1943-05-16T23:00:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }
@@ -1586,19 +1586,21 @@
     "note": "6 - Zoom to Lancaster and Upkeep prior to dam run",
     "maps": [0,1],
     "viewpoint": {
-        "rotation": 101.90837757111198,
-        "scale": 282.124294,
-        "targetGeometry": {
+      "camera": {
+        "position": {
             "spatialReference": {
                 "latestWkid": 3857,
                 "wkid": 102100
             },
-            "xmin": 897383.956363246,
-            "ymin": 6707954.079770911,
-            "xmax": 897479.8012307148,
-            "ymax": 6708018.200285829
-        }
-    },
+            "x": 897434.5302910476,
+            "y": 6707982.981331988,
+            "z": 325.98987346701324
+        },
+        "heading": 253.27518783283153,
+        "tilt": 0.4999922942566893,
+        "fov": 24.345703125000007
+    }
+  },
     "layerVisibility": {
       "layersOn": ["Lancaster", "Upkeep"],
       "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
@@ -1701,7 +1703,7 @@
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T00:15:00Z",
-      "timeSliderEnd": "1943-05-17T03:55:00Z",
+      "timeSliderEnd": "1943-05-17T04:00:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }
