@@ -32,10 +32,74 @@ export function scrollAnimation(slideCurrent, slideNext, progress, view, timeSli
 }
 
 /**
- * Smoothly interpolates between two slide viewpoints based on progress (0–1),
- * generating a transitional camera view with updated rotation, scale, and geometry.
- * Applies the interpolated viewpoint to the view with animation.
+ * Derives a camera object from a 2D viewpoint for interpolation purposes.
  */
+function deriveCameraFrom2D(viewpoint) {
+  if (!viewpoint || !viewpoint.targetGeometry) return null;
+
+  const centerX = (viewpoint.targetGeometry.xmin + viewpoint.targetGeometry.xmax) / 2;
+  const centerY = (viewpoint.targetGeometry.ymin + viewpoint.targetGeometry.ymax) / 2;
+
+  return {
+    position: {
+      x: centerX,
+      y: centerY,
+      z: 0,
+      spatialReference: viewpoint.targetGeometry.spatialReference
+    },
+    heading: viewpoint.rotation || 0,
+    tilt: 0
+  };
+}
+
+/**
+ * Interpolates between two camera objects, handling tilt based on transition type.
+ */
+function interpolateCamera(derivedCurrent, derivedNext, currentCamera, nextCamera, u, lerp) {
+  let tilt;
+  if (!currentCamera && nextCamera) {
+    // 2D to 3D: interpolate from 0 to assigned tilt
+    tilt = lerp(0, derivedNext.tilt, u);
+  } else if (currentCamera && !nextCamera) {
+    // 3D to 2D: interpolate from assigned tilt to 0
+    tilt = lerp(derivedCurrent.tilt, 0, u);
+  } else {
+    // Both 3D or both 2D: normal interpolation
+    tilt = lerp(derivedCurrent.tilt, derivedNext.tilt, u);
+  }
+
+  return {
+    position: {
+      spatialReference: derivedCurrent.position.spatialReference || derivedNext.position.spatialReference,
+      x: lerp(derivedCurrent.position.x, derivedNext.position.x, u),
+      y: lerp(derivedCurrent.position.y, derivedNext.position.y, u),
+      z: lerp(derivedCurrent.position.z, derivedNext.position.z, u),
+    },
+    heading: lerp(derivedCurrent.heading, derivedNext.heading, u),
+    tilt: tilt,
+  };
+}
+
+/**
+ * Interpolates between two 2D viewpoints.
+ */
+function interpolate2DViewpoint(currentViewpoint, nextViewpoint, u, lerp) {
+  if (!currentViewpoint || !nextViewpoint || !currentViewpoint.targetGeometry || !nextViewpoint.targetGeometry) return null;
+
+  const viewpointJSON = {
+    rotation: lerp(currentViewpoint.rotation, nextViewpoint.rotation, u),
+    scale: lerp(currentViewpoint.scale, nextViewpoint.scale, u),
+    targetGeometry: {
+      spatialReference: currentViewpoint.targetGeometry.spatialReference || nextViewpoint.targetGeometry.spatialReference,
+      xmin: lerp(currentViewpoint.targetGeometry.xmin, nextViewpoint.targetGeometry.xmin, u),
+      ymin: lerp(currentViewpoint.targetGeometry.ymin, nextViewpoint.targetGeometry.ymin, u),
+      xmax: lerp(currentViewpoint.targetGeometry.xmax, nextViewpoint.targetGeometry.xmax, u),
+      ymax: lerp(currentViewpoint.targetGeometry.ymax, nextViewpoint.targetGeometry.ymax, u),
+    },
+  };
+
+  return Viewpoint.fromJSON(viewpointJSON);
+}
 function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSlider }) {
   // Support both 2D viewpoint interpolation and 3D camera interpolation.
   // Use goTo for programmatic navigation and respect animationConfig.mapFit.
@@ -49,48 +113,29 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
   const u = easeInOut(Math.max(0, Math.min(1, progress)));
   const lerp = (a, b, t) => (a === undefined || b === undefined) ? (a ?? b) : a + (b - a) * t;
 
-  // Detect if the view is 3D (SceneView) by presence of a camera property
+  // Detect if the view is 3D (SceneView)
   const is3DView = view && view.type === "3d";
 
-  // If camera data is provided and we're in a 3D view, interpolate camera
-  if (is3DView && (currentCamera || nextCamera)) {
-    if (!currentCamera || !nextCamera) return; // require both for meaningful interpolation
+  // If we're in a 3D view, interpolate camera, deriving from 2D viewpoint if needed
+  if (is3DView) {
+    let derivedCurrentCamera = currentCamera || deriveCameraFrom2D(currentViewpoint);
+    let derivedNextCamera = nextCamera || deriveCameraFrom2D(nextViewpoint);
 
-    const interpolatedCamera = {
-      position: {
-        spatialReference: currentCamera.position.spatialReference || nextCamera.position.spatialReference,
-        x: lerp(currentCamera.position.x, nextCamera.position.x, u),
-        y: lerp(currentCamera.position.y, nextCamera.position.y, u),
-        z: lerp(currentCamera.position.z, nextCamera.position.z, u),
-      },
-      heading: lerp(currentCamera.heading, nextCamera.heading, u),
-      tilt: lerp(currentCamera.tilt, nextCamera.tilt, u),
-    };
+    if (derivedCurrentCamera && derivedNextCamera) {
+      const interpolatedCamera = interpolateCamera(derivedCurrentCamera, derivedNextCamera, currentCamera, nextCamera, u, lerp);
 
-    const targetCamera = Camera.fromJSON(interpolatedCamera);
-    // For slider-driven interpolation keep animations off for responsiveness
-    view.goTo(targetCamera, { animate: false }).catch((error) => {
-      console.error("Error setting interpolated camera:", error);
-    });
-    return;
+      const targetCamera = Camera.fromJSON(interpolatedCamera);
+      // For slider-driven interpolation keep animations off for responsiveness
+      view.goTo(targetCamera, { animate: false }).catch((error) => {
+        console.error("Error setting interpolated camera:", error);
+      });
+      return;
+    }
   }
 
   // Otherwise handle viewpoint (2D or 3D Viewpoint)
-  if (!currentViewpoint || !nextViewpoint || !currentViewpoint.targetGeometry || !nextViewpoint.targetGeometry) return;
-
-  const viewpointJSON = {
-    rotation: lerp(currentViewpoint.rotation, nextViewpoint.rotation, u),
-    scale: lerp(currentViewpoint.scale, nextViewpoint.scale, u),
-    targetGeometry: {
-      spatialReference: currentViewpoint.targetGeometry.spatialReference || nextViewpoint.targetGeometry?.spatialReference,
-      xmin: lerp(currentViewpoint.targetGeometry.xmin, nextViewpoint.targetGeometry.xmin, u),
-      ymin: lerp(currentViewpoint.targetGeometry.ymin, nextViewpoint.targetGeometry.ymin, u),
-      xmax: lerp(currentViewpoint.targetGeometry.xmax, nextViewpoint.targetGeometry.xmax, u),
-      ymax: lerp(currentViewpoint.targetGeometry.ymax, nextViewpoint.targetGeometry.ymax, u),
-    },
-  };
-
-  const targetViewpoint = Viewpoint.fromJSON(viewpointJSON);
+  const targetViewpoint = interpolate2DViewpoint(currentViewpoint, nextViewpoint, u, lerp);
+  if (!targetViewpoint) return;
 
   // Respect mapFit: when 'scale' is set, pass the full Viewpoint so scale+rotation apply.
   // When not using 'scale' we still want the rotation to take effect — pass an
