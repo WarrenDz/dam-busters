@@ -3,7 +3,7 @@ import "@arcgis/map-components/components/arcgis-scene";
 import "@arcgis/map-components/components/arcgis-time-slider";
 import "@esri/calcite-components/components/calcite-button";
 import "@arcgis/map-components/components/arcgis-expand";
-import "@arcgis/core/assets/esri/themes/light/main.css";
+import "@arcgis/core/assets/esri/themes/dark/main.css";
 import "@esri/calcite-components/components/calcite-slider";
 
 // Logger utility
