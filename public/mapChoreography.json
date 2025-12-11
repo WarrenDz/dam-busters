@@ -18,7 +18,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff"],
-      "layersOff": ["Basemap Labels", "Basemap Detail","Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Takeoff | Glow"]
+      "layersOff": ["Basemap Labels", "RAF Scampton", "Basemap Detail","Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Takeoff | Glow"]
     }
   },
   {
@@ -665,7 +665,7 @@
           }
     },
     "timeSlider": {
-      "timeSliderStart": "1943-05-16T21:35:00Z",
+      "timeSliderStart": "1943-05-16T21:15:00Z",
       "timeSliderEnd": "1943-05-16T22:55:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
