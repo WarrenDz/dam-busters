@@ -1586,21 +1586,19 @@
     "note": "6 - Zoom to Lancaster and Upkeep prior to dam run",
     "maps": [0,1],
     "viewpoint": {
-      "camera": {
-        "position": {
+        "rotation": 101.90837757111198,
+        "scale": 282.124294,
+        "targetGeometry": {
             "spatialReference": {
                 "latestWkid": 3857,
                 "wkid": 102100
             },
-            "x": 897434.5302910476,
-            "y": 6707982.981331988,
-            "z": 325.98987346701324
-        },
-        "heading": 253.27518783283153,
-        "tilt": 0.4999922942566893,
-        "fov": 24.345703125000007
-    }
-  },
+            "xmin": 897383.956363246,
+            "ymin": 6707954.079770911,
+            "xmax": 897479.8012307148,
+            "ymax": 6708018.200285829
+        }
+    },
     "layerVisibility": {
       "layersOn": ["Lancaster", "Upkeep"],
       "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
