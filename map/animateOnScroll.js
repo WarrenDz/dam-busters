@@ -53,59 +53,26 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
   const is3DView = view && view.type === "3d";
 
   // If camera data is provided and we're in a 3D view, interpolate camera
-  if (is3DView) {
-    // Derive camera from 2D viewpoint if needed
-    let derivedCurrentCamera = currentCamera;
-    if (!derivedCurrentCamera && currentViewpoint && currentViewpoint.targetGeometry) {
-      const centerX = (currentViewpoint.targetGeometry.xmin + currentViewpoint.targetGeometry.xmax) / 2;
-      const centerY = (currentViewpoint.targetGeometry.ymin + currentViewpoint.targetGeometry.ymax) / 2;
-      derivedCurrentCamera = {
-        position: {
-          x: centerX,
-          y: centerY,
-          z: 0,
-          spatialReference: currentViewpoint.targetGeometry.spatialReference
-        },
-        heading: currentViewpoint.rotation || 0,
-        tilt: 0
-      };
-    }
+  if (is3DView && (currentCamera || nextCamera)) {
+    if (!currentCamera || !nextCamera) return; // require both for meaningful interpolation
 
-    let derivedNextCamera = nextCamera;
-    if (!derivedNextCamera && nextViewpoint && nextViewpoint.targetGeometry) {
-      const centerX = (nextViewpoint.targetGeometry.xmin + nextViewpoint.targetGeometry.xmax) / 2;
-      const centerY = (nextViewpoint.targetGeometry.ymin + nextViewpoint.targetGeometry.ymax) / 2;
-      derivedNextCamera = {
-        position: {
-          x: centerX,
-          y: centerY,
-          z: 0,
-          spatialReference: nextViewpoint.targetGeometry.spatialReference
-        },
-        heading: nextViewpoint.rotation || 0,
-        tilt: 0
-      };
-    }
+    const interpolatedCamera = {
+      position: {
+        spatialReference: currentCamera.position.spatialReference || nextCamera.position.spatialReference,
+        x: lerp(currentCamera.position.x, nextCamera.position.x, u),
+        y: lerp(currentCamera.position.y, nextCamera.position.y, u),
+        z: lerp(currentCamera.position.z, nextCamera.position.z, u),
+      },
+      heading: lerp(currentCamera.heading, nextCamera.heading, u),
+      tilt: lerp(currentCamera.tilt, nextCamera.tilt, u),
+    };
 
-    if (derivedCurrentCamera && derivedNextCamera) {
-      const interpolatedCamera = {
-        position: {
-          spatialReference: derivedCurrentCamera.position.spatialReference || derivedNextCamera.position.spatialReference,
-          x: lerp(derivedCurrentCamera.position.x, derivedNextCamera.position.x, u),
-          y: lerp(derivedCurrentCamera.position.y, derivedNextCamera.position.y, u),
-          z: lerp(derivedCurrentCamera.position.z, derivedNextCamera.position.z, u),
-        },
-        heading: lerp(derivedCurrentCamera.heading, derivedNextCamera.heading, u),
-        tilt: lerp(derivedCurrentCamera.tilt, derivedNextCamera.tilt, u),
-      };
-
-      const targetCamera = Camera.fromJSON(interpolatedCamera);
-      // For slider-driven interpolation keep animations off for responsiveness
-      view.goTo(targetCamera, { animate: false }).catch((error) => {
-        console.error("Error setting interpolated camera:", error);
-      });
-      return;
-    }
+    const targetCamera = Camera.fromJSON(interpolatedCamera);
+    // For slider-driven interpolation keep animations off for responsiveness
+    view.goTo(targetCamera, { animate: false }).catch((error) => {
+      console.error("Error setting interpolated camera:", error);
+    });
+    return;
   }
 
   // Otherwise handle viewpoint (2D or 3D Viewpoint)
