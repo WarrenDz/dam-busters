@@ -1542,7 +1542,7 @@
                 },
                 "visualVariables": [
                   {
-                    "type": "rotationInfo",
+                    "type": "rotation",
                     "field": "symbolRotation"
                   }
                 ]
