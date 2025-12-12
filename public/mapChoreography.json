@@ -1608,6 +1608,26 @@
     "note": "7 - Trying to force the zoom to Lancaster and Upkeep prior to dam run",
     "maps": [1],
     "viewpoint": {
+    "camera": {
+        "position": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "x": 898477.9210217432,
+            "y": 6707170.556067927,
+            "z": 30979.450409091078
+        },
+        "heading": 253.28252177536015,
+        "tilt": 0.49760087512002427,
+        "fov": 24.345703125000007
+    }
+  }
+  },
+  {
+    "note": "8 - Trying to force the zoom to Lancaster and Upkeep prior to dam run",
+    "maps": [1],
+    "viewpoint": {
       "camera": {
         "position": {
             "spatialReference": {
@@ -1629,7 +1649,7 @@
     }
   },
   {
-    "note": "8 - Switch to underside view of Lancaster and Upkeep in schematic view",
+    "note": "9 - Switch to underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1653,7 +1673,7 @@
     }
   },
   {
-    "note": "9 - Hold underside view of Lancaster and Upkeep in schematic view",
+    "note": "10 - Hold underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1677,7 +1697,7 @@
     }
   },
   {
-    "note": "10 - Animate approach with bounce",
+    "note": "11 - Animate approach with bounce",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1707,7 +1727,7 @@
     }
   },
   {
-    "note": "11 - Zoom to dam",
+    "note": "12 - Zoom to dam",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1727,7 +1747,7 @@
     }
   },
   {
-    "note": "12 - Show flood effect and dam results",
+    "note": "13 - Show flood effect and dam results",
     "maps": [1,0],
     "viewpoint": {
       "rotation": 0,
@@ -1749,7 +1769,7 @@
     }
   },
   {
-    "note": "13 - N/A",
+    "note": "14 - N/A",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
