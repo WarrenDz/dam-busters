@@ -1721,7 +1721,7 @@
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T00:15:00Z",
-      "timeSliderEnd": "1943-05-17T04:00:00Z",
+      "timeSliderEnd": "1943-05-17T04:15:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }
@@ -1748,7 +1748,7 @@
   },
   {
     "note": "13 - Trying to force a smooth zoom out",
-    "maps": [1],
+    "maps": [1,0],
     "viewpoint": {
       "camera": {
           "position": {
@@ -1768,20 +1768,20 @@
   },
   {
     "note": "14 - Show flood effect and dam results",
-    "maps": [1,0],
+    "maps": [0],
     "viewpoint": {
-        "rotation": 105.48399817552273,
-        "scale": 36111.909643,
-        "targetGeometry": {
-            "spatialReference": {
-                "latestWkid": 3857,
-                "wkid": 102100
-            },
-            "xmin": 891307.7808287736,
-            "ymin": 6702735.676666237,
-            "xmax": 905047.3366630155,
-            "ymax": 6711392.170119522
-        }
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
     },
     "layerVisibility": {
       "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail", "Ruhr Watershed", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled"],
