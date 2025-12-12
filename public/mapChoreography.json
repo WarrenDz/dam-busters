@@ -666,7 +666,7 @@
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-16T21:15:00Z",
-      "timeSliderEnd": "1943-05-16T22:55:00Z",
+      "timeSliderEnd": "1943-05-16T23:00:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }
@@ -1701,7 +1701,7 @@
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T00:15:00Z",
-      "timeSliderEnd": "1943-05-17T03:55:00Z",
+      "timeSliderEnd": "1943-05-17T04:00:00Z",
       "timeSliderUnit": "minutes",
       "timeSliderStep": 5
     }

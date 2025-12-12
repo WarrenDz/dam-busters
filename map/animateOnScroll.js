@@ -32,23 +32,29 @@ export function scrollAnimation(slideCurrent, slideNext, progress, view, timeSli
 }
 
 /**
- * Derives a camera object from a 2D viewpoint for interpolation purposes.
+ * Derives a viewpoint object from a 3D camera for interpolation purposes.
  */
-function deriveCameraFrom2D(viewpoint) {
-  if (!viewpoint || !viewpoint.targetGeometry) return null;
+function deriveViewpointFromCamera(camera) {
+  if (!camera || !camera.position) return null;
 
-  const centerX = (viewpoint.targetGeometry.xmin + viewpoint.targetGeometry.xmax) / 2;
-  const centerY = (viewpoint.targetGeometry.ymin + viewpoint.targetGeometry.ymax) / 2;
+  // Approximate scale from z (higher z = smaller scale, roughly)
+  const scale = camera.position.z > 0 ? 100000 / camera.position.z : 100000;
+
+  // Approximate extent around the position
+  const delta = 1000; // arbitrary extent size
+  const centerX = camera.position.x;
+  const centerY = camera.position.y;
 
   return {
-    position: {
-      x: centerX,
-      y: centerY,
-      z: 0,
-      spatialReference: viewpoint.targetGeometry.spatialReference
-    },
-    heading: viewpoint.rotation || 0,
-    tilt: 0
+    rotation: camera.heading || 0,
+    scale: scale,
+    targetGeometry: {
+      xmin: centerX - delta,
+      ymin: centerY - delta,
+      xmax: centerX + delta,
+      ymax: centerY + delta,
+      spatialReference: camera.position.spatialReference
+    }
   };
 }
 
@@ -116,7 +122,30 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
   // Detect if the view is 3D (SceneView)
   const is3DView = view && view.type === "3d";
 
-  // If we're in a 3D view, interpolate camera, deriving from 2D viewpoint if needed
+  // If transitioning to a 2D slide in a 3D view, interpolate viewpoints to account for scale
+  if (is3DView && nextViewpoint && nextViewpoint.targetGeometry) {
+    let derivedCurrentViewpoint = currentViewpoint;
+    if (!derivedCurrentViewpoint || !derivedCurrentViewpoint.targetGeometry) {
+      derivedCurrentViewpoint = currentCamera ? deriveViewpointFromCamera(currentCamera) : currentViewpoint;
+    }
+
+    const targetViewpoint = interpolate2DViewpoint(derivedCurrentViewpoint, nextViewpoint, u, lerp);
+    if (targetViewpoint) {
+      // Respect mapFit for 3D view
+      const target = animationConfig.mapFit === "scale"
+        ? targetViewpoint
+        : {
+            target: targetViewpoint.targetGeometry,
+            rotation: targetViewpoint.rotation,
+          };
+      view.goTo(target, { animate: false }).catch((error) => {
+        console.error("Error setting interpolated viewpoint:", error);
+      });
+      return;
+    }
+  }
+
+  // If we're in a 3D view and not transitioning to 2D, interpolate camera
   if (is3DView) {
     let derivedCurrentCamera = currentCamera || deriveCameraFrom2D(currentViewpoint);
     let derivedNextCamera = nextCamera || deriveCameraFrom2D(nextViewpoint);
