@@ -18,7 +18,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff"],
-      "layersOff": ["Basemap Labels", "RAF Scampton", "Basemap Detail","Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Takeoff | Glow"]
+      "layersOff": ["Hillshade", "Basemap Labels", "RAF Scampton", "Basemap Detail","Flight | Tracks", "Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles", "Takeoff | Glow"]
     }
   },
   {
@@ -39,8 +39,8 @@
       }
     },
     "layerVisibility": {
-      "layersOn": ["Render | Takeoff", "Basemap Labels", "Basemap Detail", "Takeoff | Glow", "Flight | Tracks", "RAF Scampton"],
-      "layersOff": ["Routes | Paused","THOR WWII ETO | Sparks", "THOR WWII ETO | Aggregate Circles"]
+      "layersOn": ["Hillshade","Render | Takeoff", "Basemap Labels", "Basemap Detail", "Takeoff | Glow", "Flight | Tracks", "RAF Scampton"],
+      "layersOff": ["Routes | Paused","THOR WWII ETO | Instant Sparks", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"]
     },
     "trackRenderer": {
       "trackLayerName": "Flight | Tracks",
@@ -696,7 +696,7 @@
       "trackLayerName": "THOR WWII ETO | Instant Sparks",
       "trackFieldName": "TGT_ID",
       "trackInfo": {
-        "maxDisplayDuration": { "value": 1, "unit": "months" },
+        "maxDisplayDuration": { "value": 1.5, "unit": "months" },
             "enabled": true,
             "timeField": "startTimeField",
             "latestObservations": {
@@ -785,7 +785,7 @@
         "trackLayerName": "THOR WWII ETO | Instant Sparks",
         "trackFieldName": "TGT_ID",
         "trackInfo": {
-          "maxDisplayDuration": { "value": 1, "unit": "months" },
+          "maxDisplayDuration": { "value": 1.5, "unit": "months" },
               "enabled": true,
               "timeField": "startTimeField",
               "latestObservations": {
@@ -1745,7 +1745,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail"],
-      "layersOff": ["Flight | Tracks"]
+      "layersOff": ["Flight | Tracks", "Dams"]
     }
   },
   {
