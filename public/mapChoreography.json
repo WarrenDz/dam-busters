@@ -1586,17 +1586,17 @@
     "note": "6 - Zoom to Lancaster and Upkeep prior to dam run",
     "maps": [0,1],
     "viewpoint": {
-        "rotation": 101.90837757111198,
-        "scale": 282.124294,
+        "rotation": 105.48399817552273,
+        "scale": 36111.909643,
         "targetGeometry": {
             "spatialReference": {
                 "latestWkid": 3857,
                 "wkid": 102100
             },
-            "xmin": 897383.956363246,
-            "ymin": 6707954.079770911,
-            "xmax": 897479.8012307148,
-            "ymax": 6708018.200285829
+            "xmin": 891307.7808287736,
+            "ymin": 6702735.676666237,
+            "xmax": 905047.3366630155,
+            "ymax": 6711392.170119522
         }
     },
     "layerVisibility": {
@@ -1605,27 +1605,27 @@
     }
   },
   {
-    "note": "7 - Trying to force the zoom to Lancaster and Upkeep prior to dam run",
+    "note": "7 - Trying to force the zoom to Lancaster",
     "maps": [1],
     "viewpoint": {
-    "camera": {
-        "position": {
-            "spatialReference": {
-                "latestWkid": 3857,
-                "wkid": 102100
-            },
-            "x": 898477.9210217432,
-            "y": 6707170.556067927,
-            "z": 30979.450409091078
-        },
-        "heading": 253.28252177536015,
-        "tilt": 0.49760087512002427,
-        "fov": 24.345703125000007
+      "camera": {
+          "position": {
+              "spatialReference": {
+                  "latestWkid": 3857,
+                  "wkid": 102100
+              },
+              "x": 898477.9210217432,
+              "y": 6707170.556067927,
+              "z": 30979.450409091078
+          },
+          "heading": 253.28252177536015,
+          "tilt": 0.49760087512002427,
+          "fov": 24.345703125000007
+      }
     }
-  }
   },
   {
-    "note": "8 - Trying to force the zoom to Lancaster and Upkeep prior to dam run",
+    "note": "8 - Still trying to force the zoom to the Lancaster",
     "maps": [1],
     "viewpoint": {
       "camera": {
@@ -1747,47 +1747,45 @@
     }
   },
   {
-    "note": "13 - Show flood effect and dam results",
+    "note": "13 - Trying to force a smooth zoom out",
     "maps": [1,0],
     "viewpoint": {
-      "rotation": 0,
-      "scale": 1155581.1085775,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "xmin": 664351.8023158279,
-        "ymin": 6529036.783229074,
-        "xmax": 1053874.8984570669,
-        "ymax": 6786782.442606675
+      "camera": {
+          "position": {
+              "spatialReference": {
+                  "latestWkid": 3857,
+                  "wkid": 102100
+              },
+              "x": 898477.9210217432,
+              "y": 6707170.556067927,
+              "z": 30979.450409091078
+          },
+          "heading": 253.28252177536015,
+          "tilt": 0.49760087512002427,
+          "fov": 24.345703125000007
       }
-    },
-    "layerVisibility": {
-      "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail"],
-      "layersOff": ["Flight | Tracks", "Dams"]
     }
   },
   {
-    "note": "14 - N/A",
+    "note": "14 - Show flood effect and dam results",
     "maps": [0],
     "viewpoint": {
-      "rotation": 0,
-      "scale": 1155581.1085775,
-      "targetGeometry": {
-        "spatialReference": {
-          "latestWkid": 3857,
-          "wkid": 102100
-        },
-        "xmin": 664351.8023158279,
-        "ymin": 6529036.783229074,
-        "xmax": 1053874.8984570669,
-        "ymax": 6786782.442606675
-      }
+        "rotation": 105.48399817552273,
+        "scale": 36111.909643,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "xmin": 891307.7808287736,
+            "ymin": 6702735.676666237,
+            "xmax": 905047.3366630155,
+            "ymax": 6711392.170119522
+        }
     },
     "layerVisibility": {
-      "layersOn": ["Dams", "Flood Effect"],
-      "layersOff": []
+      "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail", "Ruhr Watershed", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks", "Dams"]
     }
   }
 ]
