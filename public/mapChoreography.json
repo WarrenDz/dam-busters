@@ -1748,7 +1748,7 @@
   },
   {
     "note": "13 - Trying to force a smooth zoom out",
-    "maps": [1,0],
+    "maps": [1],
     "viewpoint": {
       "camera": {
           "position": {
@@ -1768,7 +1768,7 @@
   },
   {
     "note": "14 - Show flood effect and dam results",
-    "maps": [0],
+    "maps": [1,0],
     "viewpoint": {
         "rotation": 105.48399817552273,
         "scale": 36111.909643,
