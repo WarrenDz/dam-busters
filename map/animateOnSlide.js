@@ -193,8 +193,7 @@ function toggleLayerVisibility({ slideData, view, timeSlider, embedded }) {
       mapLayers.forEach((mapLayer) => {
         if (layerNames.includes(mapLayer.title)) {
           mapLayer.visible = visibility; // Set visibility based on the argument
-        } else {
-          log("Configured layer not found:", mapLayer.title);
+          log(`Layer '${mapLayer.title}' visibility set to ${visibility}`);
         }
       });
     }

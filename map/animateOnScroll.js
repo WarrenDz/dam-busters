@@ -140,7 +140,10 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
             rotation: targetViewpoint.rotation,
           };
       view.goTo(target, { animate: false }).catch((error) => {
-        console.error("Error setting interpolated viewpoint:", error);
+        // Ignore AbortError - it's expected when rapid scroll events trigger new goTo calls
+        if (error.name !== "AbortError") {
+          console.error("Error setting interpolated viewpoint:", error);
+        }
       });
       return;
     }
@@ -157,7 +160,10 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
       const targetCamera = Camera.fromJSON(interpolatedCamera);
       // For slider-driven interpolation keep animations off for responsiveness
       view.goTo(targetCamera, { animate: false }).catch((error) => {
-        console.error("Error setting interpolated camera:", error);
+        // Ignore AbortError - it's expected when rapid scroll events trigger new goTo calls
+        if (error.name !== "AbortError") {
+          console.error("Error setting interpolated camera:", error);
+        }
       });
       return;
     }
@@ -180,7 +186,10 @@ function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSli
 
   // Use goTo for continuous/slider-driven updates
   view.goTo(target, animationConfig.goToConfig).catch((error) => {
-    console.error("Error setting interpolated viewpoint:", error);
+    // Ignore AbortError - it's expected when rapid scroll events trigger new goTo calls
+    if (error.name !== "AbortError") {
+      console.error("Error setting interpolated viewpoint:", error);
+    }
   });
 }
 

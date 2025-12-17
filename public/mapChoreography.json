@@ -39,7 +39,7 @@
         }
     },
     "layerVisibility": {
-      "layersOn": ["Hillshade", "Basemap Labels", "Basemap Detail", "Takeoff | Glow", "Flight | Tracks 1", "RAF Scampton"],
+      "layersOn": ["Hillshade", "Basemap Labels", "Basemap Detail", "Flight | Tracks 1", "RAF Scampton"],
       "layersOff": ["Routes | Paused", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled", "Render | Takeoff", "Flight | Tracks 2"]
     },
     "trackRenderer": {
@@ -690,7 +690,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Routes | Paused", "Basemap Labels", "Basemap Detail", "THOR WWII ETO | Aggregate Circles"],
-      "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams","Takeoff | Glow", "RAF Scampton", "Ruhr Valley | Time-enabled"]
+      "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams", "RAF Scampton", "Ruhr Valley | Time-enabled"]
     },
     "timeSlider": {
       "timeSliderStart": "1943-10-01T24:00:00Z",
@@ -718,7 +718,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Routes | Paused", "Basemap Labels", "Basemap Detail", "THOR WWII ETO | Aggregate Circles"],
-      "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams","Takeoff | Glow", "Ruhr Valley | Time-enabled", "Waterways"]
+      "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams", "Ruhr Valley | Time-enabled", "Waterways"]
     },
     "timeSlider": {
       "timeSliderStart": "1943-10-01T24:00:00Z",
