@@ -1,0 +1,1669 @@
+[
+  {
+    "note": "0 - Initial viewpoint and layer visibility settings",
+    "maps": [0],
+    "viewpoint": {
+        "rotation": 0,
+        "scale": 2311162.2171545,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "xmin": -107777.72081716463,
+            "ymin": 6644618.2283462975,
+            "xmax": 671268.4714651447,
+            "ymax": 7160109.54710139
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Render | Takeoff"],
+      "layersOff": ["Hillshade", "Basemap Labels", "RAF Scampton", "Basemap Detail", "Flight | Tracks 1", "Flight | Tracks 2", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
+    }
+  },
+  {
+    "note": "1 - Hold viewpoint and begin North Sea takeoff animation",
+    "maps": [0],
+    "viewpoint": {
+        "rotation": 0,
+        "scale": 2311162.2171545,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "xmin": -107777.72081716463,
+            "ymin": 6644618.2283462975,
+            "xmax": 671268.4714651447,
+            "ymax": 7160109.54710139
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Hillshade", "Basemap Labels", "Basemap Detail", "Takeoff | Glow", "Flight | Tracks 1", "RAF Scampton"],
+      "layersOff": ["Routes | Paused", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled", "Render | Takeoff", "Flight | Tracks 2"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks 1",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "visualVariables": [
+                  {
+                    "type": "rotation",
+                    "field": "symbolRotation",
+                    "rotationType": "geographic"
+                  }
+                ],
+                "symbol": {
+                    "type": "cim",
+                    "data": {
+                            "type": "CIMSymbolReference",
+                            "symbol": {
+                                "type": "CIMPointSymbol",
+                                "symbolLayers": [
+                                    {
+                                    "type": "CIMVectorMarker",
+                                    "enable": true,
+                                    "name": "New_261deaac-f62e-4c5f-940c-a9e2c169f4c5",
+                                    "anchorPointUnits": "Relative",
+                                    "dominantSizeAxis3D": "Y",
+                                    "size": 27,
+                                    "billboardMode3D": "FaceNearPlane",
+                                    "frame": {
+                                        "xmin": 0,
+                                        "ymin": 0,
+                                        "xmax": 601,
+                                        "ymax": 875
+                                    },
+                                    "markerGraphics": [
+                                        {
+                                            "type": "CIMMarkerGraphic",
+                                            "geometry": {
+                                                "rings": [
+                                                    [
+                                                        [
+                                                            0,
+                                                            438
+                                                        ],
+                                                        [
+                                                            3,
+                                                            448
+                                                        ],
+                                                        [
+                                                            16,
+                                                            451
+                                                        ],
+                                                        [
+                                                            29,
+                                                            452
+                                                        ],
+                                                        [
+                                                            47,
+                                                            575
+                                                        ],
+                                                        [
+                                                            47,
+                                                            576
+                                                        ],
+                                                        [
+                                                            46,
+                                                            576
+                                                        ],
+                                                        [
+                                                            38,
+                                                            576
+                                                        ],
+                                                        [
+                                                            36,
+                                                            579
+                                                        ],
+                                                        [
+                                                            36,
+                                                            580
+                                                        ],
+                                                        [
+                                                            38,
+                                                            582
+                                                        ],
+                                                        [
+                                                            87,
+                                                            582
+                                                        ],
+                                                        [
+                                                            95,
+                                                            576
+                                                        ],
+                                                        [
+                                                            103,
+                                                            457
+                                                        ],
+                                                        [
+                                                            187,
+                                                            462
+                                                        ],
+                                                        [
+                                                            305,
+                                                            462
+                                                        ],
+                                                        [
+                                                            305,
+                                                            554
+                                                        ],
+                                                        [
+                                                            305,
+                                                            559
+                                                        ],
+                                                        [
+                                                            333,
+                                                            829
+                                                        ],
+                                                        [
+                                                            345,
+                                                            862
+                                                        ],
+                                                        [
+                                                            355,
+                                                            871
+                                                        ],
+                                                        [
+                                                            367,
+                                                            875
+                                                        ],
+                                                        [
+                                                            381,
+                                                            872
+                                                        ],
+                                                        [
+                                                            393,
+                                                            863
+                                                        ],
+                                                        [
+                                                            407,
+                                                            831
+                                                        ],
+                                                        [
+                                                            427,
+                                                            672
+                                                        ],
+                                                        [
+                                                            479,
+                                                            672
+                                                        ],
+                                                        [
+                                                            484,
+                                                            668
+                                                        ],
+                                                        [
+                                                            485,
+                                                            668
+                                                        ],
+                                                        [
+                                                            490,
+                                                            665
+                                                        ],
+                                                        [
+                                                            503,
+                                                            661
+                                                        ],
+                                                        [
+                                                            508,
+                                                            655
+                                                        ],
+                                                        [
+                                                            508,
+                                                            654
+                                                        ],
+                                                        [
+                                                            503,
+                                                            648
+                                                        ],
+                                                        [
+                                                            490,
+                                                            644
+                                                        ],
+                                                        [
+                                                            485,
+                                                            641
+                                                        ],
+                                                        [
+                                                            484,
+                                                            641
+                                                        ],
+                                                        [
+                                                            479,
+                                                            637
+                                                        ],
+                                                        [
+                                                            432,
+                                                            637
+                                                        ],
+                                                        [
+                                                            441,
+                                                            574
+                                                        ],
+                                                        [
+                                                            441,
+                                                            567
+                                                        ],
+                                                        [
+                                                            441,
+                                                            558
+                                                        ],
+                                                        [
+                                                            492,
+                                                            558
+                                                        ],
+                                                        [
+                                                            497,
+                                                            554
+                                                        ],
+                                                        [
+                                                            498,
+                                                            554
+                                                        ],
+                                                        [
+                                                            503,
+                                                            551
+                                                        ],
+                                                        [
+                                                            516,
+                                                            547
+                                                        ],
+                                                        [
+                                                            521,
+                                                            541
+                                                        ],
+                                                        [
+                                                            521,
+                                                            540
+                                                        ],
+                                                        [
+                                                            516,
+                                                            534
+                                                        ],
+                                                        [
+                                                            503,
+                                                            530
+                                                        ],
+                                                        [
+                                                            498,
+                                                            527
+                                                        ],
+                                                        [
+                                                            497,
+                                                            527
+                                                        ],
+                                                        [
+                                                            492,
+                                                            523
+                                                        ],
+                                                        [
+                                                            441,
+                                                            523
+                                                        ],
+                                                        [
+                                                            441,
+                                                            462
+                                                        ],
+                                                        [
+                                                            554,
+                                                            462
+                                                        ],
+                                                        [
+                                                            597,
+                                                            447
+                                                        ],
+                                                        [
+                                                            601,
+                                                            438
+                                                        ],
+                                                        [
+                                                            597,
+                                                            429
+                                                        ],
+                                                        [
+                                                            554,
+                                                            413
+                                                        ],
+                                                        [
+                                                            441,
+                                                            413
+                                                        ],
+                                                        [
+                                                            441,
+                                                            353
+                                                        ],
+                                                        [
+                                                            492,
+                                                            353
+                                                        ],
+                                                        [
+                                                            497,
+                                                            349
+                                                        ],
+                                                        [
+                                                            498,
+                                                            349
+                                                        ],
+                                                        [
+                                                            503,
+                                                            345
+                                                        ],
+                                                        [
+                                                            516,
+                                                            342
+                                                        ],
+                                                        [
+                                                            521,
+                                                            335
+                                                        ],
+                                                        [
+                                                            521,
+                                                            335
+                                                        ],
+                                                        [
+                                                            516,
+                                                            329
+                                                        ],
+                                                        [
+                                                            503,
+                                                            325
+                                                        ],
+                                                        [
+                                                            498,
+                                                            322
+                                                        ],
+                                                        [
+                                                            497,
+                                                            322
+                                                        ],
+                                                        [
+                                                            492,
+                                                            318
+                                                        ],
+                                                        [
+                                                            441,
+                                                            318
+                                                        ],
+                                                        [
+                                                            441,
+                                                            309
+                                                        ],
+                                                        [
+                                                            441,
+                                                            302
+                                                        ],
+                                                        [
+                                                            432,
+                                                            239
+                                                        ],
+                                                        [
+                                                            479,
+                                                            239
+                                                        ],
+                                                        [
+                                                            484,
+                                                            235
+                                                        ],
+                                                        [
+                                                            485,
+                                                            235
+                                                        ],
+                                                        [
+                                                            490,
+                                                            232
+                                                        ],
+                                                        [
+                                                            503,
+                                                            228
+                                                        ],
+                                                        [
+                                                            508,
+                                                            222
+                                                        ],
+                                                        [
+                                                            508,
+                                                            221
+                                                        ],
+                                                        [
+                                                            503,
+                                                            215
+                                                        ],
+                                                        [
+                                                            490,
+                                                            211
+                                                        ],
+                                                        [
+                                                            485,
+                                                            208
+                                                        ],
+                                                        [
+                                                            484,
+                                                            208
+                                                        ],
+                                                        [
+                                                            479,
+                                                            204
+                                                        ],
+                                                        [
+                                                            427,
+                                                            204
+                                                        ],
+                                                        [
+                                                            407,
+                                                            45
+                                                        ],
+                                                        [
+                                                            393,
+                                                            13
+                                                        ],
+                                                        [
+                                                            381,
+                                                            4
+                                                        ],
+                                                        [
+                                                            367,
+                                                            1
+                                                        ],
+                                                        [
+                                                            355,
+                                                            4
+                                                        ],
+                                                        [
+                                                            345,
+                                                            14
+                                                        ],
+                                                        [
+                                                            333,
+                                                            47
+                                                        ],
+                                                        [
+                                                            305,
+                                                            317
+                                                        ],
+                                                        [
+                                                            305,
+                                                            322
+                                                        ],
+                                                        [
+                                                            305,
+                                                            413
+                                                        ],
+                                                        [
+                                                            187,
+                                                            413
+                                                        ],
+                                                        [
+                                                            103,
+                                                            419
+                                                        ],
+                                                        [
+                                                            95,
+                                                            300
+                                                        ],
+                                                        [
+                                                            87,
+                                                            293
+                                                        ],
+                                                        [
+                                                            38,
+                                                            293
+                                                        ],
+                                                        [
+                                                            36,
+                                                            296
+                                                        ],
+                                                        [
+                                                            36,
+                                                            297
+                                                        ],
+                                                        [
+                                                            38,
+                                                            300
+                                                        ],
+                                                        [
+                                                            46,
+                                                            300
+                                                        ],
+                                                        [
+                                                            47,
+                                                            300
+                                                        ],
+                                                        [
+                                                            47,
+                                                            301
+                                                        ],
+                                                        [
+                                                            29,
+                                                            424
+                                                        ],
+                                                        [
+                                                            16,
+                                                            424
+                                                        ],
+                                                        [
+                                                            3,
+                                                            428
+                                                        ],
+                                                        [
+                                                            0,
+                                                            438
+                                                        ]
+                                                    ]
+                                                ]
+                                            },
+                                            "symbol": {
+                                                "type": "CIMPolygonSymbol",
+                                                "symbolLayers": [
+                                                    {
+                                                        "type": "CIMSolidFill",
+                                                        "enable": true,
+                                                        "color": [
+                                                            255,
+                                                            209,
+                                                            0,
+                                                            255
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "CIMSolidStroke",
+                                                        "enable": true,
+                                                        "name": "New_9077007f-3041-47bc-bb0b-dcd0d66ca28d",
+                                                        "capStyle": "Round",
+                                                        "joinStyle": "Round",
+                                                        "lineStyle3D": "Strip",
+                                                        "miterLimit": 4,
+                                                        "width": 24,
+                                                        "height3D": 1,
+                                                        "anchor3D": "Center",
+                                                        "color": [
+                                                            0,
+                                                            0,
+                                                            0,
+                                                            255
+                                                        ]
+                                                    }
+                                                ],
+                                                "angleAlignment": "Map"
+                                            }
+                                        }
+                                    ],
+                                    "scaleSymbolsProportionally": true,
+                                    "respectFrame": true,
+                                    "clippingPath": {
+                                        "type": "CIMClippingPath",
+                                        "clippingType": "Intersect",
+                                        "path": {
+                                            "rings": [
+                                                [
+                                                    [
+                                                        0,
+                                                        0
+                                                    ],
+                                                    [
+                                                        601,
+                                                        0
+                                                    ],
+                                                    [
+                                                        601,
+                                                        875
+                                                    ],
+                                                    [
+                                                        0,
+                                                        875
+                                                    ],
+                                                    [
+                                                        0,
+                                                        0
+                                                    ]
+                                                ]
+                                            ]
+                                        }
+                                    },
+                                    "rotation": 360
+                                }
+                            ],
+                            "haloSize": 1,
+                            "scaleX": 1,
+                            "angleAlignment": "Map",
+                            "angle": 360
+                        }
+                    }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                                    "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 2
+                }
+              }
+            }
+          }
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-16T21:15:00Z",
+      "timeSliderEnd": "1943-05-16T23:00:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
+    }
+  },
+  {
+    "note": "2 - Hold flight lines and animate THOR data from Jan 1941 to Oct 1943",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 4622324.434309,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -61996.71818862285,
+        "ymin": 6176668.35252746,
+        "xmax": 1496095.6663759956,
+        "ymax": 7207650.990037642
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Routes | Paused", "Basemap Labels", "Basemap Detail", "THOR WWII ETO | Aggregate Circles"],
+      "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams","Takeoff | Glow", "RAF Scampton", "Ruhr Valley | Time-enabled"]
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-10-01T24:00:00Z",
+      "timeSliderEnd": "1943-10-01T24:00:00Z",
+      "timeSliderUnit": "months",
+      "timeSliderStep": 1
+    }
+  },
+  {
+    "note": "3 - Hold THOR data",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 4622324.434309,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": -61996.71818862285,
+        "ymin": 6176668.35252746,
+        "xmax": 1496095.6663759956,
+        "ymax": 7207650.990037642
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Routes | Paused", "Basemap Labels", "Basemap Detail", "THOR WWII ETO | Aggregate Circles"],
+      "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams","Takeoff | Glow", "Ruhr Valley | Time-enabled", "Waterways"]
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-10-01T24:00:00Z",
+      "timeSliderEnd": "1943-10-01T24:00:00Z",
+      "timeSliderUnit": "months",
+      "timeSliderStep": 1
+    }
+  },
+  {
+    "note": "4 - Resume flight to Ruhr and show dams",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Flight | Tracks 2", "Dams", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled", "Waterways"],
+      "layersOff": ["Flight | Tracks 1", "Routes | Paused", "THOR WWII ETO | Aggregate Circles","Flood Effect", "Dams | Result"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks 2",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "visualVariables": [
+                  {
+                    "type": "rotation",
+                    "field": "symbolRotation",
+                    "rotationType": "geographic"
+                  }
+                ],
+                "symbol": {
+                    "type": "cim",
+                    "data": {
+                            "type": "CIMSymbolReference",
+                            "symbol": {
+                                "type": "CIMPointSymbol",
+                                "symbolLayers": [
+                                    {
+                                    "type": "CIMVectorMarker",
+                                    "enable": true,
+                                    "name": "New_261deaac-f62e-4c5f-940c-a9e2c169f4c5",
+                                    "anchorPointUnits": "Relative",
+                                    "dominantSizeAxis3D": "Y",
+                                    "size": 27,
+                                    "billboardMode3D": "FaceNearPlane",
+                                    "frame": {
+                                        "xmin": 0,
+                                        "ymin": 0,
+                                        "xmax": 601,
+                                        "ymax": 875
+                                    },
+                                    "markerGraphics": [
+                                        {
+                                            "type": "CIMMarkerGraphic",
+                                            "geometry": {
+                                                "rings": [
+                                                    [
+                                                        [
+                                                            0,
+                                                            438
+                                                        ],
+                                                        [
+                                                            3,
+                                                            448
+                                                        ],
+                                                        [
+                                                            16,
+                                                            451
+                                                        ],
+                                                        [
+                                                            29,
+                                                            452
+                                                        ],
+                                                        [
+                                                            47,
+                                                            575
+                                                        ],
+                                                        [
+                                                            47,
+                                                            576
+                                                        ],
+                                                        [
+                                                            46,
+                                                            576
+                                                        ],
+                                                        [
+                                                            38,
+                                                            576
+                                                        ],
+                                                        [
+                                                            36,
+                                                            579
+                                                        ],
+                                                        [
+                                                            36,
+                                                            580
+                                                        ],
+                                                        [
+                                                            38,
+                                                            582
+                                                        ],
+                                                        [
+                                                            87,
+                                                            582
+                                                        ],
+                                                        [
+                                                            95,
+                                                            576
+                                                        ],
+                                                        [
+                                                            103,
+                                                            457
+                                                        ],
+                                                        [
+                                                            187,
+                                                            462
+                                                        ],
+                                                        [
+                                                            305,
+                                                            462
+                                                        ],
+                                                        [
+                                                            305,
+                                                            554
+                                                        ],
+                                                        [
+                                                            305,
+                                                            559
+                                                        ],
+                                                        [
+                                                            333,
+                                                            829
+                                                        ],
+                                                        [
+                                                            345,
+                                                            862
+                                                        ],
+                                                        [
+                                                            355,
+                                                            871
+                                                        ],
+                                                        [
+                                                            367,
+                                                            875
+                                                        ],
+                                                        [
+                                                            381,
+                                                            872
+                                                        ],
+                                                        [
+                                                            393,
+                                                            863
+                                                        ],
+                                                        [
+                                                            407,
+                                                            831
+                                                        ],
+                                                        [
+                                                            427,
+                                                            672
+                                                        ],
+                                                        [
+                                                            479,
+                                                            672
+                                                        ],
+                                                        [
+                                                            484,
+                                                            668
+                                                        ],
+                                                        [
+                                                            485,
+                                                            668
+                                                        ],
+                                                        [
+                                                            490,
+                                                            665
+                                                        ],
+                                                        [
+                                                            503,
+                                                            661
+                                                        ],
+                                                        [
+                                                            508,
+                                                            655
+                                                        ],
+                                                        [
+                                                            508,
+                                                            654
+                                                        ],
+                                                        [
+                                                            503,
+                                                            648
+                                                        ],
+                                                        [
+                                                            490,
+                                                            644
+                                                        ],
+                                                        [
+                                                            485,
+                                                            641
+                                                        ],
+                                                        [
+                                                            484,
+                                                            641
+                                                        ],
+                                                        [
+                                                            479,
+                                                            637
+                                                        ],
+                                                        [
+                                                            432,
+                                                            637
+                                                        ],
+                                                        [
+                                                            441,
+                                                            574
+                                                        ],
+                                                        [
+                                                            441,
+                                                            567
+                                                        ],
+                                                        [
+                                                            441,
+                                                            558
+                                                        ],
+                                                        [
+                                                            492,
+                                                            558
+                                                        ],
+                                                        [
+                                                            497,
+                                                            554
+                                                        ],
+                                                        [
+                                                            498,
+                                                            554
+                                                        ],
+                                                        [
+                                                            503,
+                                                            551
+                                                        ],
+                                                        [
+                                                            516,
+                                                            547
+                                                        ],
+                                                        [
+                                                            521,
+                                                            541
+                                                        ],
+                                                        [
+                                                            521,
+                                                            540
+                                                        ],
+                                                        [
+                                                            516,
+                                                            534
+                                                        ],
+                                                        [
+                                                            503,
+                                                            530
+                                                        ],
+                                                        [
+                                                            498,
+                                                            527
+                                                        ],
+                                                        [
+                                                            497,
+                                                            527
+                                                        ],
+                                                        [
+                                                            492,
+                                                            523
+                                                        ],
+                                                        [
+                                                            441,
+                                                            523
+                                                        ],
+                                                        [
+                                                            441,
+                                                            462
+                                                        ],
+                                                        [
+                                                            554,
+                                                            462
+                                                        ],
+                                                        [
+                                                            597,
+                                                            447
+                                                        ],
+                                                        [
+                                                            601,
+                                                            438
+                                                        ],
+                                                        [
+                                                            597,
+                                                            429
+                                                        ],
+                                                        [
+                                                            554,
+                                                            413
+                                                        ],
+                                                        [
+                                                            441,
+                                                            413
+                                                        ],
+                                                        [
+                                                            441,
+                                                            353
+                                                        ],
+                                                        [
+                                                            492,
+                                                            353
+                                                        ],
+                                                        [
+                                                            497,
+                                                            349
+                                                        ],
+                                                        [
+                                                            498,
+                                                            349
+                                                        ],
+                                                        [
+                                                            503,
+                                                            345
+                                                        ],
+                                                        [
+                                                            516,
+                                                            342
+                                                        ],
+                                                        [
+                                                            521,
+                                                            335
+                                                        ],
+                                                        [
+                                                            521,
+                                                            335
+                                                        ],
+                                                        [
+                                                            516,
+                                                            329
+                                                        ],
+                                                        [
+                                                            503,
+                                                            325
+                                                        ],
+                                                        [
+                                                            498,
+                                                            322
+                                                        ],
+                                                        [
+                                                            497,
+                                                            322
+                                                        ],
+                                                        [
+                                                            492,
+                                                            318
+                                                        ],
+                                                        [
+                                                            441,
+                                                            318
+                                                        ],
+                                                        [
+                                                            441,
+                                                            309
+                                                        ],
+                                                        [
+                                                            441,
+                                                            302
+                                                        ],
+                                                        [
+                                                            432,
+                                                            239
+                                                        ],
+                                                        [
+                                                            479,
+                                                            239
+                                                        ],
+                                                        [
+                                                            484,
+                                                            235
+                                                        ],
+                                                        [
+                                                            485,
+                                                            235
+                                                        ],
+                                                        [
+                                                            490,
+                                                            232
+                                                        ],
+                                                        [
+                                                            503,
+                                                            228
+                                                        ],
+                                                        [
+                                                            508,
+                                                            222
+                                                        ],
+                                                        [
+                                                            508,
+                                                            221
+                                                        ],
+                                                        [
+                                                            503,
+                                                            215
+                                                        ],
+                                                        [
+                                                            490,
+                                                            211
+                                                        ],
+                                                        [
+                                                            485,
+                                                            208
+                                                        ],
+                                                        [
+                                                            484,
+                                                            208
+                                                        ],
+                                                        [
+                                                            479,
+                                                            204
+                                                        ],
+                                                        [
+                                                            427,
+                                                            204
+                                                        ],
+                                                        [
+                                                            407,
+                                                            45
+                                                        ],
+                                                        [
+                                                            393,
+                                                            13
+                                                        ],
+                                                        [
+                                                            381,
+                                                            4
+                                                        ],
+                                                        [
+                                                            367,
+                                                            1
+                                                        ],
+                                                        [
+                                                            355,
+                                                            4
+                                                        ],
+                                                        [
+                                                            345,
+                                                            14
+                                                        ],
+                                                        [
+                                                            333,
+                                                            47
+                                                        ],
+                                                        [
+                                                            305,
+                                                            317
+                                                        ],
+                                                        [
+                                                            305,
+                                                            322
+                                                        ],
+                                                        [
+                                                            305,
+                                                            413
+                                                        ],
+                                                        [
+                                                            187,
+                                                            413
+                                                        ],
+                                                        [
+                                                            103,
+                                                            419
+                                                        ],
+                                                        [
+                                                            95,
+                                                            300
+                                                        ],
+                                                        [
+                                                            87,
+                                                            293
+                                                        ],
+                                                        [
+                                                            38,
+                                                            293
+                                                        ],
+                                                        [
+                                                            36,
+                                                            296
+                                                        ],
+                                                        [
+                                                            36,
+                                                            297
+                                                        ],
+                                                        [
+                                                            38,
+                                                            300
+                                                        ],
+                                                        [
+                                                            46,
+                                                            300
+                                                        ],
+                                                        [
+                                                            47,
+                                                            300
+                                                        ],
+                                                        [
+                                                            47,
+                                                            301
+                                                        ],
+                                                        [
+                                                            29,
+                                                            424
+                                                        ],
+                                                        [
+                                                            16,
+                                                            424
+                                                        ],
+                                                        [
+                                                            3,
+                                                            428
+                                                        ],
+                                                        [
+                                                            0,
+                                                            438
+                                                        ]
+                                                    ]
+                                                ]
+                                            },
+                                            "symbol": {
+                                                "type": "CIMPolygonSymbol",
+                                                "symbolLayers": [
+                                                    {
+                                                        "type": "CIMSolidFill",
+                                                        "enable": true,
+                                                        "color": [
+                                                            255,
+                                                            209,
+                                                            0,
+                                                            255
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "CIMSolidStroke",
+                                                        "enable": true,
+                                                        "name": "New_9077007f-3041-47bc-bb0b-dcd0d66ca28d",
+                                                        "capStyle": "Round",
+                                                        "joinStyle": "Round",
+                                                        "lineStyle3D": "Strip",
+                                                        "miterLimit": 4,
+                                                        "width": 24,
+                                                        "height3D": 1,
+                                                        "anchor3D": "Center",
+                                                        "color": [
+                                                            0,
+                                                            0,
+                                                            0,
+                                                            255
+                                                        ]
+                                                    }
+                                                ],
+                                                "angleAlignment": "Map"
+                                            }
+                                        }
+                                    ],
+                                    "scaleSymbolsProportionally": true,
+                                    "respectFrame": true,
+                                    "clippingPath": {
+                                        "type": "CIMClippingPath",
+                                        "clippingType": "Intersect",
+                                        "path": {
+                                            "rings": [
+                                                [
+                                                    [
+                                                        0,
+                                                        0
+                                                    ],
+                                                    [
+                                                        601,
+                                                        0
+                                                    ],
+                                                    [
+                                                        601,
+                                                        875
+                                                    ],
+                                                    [
+                                                        0,
+                                                        875
+                                                    ],
+                                                    [
+                                                        0,
+                                                        0
+                                                    ]
+                                                ]
+                                            ]
+                                        }
+                                    },
+                                    "rotation": 360
+                                }
+                            ],
+                            "haloSize": 1,
+                            "scaleX": 1,
+                            "angleAlignment": "Map",
+                            "angle": 360
+                        }
+                    }
+                }
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                                    "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 2
+                }
+              }
+            }
+          }
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-16T22:55:00Z",
+      "timeSliderEnd": "1943-05-17T00:30:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
+    }
+  },
+  {
+    "note": "5 - Hold flight with Ruhr and dams",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Flight | Tracks 2", "Dams", "Waterways", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks 1", "Routes | Paused", "THOR WWII ETO | Aggregate Circles","Flood Effect", "Dams | Result"]
+    },
+    "trackRenderer": {
+      "trackLayerName": "Flight | Tracks 2",
+      "trackFieldName": "Aircraft",
+      "trackInfo": {
+            "enabled": true,
+            "timeField": "startTimeField",
+            "latestObservations": {
+              "visible": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "#FFD100",
+                  "size": 4,
+                  "outline": {
+                    "color": "#FFD100",
+                    "width": 4
+                  }
+                },
+                "visualVariables": [
+                  {
+                    "type": "rotation",
+                    "field": "symbolRotation"
+                  }
+                ]
+              }
+            },
+            "previousObservations": {
+              "enabled": false,
+              "visible": false,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-marker",
+                  "style": "circle",
+                  "color": "white",
+                  "size": 2
+                }
+              }
+            },
+            "trackLines": {
+              "visible": true,
+              "enabled": true,
+              "renderer": {
+                "type": "simple",
+                "symbol": {
+                  "type": "simple-line",
+                  "color": "#FFD100",
+                  "width": 2
+                }
+              }
+            }
+          }
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-17T00:30:00Z",
+      "timeSliderEnd": "1943-05-17T00:30:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
+    }
+  },
+  {
+    "note": "6 - Zoom to Lancaster and Upkeep prior to dam run",
+    "maps": [0,1],
+    "viewpoint": {
+        "rotation": 105.48399817552273,
+        "scale": 36111.909643,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "xmin": 891307.7808287736,
+            "ymin": 6702735.676666237,
+            "xmax": 905047.3366630155,
+            "ymax": 6711392.170119522
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
+    }
+  },
+  {
+    "note": "7 - Trying to force the zoom to Lancaster",
+    "maps": [1],
+    "viewpoint": {
+      "camera": {
+          "position": {
+              "spatialReference": {
+                  "latestWkid": 3857,
+                  "wkid": 102100
+              },
+              "x": 898477.9210217432,
+              "y": 6707170.556067927,
+              "z": 30979.450409091078
+          },
+          "heading": 253.28252177536015,
+          "tilt": 0.49760087512002427,
+          "fov": 24.345703125000007
+      }
+    }
+  },
+  {
+    "note": "8 - Still trying to force the zoom to the Lancaster",
+    "maps": [1],
+    "viewpoint": {
+      "camera": {
+        "position": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "x": 897434.5302910476,
+            "y": 6707982.981331988,
+            "z": 325.98987346701324
+        },
+        "heading": 253.27518783283153,
+        "tilt": 0.4999922942566893,
+        "fov": 24.345703125000007
+    }
+  },
+    "layerVisibility": {
+      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
+    }
+  },
+  {
+    "note": "9 - Switch to underside view of Lancaster and Upkeep in schematic view",
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
+            },
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
+            "fov": 24.345703125000007
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
+      "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk","Mohne dam | Highlight"]
+    }
+  },
+  {
+    "note": "10 - Hold underside view of Lancaster and Upkeep in schematic view",
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
+            },
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
+            "fov": 24.345703125000007
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam | Highlight"],
+      "layersOff": ["Lancaster","Mohne dam", "Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk"]
+    }
+  },
+  {
+    "note": "11 - Animate approach with bounce",
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897437.113281238,
+                "y": 6708016.528547332,
+                "z": 218.4320189775899
+            },
+            "heading": 195.56092230109994,
+            "tilt": 113.45045383575933,
+            "fov": 24.345703125000007
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Lancaster | Highlight", "Upkeep | Highlight", "Mohne dam | Highlight", "Upkeep | Path", "Upkeep | Sunk"],
+      "layersOff": ["Lancaster | Outlines","Mohne dam", "Lancaster", "Upkeep"]
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-17T00:15:00Z",
+      "timeSliderEnd": "1943-05-17T04:15:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
+    }
+  },
+  {
+    "note": "12 - Zoom to dam",
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897791.4480252814,
+                "y": 6708467.945676294,
+                "z": 273.336127451621
+            },
+            "heading": 258.13410306554925,
+            "tilt": 78.53396255907785,
+            "fov": 24.345703125000007
+        }
+    }
+  },
+  {
+    "note": "13 - Trying to force a smooth zoom out",
+    "maps": [1,0],
+    "viewpoint": {
+      "camera": {
+          "position": {
+              "spatialReference": {
+                  "latestWkid": 3857,
+                  "wkid": 102100
+              },
+              "x": 898477.9210217432,
+              "y": 6707170.556067927,
+              "z": 30979.450409091078
+          },
+          "heading": 253.28252177536015,
+          "tilt": 0.49760087512002427,
+          "fov": 24.345703125000007
+      }
+    }
+  },
+  {
+    "note": "14 - Show flood effect and dam results",
+    "maps": [0],
+    "viewpoint": {
+      "rotation": 0,
+      "scale": 1155581.1085775,
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 664351.8023158279,
+        "ymin": 6529036.783229074,
+        "xmax": 1053874.8984570669,
+        "ymax": 6786782.442606675
+      }
+    },
+    "layerVisibility": {
+      "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks 2", "Flight | Tracks 1", "Dams", "Waterways"]
+    }
+  }
+]

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dam-busters</title>
+  <script type="module" src="./src/main.js"></script>
+  <script type="module" src="./src/scrollListener.js"></script>
+</head>
+
+<body>
+  <!-- Simplified scene container: contains the scene layers and an optional foreground fill -->
+  <div id="scene">
+    <div id="scene-banner">
+      <img src="./assets/dam1.png" class="scene-img" id="scene-layer1" alt="Background Layer">
+      <img src="./assets/dam2.png" class="scene-img" id="scene-layer2" alt="Midground Layer">
+      <img src="./assets/dam3.png" class="scene-img" id="scene-layer3" alt="Foreground Layer">
+      <img src="./assets/dam4.png" class="scene-img" id="scene-layer4" alt="Top Layer">
+      <div id="solid-fill" aria-hidden="true"></div>
+    </div>
+
+  </div>
+  <!-- Embedded story -->
+  <div class="storymaps-root"></div>
+  <script type="module" src="./src/configStory.js"></script>
+
+</body>
+
+</html>

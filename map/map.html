@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dam-busters</title>
+  <script type="module" src="./animateMap.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div id="mapContainer" class="view map">
+    <arcgis-map id="map" item-id="map-id" zoom="zoom" center="center">
+      <arcgis-expand position="bottom-right" mode="floating">
+        <arcgis-time-slider slot="bottom-right" mode="cumulative-from-start" play-rate=250
+          reference-element="map"></arcgis-time-slider>
+      </arcgis-expand>
+    </arcgis-map>
+  </div>
+  <div id="sceneContainer" class="view scene"></div>
+</body>
+
+</html>
