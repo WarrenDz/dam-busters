@@ -4,7 +4,7 @@ import simpleParallax from "simple-parallax-js/vanilla";
 document.addEventListener('DOMContentLoaded', function() {
     // Background layer (slowest movement)
     new simpleParallax(document.getElementById('scene-layer1'), {
-        scale: 0.05,
+        scale: 0.1,
         delay: 0.5,
         transition: 'cubic-bezier(0,0,0,1)',
         overflow: true
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Foreground layer
     new simpleParallax(document.getElementById('scene-layer3'), {
-        scale: 0.4,
+        scale: 0.5,
         delay: 0.5,
         transition: 'cubic-bezier(0,0,0,1)',
         overflow: true

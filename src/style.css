@@ -1,7 +1,7 @@
 /* Page background */
 body {
   margin: 0;
-  background-color: #222222; /* page background */
+  background-color: #171717; /* page background */
   min-height: 200vh; /* ensure there's room to scroll */
 }
 
@@ -17,15 +17,14 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 360px;
+  height: 500px;
   object-fit: cover;
 }
 
-/* Gradient under the scene: from #A8CDFF at the top to #DCE9F9 at 50% */
 #solid-fill {
   width: 100%;
-  height: 100vh; /* adjust how tall the gradient band should be */
-  background: linear-gradient(to bottom, #2b2f32 0%, #45484d 50%, #43484f 100%);
+  height: 100vh;
+  background:  #171717;
 }
 
 /* Layer stacking (keeps images in order) */
