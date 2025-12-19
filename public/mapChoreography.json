@@ -1478,7 +1478,7 @@
         }
     },
     "layerVisibility": {
-      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOn": ["Lancaster", "Upkeep", "Mohne dam | Highlight"],
       "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
@@ -1522,7 +1522,7 @@
     }
   },
     "layerVisibility": {
-      "layersOn": ["Lancaster", "Upkeep"],
+      "layersOn": ["Lancaster", "Upkeep", "Mohne dam | Highlight"],
       "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
@@ -1546,8 +1546,8 @@
         }
     },
     "layerVisibility": {
-      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam"],
-      "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk","Mohne dam | Highlight"]
+      "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam | Highlight"],
+      "layersOff": ["Lancaster","Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
   {
@@ -1571,7 +1571,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Lancaster | Outlines", "Upkeep | Highlight", "Mohne dam | Highlight"],
-      "layersOff": ["Lancaster","Mohne dam", "Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk"]
+      "layersOff": ["Lancaster", "Lancaster | Highlight", "Upkeep", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
   {
@@ -1595,7 +1595,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Lancaster | Highlight", "Upkeep | Highlight", "Mohne dam | Highlight", "Upkeep | Path", "Upkeep | Sunk"],
-      "layersOff": ["Lancaster | Outlines","Mohne dam", "Lancaster", "Upkeep"]
+      "layersOff": ["Lancaster | Outlines", "Lancaster", "Upkeep"]
     },
     "timeSlider": {
       "timeSliderStart": "1943-05-17T00:15:00Z",
