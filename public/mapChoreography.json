@@ -18,7 +18,7 @@
     },
     "layerVisibility": {
       "layersOn": ["Render | Takeoff"],
-      "layersOff": ["Hillshade", "Basemap Labels", "RAF Scampton", "Basemap Detail", "Flight | Tracks 1", "Flight | Tracks 2", "Routes | Paused", "THOR WWII ETO | Aggregate Circles"]
+      "layersOff": ["Hillshade", "Basemap Labels", "RAF Scampton", "Basemap Detail", "Flight | Tracks 1", "Flight | Tracks 2", "Routes | Paused", "THOR WWII ETO | Aggregate Circles", "Ruhr Valley | Time-enabled"]
     }
   },
   {
@@ -635,8 +635,45 @@
                         }
                     }
                 }
-              }
-            },
+              },
+            "labelingInfo": {
+                "labelExpressionInfo": {
+                    "expression": "Concatenate(\"Wave \",$feature[\"Wave\"])",
+                    "title": "New expression"
+                },
+                "symbol": {
+                    "type": "text",
+                    "color": [
+                        255,
+                        221,
+                        0,
+                        255
+                    ],
+                    "font": {
+                        "family": "Oswald",
+                        "size": 9.75
+                    },
+                    "horizontalAlignment": "center",
+                    "kerning": true,
+                    "haloColor": [
+                        38,
+                        38,
+                        38,
+                        255
+                    ],
+                    "haloSize": 0.75,
+                    "rotated": false,
+                    "text": "",
+                    "verticalAlignment": "baseline",
+                    "xoffset": -12,
+                    "yoffset": -8,
+                    "angle": 0
+                },
+                "labelPlacement": "above-right",
+                "minScale": 0,
+                "maxScale": 0
+            }
+        },
             "previousObservations": {
               "enabled": false,
               "visible": false,
@@ -662,8 +699,8 @@
                 }
               }
             }
-          }
-    },
+    }
+},
     "timeSlider": {
       "timeSliderStart": "1943-05-16T21:15:00Z",
       "timeSliderEnd": "1943-05-16T23:00:00Z",
@@ -672,7 +709,7 @@
     }
   },
   {
-    "note": "2 - Hold flight lines and animate THOR data from Jan 1941 to Oct 1943",
+    "note": "2 - Hold flight lines and animate THOR data from 1939 thru 1945",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -693,8 +730,8 @@
       "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams", "RAF Scampton", "Ruhr Valley | Time-enabled"]
     },
     "timeSlider": {
-      "timeSliderStart": "1943-10-01T24:00:00Z",
-      "timeSliderEnd": "1943-10-01T24:00:00Z",
+      "timeSliderStart": "1945-10-01T24:00:00Z",
+      "timeSliderEnd": "1945-10-01T24:00:00Z",
       "timeSliderUnit": "months",
       "timeSliderStep": 1
     }
@@ -721,8 +758,8 @@
       "layersOff": ["Flight | Tracks 1", "Flight | Tracks 2", "Render | Takeoff", "Dams", "Ruhr Valley | Time-enabled", "Waterways"]
     },
     "timeSlider": {
-      "timeSliderStart": "1943-10-01T24:00:00Z",
-      "timeSliderEnd": "1943-10-01T24:00:00Z",
+      "timeSliderStart": "1945-10-01T24:00:00Z",
+      "timeSliderEnd": "1945-10-01T24:00:00Z",
       "timeSliderUnit": "months",
       "timeSliderStep": 1
     }
