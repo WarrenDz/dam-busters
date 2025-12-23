@@ -1628,20 +1628,20 @@
     "note": "13 - Trying to force a smooth zoom out",
     "maps": [1,0],
     "viewpoint": {
-      "camera": {
-          "position": {
-              "spatialReference": {
-                  "latestWkid": 3857,
-                  "wkid": 102100
-              },
-              "x": 898477.9210217432,
-              "y": 6707170.556067927,
-              "z": 30979.450409091078
-          },
-          "heading": 253.28252177536015,
-          "tilt": 0.49760087512002427,
-          "fov": 24.345703125000007
-      }
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 900865.7923613683,
+                "y": 6706567.325321823,
+                "z": 80593.05975648481
+            },
+            "heading": 253.29930570512397,
+            "tilt": 0.49377838274670466,
+            "fov": 24.345703125000007
+        }
     }
   },
   {
@@ -1663,6 +1663,28 @@
     },
     "layerVisibility": {
       "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled"],
+      "layersOff": ["Flight | Tracks 2", "Flight | Tracks 1", "Dams", "Waterways", "Aircraft Losses"]
+    }
+  },
+  {
+    "note": "15 - Show flood effect, dam results, and aircraft",
+    "maps": [0],
+    "viewpoint": {
+        "rotation": 0,
+        "scale": 2311162.2171545,
+        "targetGeometry": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "xmin": 379147.01083745126,
+            "ymin": 6465980.308988962,
+            "xmax": 1164308.165382573,
+            "ymax": 6989421.07868571
+        }
+    },
+    "layerVisibility": {
+      "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled", "Aircraft Losses"],
       "layersOff": ["Flight | Tracks 2", "Flight | Tracks 1", "Dams", "Waterways"]
     }
   }
