@@ -1723,6 +1723,12 @@
     "layerVisibility": {
       "layersOn": ["Dams | Result", "Flood Effect", "Basemap Labels", "Basemap Detail", "Basemap Labels", "Basemap Detail", "Ruhr Valley | Time-enabled", "Aircraft Losses"],
       "layersOff": ["Flight | Tracks 2", "Flight | Tracks 1", "Dams", "Waterways"]
+    },
+    "timeSlider": {
+      "timeSliderStart": "1943-05-17T12:00:00Z",
+      "timeSliderEnd": "1943-05-17T12:00:00Z",
+      "timeSliderUnit": "minutes",
+      "timeSliderStep": 5
     }
   }
 ]
