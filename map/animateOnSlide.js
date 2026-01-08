@@ -1,5 +1,7 @@
 import Viewpoint from "@arcgis/core/Viewpoint.js";
 import Camera from "@arcgis/core/Camera.js";
+import Extent from "@arcgis/core/geometry/Extent.js";
+import Point from "@arcgis/core/geometry/Point.js";
 
 import { animationConfig } from "./configAnimation.js";
 
@@ -69,7 +71,30 @@ function toggleViewpoint({ slideData, view, timeSlider, embedded }) {
   if (viewpointData) {
     try {
       const targetViewpoint = Viewpoint.fromJSON(viewpointData);
-      const target = animationConfig.mapFit === "scale" ? targetViewpoint : targetViewpoint.targetGeometry;
+      const targetGeometry = targetViewpoint.targetGeometry;
+      let target;
+      if (animationConfig.mapFit === "scale") {
+        const centerX = (targetGeometry.xmin + targetGeometry.xmax) / 2;
+        const centerY = (targetGeometry.ymin + targetGeometry.ymax) / 2;
+        target = {
+          center: new Point({
+            x: centerX,
+            y: centerY,
+            spatialReference: targetGeometry.spatialReference
+          }),
+          scale: targetViewpoint.scale
+        };
+      } else if (animationConfig.mapFit === "extent") {
+        target = new Extent({
+          xmin: targetGeometry.xmin,
+          ymin: targetGeometry.ymin,
+          xmax: targetGeometry.xmax,
+          ymax: targetGeometry.ymax,
+          spatialReference: targetGeometry.spatialReference
+        });
+      } else {
+        target = targetViewpoint;
+      }
       view.goTo(target, animationConfig.goToConfig).catch((error) => {
           console.error("Error setting viewpoint:", error);
         });

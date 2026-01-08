@@ -9,7 +9,7 @@ export const animationConfig = {
   timePlayRate: "250",
   debugMode: true,
   disableMapNav: true,
-  mapFit: "scale",
+  mapFit: "extent",
   mapChoreography: "../mapChoreography.json",
   goToConfig: {animate: true, duration: 1000}
 };
