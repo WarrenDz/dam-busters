@@ -1662,7 +1662,27 @@
     }
   },
   {
-    "note": "13 - Trying to force a smooth zoom out",
+    "note": "13 - Hold zoom on dam",
+    "maps": [1],
+    "viewpoint": {
+        "camera": {
+            "position": {
+                "spatialReference": {
+                    "latestWkid": 3857,
+                    "wkid": 102100
+                },
+                "x": 897791.4480252814,
+                "y": 6708467.945676294,
+                "z": 273.336127451621
+            },
+            "heading": 258.13410306554925,
+            "tilt": 78.53396255907785,
+            "fov": 24.345703125000007
+        }
+    }
+  },
+  {
+    "note": "14 - Trying to force a smooth zoom out",
     "maps": [1,0],
     "viewpoint": {
         "camera": {
@@ -1682,7 +1702,7 @@
     }
   },
   {
-    "note": "14 - Show flood effect and dam results",
+    "note": "15 - Show flood effect and dam results",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -1704,7 +1724,7 @@
     }
   },
   {
-    "note": "15 - Show flood effect, dam results, and aircraft",
+    "note": "16 - Show flood effect, dam results, and aircraft",
     "maps": [0],
     "viewpoint": {
         "rotation": 0,
