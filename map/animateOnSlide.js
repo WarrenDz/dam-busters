@@ -50,6 +50,7 @@ export function slideAnimation(slideData, view, timeSlider, embedded) {
  * animating the transition over 1 second. Logs errors if the transition fails.
  */
 function toggleViewpoint({ slideData, view, timeSlider, embedded }) {
+  log("Triggering slide viewpoint animation");
   // Prefer camera when running in a 3D SceneView and camera data is available.
   const viewpointData = slideData.viewpoint;
   const cameraData = slideData.camera || viewpointData?.camera;
@@ -69,6 +70,7 @@ function toggleViewpoint({ slideData, view, timeSlider, embedded }) {
 
   // Otherwise fall back to viewpoint navigation (works for 2D view and SceneView viewpoints)
   if (viewpointData) {
+
     try {
       const targetViewpoint = Viewpoint.fromJSON(viewpointData);
       const targetGeometry = targetViewpoint.targetGeometry;
