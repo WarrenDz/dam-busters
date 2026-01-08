@@ -1520,27 +1520,31 @@
     }
   },
   {
-    "note": "7 - Trying to force the zoom to Lancaster",
+    "note": "7 - Still trying to force the zoom to the Lancaster",
     "maps": [1],
     "viewpoint": {
       "camera": {
-          "position": {
-              "spatialReference": {
-                  "latestWkid": 3857,
-                  "wkid": 102100
-              },
-              "x": 898477.9210217432,
-              "y": 6707170.556067927,
-              "z": 30979.450409091078
-          },
-          "heading": 253.28252177536015,
-          "tilt": 0.49760087512002427,
-          "fov": 24.345703125000007
-      }
+        "position": {
+            "spatialReference": {
+                "latestWkid": 3857,
+                "wkid": 102100
+            },
+            "x": 897434.5302910476,
+            "y": 6707982.981331988,
+            "z": 325.98987346701324
+        },
+        "heading": 253.27518783283153,
+        "tilt": 0.4999922942566893,
+        "fov": 24.345703125000007
+    }
+  },
+    "layerVisibility": {
+      "layersOn": ["Lancaster", "Upkeep", "Mohne dam | Highlight"],
+      "layersOff": ["Lancaster | Outlines", "Lancaster | Highlight", "Upkeep | Highlight", "Upkeep | Path", "Upkeep | Sunk"]
     }
   },
   {
-    "note": "8 - Still trying to force the zoom to the Lancaster",
+    "note": "8 - Hold topdown Lancaster",
     "maps": [1],
     "viewpoint": {
       "camera": {
