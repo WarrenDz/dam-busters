@@ -1520,7 +1520,27 @@
     }
   },
   {
-    "note": "7 - Still trying to force the zoom to the Lancaster",
+    "note": "7 - Trying to force the zoom to Lancaster",
+    "maps": [1],
+    "viewpoint": {
+      "camera": {
+          "position": {
+              "spatialReference": {
+                  "latestWkid": 3857,
+                  "wkid": 102100
+              },
+              "x": 898477.9210217432,
+              "y": 6707170.556067927,
+              "z": 30979.450409091078
+          },
+          "heading": 253.28252177536015,
+          "tilt": 0.49760087512002427,
+          "fov": 24.345703125000007
+      }
+    }
+  },
+  {
+    "note": "8 - Still trying to force the zoom to the Lancaster",
     "maps": [1],
     "viewpoint": {
       "camera": {
@@ -1544,7 +1564,7 @@
     }
   },
   {
-    "note": "8 - Hold topdown Lancaster",
+    "note": "9 - Hold topdown Lancaster",
     "maps": [1],
     "viewpoint": {
       "camera": {
@@ -1568,7 +1588,7 @@
     }
   },
   {
-    "note": "9 - Switch to underside view of Lancaster and Upkeep in schematic view",
+    "note": "10 - Switch to underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1592,7 +1612,7 @@
     }
   },
   {
-    "note": "10 - Hold underside view of Lancaster and Upkeep in schematic view",
+    "note": "11 - Hold underside view of Lancaster and Upkeep in schematic view",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1616,7 +1636,7 @@
     }
   },
   {
-    "note": "11 - Animate approach with bounce",
+    "note": "12 - Animate approach with bounce",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1646,7 +1666,7 @@
     }
   },
   {
-    "note": "12 - Zoom to dam",
+    "note": "13 - Zoom to dam",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1666,7 +1686,7 @@
     }
   },
   {
-    "note": "13 - Hold zoom on dam",
+    "note": "14 - Hold zoom on dam",
     "maps": [1],
     "viewpoint": {
         "camera": {
@@ -1686,7 +1706,7 @@
     }
   },
   {
-    "note": "14 - Trying to force a smooth zoom out",
+    "note": "15 - Trying to force a smooth zoom out",
     "maps": [1,0],
     "viewpoint": {
         "camera": {
@@ -1706,7 +1726,7 @@
     }
   },
   {
-    "note": "15 - Show flood effect and dam results",
+    "note": "16 - Show flood effect and dam results",
     "maps": [0],
     "viewpoint": {
       "rotation": 0,
@@ -1728,7 +1748,7 @@
     }
   },
   {
-    "note": "16 - Show flood effect, dam results, and aircraft",
+    "note": "17 - Show flood effect, dam results, and aircraft",
     "maps": [0],
     "viewpoint": {
         "rotation": 0,
