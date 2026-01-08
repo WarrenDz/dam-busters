@@ -109,14 +109,10 @@ function interpolate2DViewpoint(currentViewpoint, nextViewpoint, u, lerp) {
 function interpolateViewpoint({ slideCurrent, slideNext, progress, view, timeSlider }) {
   // Support both 2D viewpoint interpolation and 3D camera interpolation.
   // Use goTo for programmatic navigation and respect animationConfig.mapFit.
-
   const currentViewpoint = slideCurrent?.viewpoint;
   const nextViewpoint = slideNext?.viewpoint;
   const currentCamera = slideCurrent?.viewpoint.camera;
   const nextCamera = slideNext?.viewpoint.camera;
-
-  // const easeInOut = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
-  // const u = easeInOut(Math.max(0, Math.min(1, progress)));
   const u = progress;
   const lerp = (a, b, t) => (a === undefined || b === undefined) ? (a ?? b) : a + (b - a) * t;
 
