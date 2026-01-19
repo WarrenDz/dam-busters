@@ -18,7 +18,14 @@ body {
   left: 0;
   width: 100%;
   height: 500px;
-  object-fit: cover;
+  object-fit: cover; /* Default for desktop */
+}
+
+/* Mobile-specific override */
+@media (max-width: 768px) {
+  .scene-img {
+    object-position: 30%; /* Ensures full width without cropping, fits within the box */
+  }
 }
 
 #solid-fill {
