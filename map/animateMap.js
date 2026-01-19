@@ -100,15 +100,9 @@ export function configureMap(animationConfig, mapIndex, element, view) {
             // if mapView is not yet ready, these handlers will be attached later when view is available
             const attachNavHandlers = () => {
                 if (!view) return;
-                view.on("mouse-wheel", (event) => {
-                    event.stopPropagation();
-                });
-                view.on("drag", (event) => {
-                    event.stopPropagation();
-                });
-                view.on("double-click", (event) => {
-                    event.stopPropagation();
-                });
+                view.navigation.mouseWheelZoomEnabled = false;
+                view.navigation.dragEnabled = false;
+                view.navigation.doubleClickZoomEnabled = false;
             };
             // attempt immediate attach, otherwise attach once view is ready
             if (view) attachNavHandlers();
