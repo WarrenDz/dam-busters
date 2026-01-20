@@ -103,6 +103,8 @@ export function configureMap(animationConfig, mapIndex, element, view) {
                 view.navigation.mouseWheelZoomEnabled = false;
                 view.navigation.dragEnabled = false;
                 view.navigation.doubleClickZoomEnabled = false;
+                view.navigation.browserTouchPanEnabled = false;
+                view.navigation.browserTouchZoomEnabled = false;
             };
             // attempt immediate attach, otherwise attach once view is ready
             if (view) attachNavHandlers();
