@@ -38,9 +38,18 @@ Using ArcGIS StoryMaps and embedded maps created with the [ArcGIS Maps SDK for J
 
 ## Requirements
 
-Here are some things you will need
-* [A GitHub account in the ArcGIS and Esri orgs](https://github-admin.esri.com/doc/joining-the-arcgis-and-esri-orgs.html)
-* [A repository in the ArcGIS org](https://github-admin.esri.com/doc/creating-a-new-repository.html)
+### Technical Requirements
+- **Node.js** (version 18 or higher)
+- **npm** or **yarn** package manager
+- **Modern web browser** (Chrome, Firefox, Safari, Edge)
+
+### For ArcGIS StoryMaps Integration
+- **ArcGIS Online account** or **ArcGIS Enterprise**
+- **StoryMaps authoring privileges**
+
+### Optional but Recommended
+- **Git** for version control
+- **VS Code** or similar code editor
 
 ## Resources
 
